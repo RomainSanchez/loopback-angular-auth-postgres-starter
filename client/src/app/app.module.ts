@@ -9,14 +9,13 @@ import { SDKBrowserModule } from './shared/sdk';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AuthComponent } from './auth/auth.component';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    AuthComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +24,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     SDKBrowserModule.forRoot(),
-    MaterialModule
+    MaterialModule,
+    UserModule
   ],
   providers: [
     AuthGuardService

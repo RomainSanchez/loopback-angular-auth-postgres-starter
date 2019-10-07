@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoopBackConfig } from './shared/sdk';
+import { LoopBackConfig, LoopBackAuth } from './shared/sdk';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { LoopBackConfig } from './shared/sdk';
 export class AppComponent {
   title = 'My app';
 
-  constructor() {
+  constructor(private authService: LoopBackAuth) {
     LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
     LoopBackConfig.setApiVersion('api');
   }

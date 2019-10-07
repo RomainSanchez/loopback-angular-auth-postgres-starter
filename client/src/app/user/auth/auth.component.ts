@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, UserApi, LoopBackAuth, SDKToken } from '../shared/sdk';
+import { User, UserApi, LoopBackAuth, SDKToken } from '../../shared/sdk';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,12 @@ export class AuthComponent {
     private router: Router,
     private userApi: UserApi,
     private authService: LoopBackAuth
-  ) { }
+  ) {
+    console.log(router.url);
+    if (router.url === '/logout') {
+      this.userApi.logout().subscribe();
+    }
+   }
 
   authenticate() {
     this.userApi.login(this.user).subscribe(
