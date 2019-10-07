@@ -7,7 +7,7 @@ import { LoopBackConfig, LoopBackAuth } from './shared/sdk';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'My app';
+  title = 'Saisine d\'instances';
 
   constructor(private authService: LoopBackAuth) {
     LoopBackConfig.setBaseURL('http://127.0.0.1:3000');

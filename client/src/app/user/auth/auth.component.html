@@ -1,10 +1,10 @@
 <mat-card class="login-card">
-  <mat-card-title>Authentication</mat-card-title>
+  <mat-card-title>Authentification</mat-card-title>
   <mat-card-content>
     <form (ngSubmit)="authenticate()" class="login-form">
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Username" [(ngModel)]="user.username" name="username" required>
+          <input type="text" matInput placeholder="Utilisateur" [(ngModel)]="user.username" name="username" required>
         </mat-form-field>
       </p>
 
@@ -19,7 +19,7 @@
       </p>
 
       <div class="button">
-        <button type="submit" mat-raised-button color="accent">Login</button>
+        <button type="submit" mat-raised-button color="accent">Connexion</button>
       </div>
 
     </form>

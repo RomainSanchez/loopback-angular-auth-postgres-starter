@@ -1,14 +1,10 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
-  },
   "postgres": {
     "host": "localhost",
     "port": "5432",
-    "database": "myapp",
-    "username": "myuser",
-    "password": "password",
+    "database": "saisine",
+    "username": "saisine",
+    "password": "saisine",
     "name": "postgres",
     "debug": true,
     "connector": "postgresql"
