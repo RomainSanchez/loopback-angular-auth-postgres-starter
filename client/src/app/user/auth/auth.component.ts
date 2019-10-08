@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { User, UserApi, LoopBackAuth, SDKToken } from '../../shared/sdk';
+import { LoopBackAuth, SDKToken } from '../../shared/sdk';
 import { Router } from '@angular/router';
+import { CommunityApi } from 'src/app/shared/sdk/services/custom/Community';
+import { Community } from 'src/app/shared/sdk/models/Community';
 
 @Component({
   selector: 'app-auth',
@@ -8,28 +10,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.sass']
 })
 export class AuthComponent {
-  user: User = new User();
+  community: Community = new Community();
   error: string;
 
   constructor(
     private router: Router,
-    private userApi: UserApi,
-    private authService: LoopBackAuth
+    private communityApi: CommunityApi,
+    private loopbackAuthService: LoopBackAuth
   ) {
-    console.log(router.url);
     if (router.url === '/logout') {
-      this.userApi.logout().subscribe();
+      this.communityApi.logout().subscribe();
     }
    }
 
   authenticate() {
-    this.userApi.login(this.user).subscribe(
+    this.communityApi.login(this.community).subscribe(
       (token: SDKToken) => {
-        this.authService.setToken(token);
-        this.router.navigate(['home']);
+        // Retrieve roles
+        this.communityApi.findOne({
+          where: {
+            id: token.user.id
+          },
+          include: ['roles']
+        }).subscribe((community: Community) => {
+          token.user = community;
+          this.loopbackAuthService.setToken(token);
+
+          this.router.navigate(['home']);
+        });
       },
       (error: any) => {
-        console.log(error);
         this.error = error.message;
       }
     );

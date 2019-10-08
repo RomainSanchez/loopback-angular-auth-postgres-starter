@@ -1,0 +1,45 @@
+<h2 class="mat-display-1">Utilisateurs</h2>
+
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-progress-spinner class="spinner"
+    color="primary"
+    mode="indeterminate"
+    diameter="150"
+  ></mat-progress-spinner>
+</div>
+
+<mat-form-field>
+  <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtrer">
+</mat-form-field>
+
+<mat-table class="communities-table mat-elevation-z4" matSort [dataSource]="tableDataSource">
+    <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Identifiant</mat-header-cell>
+        <mat-cell *matCellDef="let community">{{ community.username }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+      <mat-cell *matCellDef="let community">{{ community.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let community">{{ community.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="roles">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Roles</mat-header-cell>
+      <mat-cell *matCellDef="let community">{{ community.roles| roles }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let community; columns: displayedColumns"
+      (click)=rowClicked(community.id)
+    ></mat-row>
+
+</mat-table>
+
+<mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+

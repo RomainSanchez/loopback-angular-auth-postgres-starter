@@ -1,0 +1,8 @@
+{
+  "auth": {
+    "error": {
+      "login failed": "Identifiant ou mot de passe invalide",
+      "username or email is required": "Identifiant et mot de passe manquant"
+    }
+  }
+}
