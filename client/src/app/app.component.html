@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z8">
   <mat-toolbar-row>
     <span><a routerLink="/home">{{ title }}</a></span>
-    <span></span>
+    <span *ngxPermissionsOnly="['admin']"><a routerLink="/user/list">Utilisateurs</a></span>
     <span
       id="logout"
       *ngIf="authService.getAccessTokenId()"

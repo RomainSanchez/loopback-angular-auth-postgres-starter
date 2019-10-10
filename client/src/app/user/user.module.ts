@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { ListComponent } from './list/list.component';
 import { RolesPipe } from './roles.pipe';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgxPermissionsModule.forChild()
   ]
 })
 export class UserModule { }
