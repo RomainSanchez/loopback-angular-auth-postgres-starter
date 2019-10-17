@@ -1,3 +1,49 @@
-<p>
-  home works!
-</p>
+<mat-horizontal-stepper #stepper labelPosition="bottom">
+  <mat-step>
+    <ng-template matStepLabel>Renseignements</ng-template>
+    <div class="content">
+      <h3 class="mat-display-1">Veuillez remplir le formulaire</h3>
+
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Choix de l'instance</ng-template>
+    <div class="content">
+      <h3 class="mat-display-1">Quelle instance désirez vous saisir ?</h3>
+      <div class="committees">
+        <mat-card (click)="setCommittee('cap')" class="committee">
+          <p><mat-icon>account_balance</mat-icon></p>
+          <p class="name">Commission administrative paritaire</p>
+        </mat-card>
+
+        <mat-card (click)="setCommittee('ct')" class="committee">
+          <p><mat-icon>assignment_turned_in</mat-icon></p>
+          <p class="name">Comité technique</p>
+        </mat-card>
+      </div>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Choix du motif</ng-template>
+    <div class="content">
+      <h3 class="mat-display-1">Pour quel motif voulez vous saisir {{ committee === 'cap' ? 'la CAP' : 'le CT'}} ?</h3>
+      <div *ngIf="committee === 'cap'" id="cap" class="form-types">
+        <mat-card *ngFor="let type of capFormTypes">
+          <p class="form-type">{{ type }}</p>
+        </mat-card>
+      </div>
+
+      <div *ngIf="committee === 'ct'" id="ct" class="form-types">
+        <mat-card *ngFor="let type of ctFormTypes">
+          <p class="form-type">{{ type }}</p>
+        </mat-card>
+      </div>
+    </div>
+  </mat-step>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+
+</mat-horizontal-stepper>

@@ -44,7 +44,6 @@ export class ListComponent implements OnInit {
     this.isLoading = true;
 
     return this.communityApi.find({include: ['roles']}).subscribe((communities: Community[]) => {
-      console.log(communities);
       this.tableDataSource.data = communities;
 
       this.isLoading = false;
@@ -56,7 +55,7 @@ export class ListComponent implements OnInit {
   }
 
   rowClicked(communityId: number) {
-    this.router.navigate(['/account', communityId]);
+    this.router.navigate(['/user/profile', communityId]);
   }
 
   private filter(community: Community, filters: string) {

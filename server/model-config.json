@@ -14,14 +14,15 @@
     ]
   },
   "User": {
-    "dataSource": "postgres"
+    "dataSource": "memory",
+    "public": false
   },
   "AccessToken": {
     "dataSource": "postgres",
     "public": false
   },
   "ACL": {
-    "dataSource": "postgres",
+    "dataSource": "memory",
     "public": false
   },
   "RoleMapping": {
@@ -33,9 +34,21 @@
   },
   "Role": {
     "dataSource": "postgres",
-    "public": false
+    "public": true
   },
   "Community": {
+    "dataSource": "postgres",
+    "public": true,
+    "options": {
+      "emailVerificationRequired": false,
+      "ttl": 1800
+    }
+  },
+  "Form": {
+    "dataSource": "postgres",
+    "public": true
+  },
+  "Referral": {
     "dataSource": "postgres",
     "public": true
   }

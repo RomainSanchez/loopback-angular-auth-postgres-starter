@@ -30,18 +30,16 @@ export class AuthComponent {
   authenticate() {
     this.communityApi.login(this.community).subscribe(
       (token: SDKToken) => {
+        console.log(token);
         // Retrieve roles
-        this.communityApi.findOne({
-          where: {
-            id: token.user.id
-          },
-          include: ['roles']
-        }).subscribe((community: Community) => {
+        this.communityApi.findById(token.user.id, { include: ['roles'] }).subscribe((community: Community) => {
           token.user = community;
+          const roles = this.getRoleNames(token.user.roles);
 
           this.loopbackAuthService.setToken(token);
-          this.permissionsService.loadPermissions(this.getRoleNames(token.user.roles));
-          this.permissionsService.addPermission('zz');
+          this.permissionsService.loadPermissions(roles);
+
+          localStorage.setItem('permissions', JSON.stringify(roles));
 
           this.router.navigate(['home']);
         });

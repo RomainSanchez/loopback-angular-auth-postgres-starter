@@ -48,7 +48,7 @@ import { SocketBrowser } from './sockets/socket.browser';
 import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
-import { UserApi } from './services/custom/User';
+import { RoleApi } from './services/custom/Role';
 import { CommunityApi } from './services/custom/Community';
 /**
 * @module SDKBrowserModule
@@ -80,7 +80,7 @@ export class SDKBrowserModule {
         LoggerService,
         SDKModels,
         RealTime,
-        UserApi,
+        RoleApi,
         CommunityApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },

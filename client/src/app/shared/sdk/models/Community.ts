@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  Role
+} from '../index';
 
 declare var Object: any;
 export interface CommunityInterface {
@@ -10,7 +13,7 @@ export interface CommunityInterface {
   "id"?: number;
   "password"?: string;
   accessTokens?: any[];
-  roles?: any[];
+  roles?: Role[];
 }
 
 export class Community implements CommunityInterface {
@@ -22,7 +25,7 @@ export class Community implements CommunityInterface {
   "id": number;
   "password": string;
   accessTokens: any[];
-  roles: any[];
+  roles: Role[];
   constructor(data?: CommunityInterface) {
     Object.assign(this, data);
   }
@@ -91,13 +94,13 @@ export class Community implements CommunityInterface {
           type: 'any[]',
           model: '',
           relationType: 'hasMany',
-          keyFrom: 'id',
+                  keyFrom: 'id',
           keyTo: 'userId'
         },
         roles: {
           name: 'roles',
-          type: 'any[]',
-          model: '',
+          type: 'Role[]',
+          model: 'Role',
           relationType: 'hasMany',
           modelThrough: 'RoleMapping',
           keyThrough: 'roleId',

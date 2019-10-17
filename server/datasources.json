@@ -1,4 +1,8 @@
 {
+  "memory": {
+    "name": "memory",
+    "connector": "memory"
+  },
   "postgres": {
     "host": "localhost",
     "port": "5432",

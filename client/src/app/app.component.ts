@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(
     private authService: LoopBackAuth,
     private translateService: TranslateService,
-    private rolesService: NgxRolesService,
     private permissionsService: NgxPermissionsService
   ) {
     LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
@@ -22,5 +21,11 @@ export class AppComponent {
 
     translateService.setDefaultLang('fr');
     translateService.use('fr');
+
+    const permissions = JSON.parse(localStorage.getItem('permissions'));
+
+    if (permissions && this.authService.getAccessTokenId()) {
+      this.permissionsService.loadPermissions(permissions);
+    }
   }
 }

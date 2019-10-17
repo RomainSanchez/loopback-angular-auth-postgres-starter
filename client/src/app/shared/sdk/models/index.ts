@@ -1,5 +1,5 @@
 /* tslint:disable */
-export * from './User';
+export * from './Role';
 export * from './Community';
 export * from './BaseModels';
 export * from './FireLoopRef';

@@ -1,0 +1,36 @@
+<h2 class="mat-display-1" *ngIf="community?.id">Modifier un utilisateur</h2>
+<h2 class="mat-display-1" *ngIf="!community.id">Nouvel utilisateur</h2>
+
+<mat-card  *ngxPermissionsOnly="['admin']">
+  <mat-card-title></mat-card-title>
+  <form class="community-form" #communityForm="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <mat-form-field class="field">
+        <input matInput [(ngModel)]="community.name"  name="name" placeholder="Nom">
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <input matInput [(ngModel)]="community.username"  name="username" placeholder="Nom d'utilisateur">
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <input matInput [(ngModel)]="community.email"  name="email" placeholder="Email">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="!community.id" class="field">
+        <input matInput type="password" [(ngModel)]="community.password"  name="password" placeholder="Mot de passe">
+      </mat-form-field>
+
+      <div class="roles">
+        <p><label>Roles</label></p>
+
+        <p *ngFor="let role of roles" class="role">
+          <mat-slide-toggle [checked]="hasRole(role.name)" (change)="toggleRole(role)">{{ role.description }}</mat-slide-toggle>
+        </p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="submit" id="submit" mat-raised-button color="accent">Enregistrer</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

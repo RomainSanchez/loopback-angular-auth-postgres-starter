@@ -1,7 +1,9 @@
 <mat-toolbar color="primary" class="mat-elevation-z8">
   <mat-toolbar-row>
-    <span><a routerLink="/home">{{ title }}</a></span>
-    <span *ngxPermissionsOnly="['admin']"><a routerLink="/user/list">Utilisateurs</a></span>
+    <span>
+      <a routerLink="/home"><img id="logo" src="assets/img/logo_cdg29.png" alt="Logo CDG29">{{ title }}</a>
+    </span>
+    <span *ngxPermissionsOnly="['admin']"><a routerLink="/users">Utilisateurs</a></span>
     <span
       id="logout"
       *ngIf="authService.getAccessTokenId()"
@@ -11,4 +13,6 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

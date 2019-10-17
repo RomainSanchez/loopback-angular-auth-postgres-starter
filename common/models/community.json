@@ -22,16 +22,48 @@
       "model": "Role",
       "foreignKey": "principalId",
       "through": "RoleMapping"
+    },
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccessToken",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
     }
   },
   "acls": [
     {
-      "accessType": "READ",
+      "accessType": "*",
       "principalType": "ROLE",
       "principalId": "admin",
-      "permission": "ALLOW",
-      "property": "find"
+      "permission": "ALLOW"
     }
   ],
-  "methods": {}
+  "methods": {
+    "prototype.removeRole": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "required": true,
+          "description": "The community id"
+        },
+        {
+          "arg": "roleId",
+          "type": "string",
+          "required": true,
+          "description": "The role id"
+        }
+      ],
+      "returns": [],
+      "description": "Remove a role from a Community (user)",
+      "http": [
+        {
+          "path": "role/remove",
+          "verb": "delete"
+        }
+      ]
+    }
+  }
 }

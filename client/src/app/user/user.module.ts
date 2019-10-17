@@ -10,6 +10,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { ListComponent } from './list/list.component';
 import { RolesPipe } from './roles.pipe';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { ProfileComponent } from './profile/profile.component';
+import { RouterModule } from '@angular/router';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -19,13 +21,15 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AuthComponent,
     ListComponent,
-    RolesPipe
+    RolesPipe,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

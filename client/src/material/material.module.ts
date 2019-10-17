@@ -19,7 +19,9 @@ import {
   MatListModule,
   MatTooltipModule,
   MatDatepickerModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatStepperModule
 } from '@angular/material';
 
 const modules = [
@@ -42,7 +44,9 @@ const modules = [
   MatListModule,
   MatTooltipModule,
   MatDatepickerModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatStepperModule
 ];
 
 @NgModule({
