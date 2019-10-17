@@ -7,12 +7,12 @@ module.exports = function(Community) {
    * @param {string} roleId The role id
    * @param {Function(Error)} callback
    */
-  Community.prototype.removeRole = async (id, roleId, callback) => {
+  Community.prototype.removeRole = async (communityId, roleId, callback) => {
     const roleMappingModel = Community.app.models.RoleMapping;
 
     const mapping = await roleMappingModel.findOne({where: {
       principalType: 'USER',
-      principalId: id,
+      principalId: communityId,
       roleId: roleId
     }});
 

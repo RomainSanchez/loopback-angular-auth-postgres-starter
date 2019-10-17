@@ -314,7 +314,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {any} id Community id
    *
-   * @param {object} filter
+   * @param {object} filter 
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -409,7 +409,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` -
+   *  - `count` – `{number}` - 
    */
   public countAccessTokens(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -430,7 +430,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {any} id Community id
    *
-   * @param {object} filter
+   * @param {object} filter 
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -525,7 +525,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` -
+   *  - `count` – `{number}` - 
    */
   public countRoles(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -623,9 +623,9 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * The response body contains properties of the AccessToken created on login.
    * Depending on the value of `include` parameter, the body may contain additional properties:
-   *
+   * 
    *   - `user` - `U+007BUserU+007D` - Data of the currently logged in user. (`include=user`)
-   *
+   * 
    *
    */
   public login(credentials: any, include: any = 'user', rememberMe: boolean = true, customHeaders?: Function): Observable<any> {
@@ -650,7 +650,7 @@ export class CommunityApi extends BaseLoopBackApi {
       )
       );
       return result;
-
+      
   }
 
   /**
@@ -674,7 +674,7 @@ export class CommunityApi extends BaseLoopBackApi {
     let _postBody: any = {};
     let _urlParams: any = {};
        _urlParams.access_token = this.auth.getAccessTokenId();
-    this.auth.clear();
+    this.auth.clear(); 
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -710,11 +710,11 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Confirm a user registration with identity verification token.
    *
-   * @param {string} uid
+   * @param {string} uid 
    *
-   * @param {string} token
+   * @param {string} token 
    *
-   * @param {string} redirect
+   * @param {string} redirect 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -767,9 +767,9 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `oldPassword` – `{string}` -
+   *  - `oldPassword` – `{string}` - 
    *
-   *  - `newPassword` – `{string}` -
+   *  - `newPassword` – `{string}` - 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -798,7 +798,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `newPassword` – `{string}` -
+   *  - `newPassword` – `{string}` - 
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -826,6 +826,8 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {any} id Community id
    *
+   * @param {string} communityId The community id
+   *
    * @param {string} roleId The role id
    *
    * @returns {object} An empty reference that will be
@@ -834,9 +836,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public removeRole(id: any, roleId: any, customHeaders?: Function): Observable<any> {
-    console.log(id);
-    console.log(roleId);
+  public removeRole(id: any, communityId: any, roleId: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Communities/:id/role/remove";
@@ -845,6 +845,7 @@ export class CommunityApi extends BaseLoopBackApi {
     };
     let _postBody: any = {};
     let _urlParams: any = {};
+    if (typeof communityId !== 'undefined' && communityId !== null) _urlParams.communityId = communityId;
     if (typeof roleId !== 'undefined' && roleId !== null) _urlParams.roleId = roleId;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;

@@ -76,7 +76,7 @@ export class ProfileComponent implements OnInit {
     const hasRole = this.hasRole(role.name);
 
     if (hasRole) {
-      this.communityApi.removeRole(this.community.id, role.id).subscribe(() => {
+      this.communityApi.removeRole(this.community.id, this.community.id, role.id).subscribe(() => {
         this.community.roles = this.community.roles.filter(theRole => theRole.name !== role.name);
         this.userRoles = this.userRoles.filter(theRole => theRole.name !== role.name);
       });

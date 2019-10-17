@@ -44,7 +44,7 @@
     "prototype.removeRole": {
       "accepts": [
         {
-          "arg": "id",
+          "arg": "communityId",
           "type": "string",
           "required": true,
           "description": "The community id"

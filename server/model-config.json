@@ -51,5 +51,9 @@
   "Referral": {
     "dataSource": "postgres",
     "public": true
+  },
+  "Attachment": {
+    "dataSource": "postgres",
+    "public": true
   }
 }

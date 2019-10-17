@@ -2,6 +2,9 @@
 import { Injectable } from '@angular/core';
 import { Role } from '../../models/Role';
 import { Community } from '../../models/Community';
+import { Form } from '../../models/Form';
+import { Referral } from '../../models/Referral';
+import { Attachment } from '../../models/Attachment';
 
 export interface Models { [name: string]: any }
 
@@ -11,6 +14,9 @@ export class SDKModels {
   private models: Models = {
     Role: Role,
     Community: Community,
+    Form: Form,
+    Referral: Referral,
+    Attachment: Attachment,
     
   };
 
