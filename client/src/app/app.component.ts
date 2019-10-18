@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoopBackConfig, LoopBackAuth } from './shared/sdk';
 import { TranslateService } from '@ngx-translate/core';
-import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
     private translateService: TranslateService,
     private permissionsService: NgxPermissionsService
   ) {
-    LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
+    LoopBackConfig.setBaseURL('http://pow101825:3000');
     LoopBackConfig.setApiVersion('api');
 
     translateService.setDefaultLang('fr');

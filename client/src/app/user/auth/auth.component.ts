@@ -23,6 +23,7 @@ export class AuthComponent {
     if (router.url === '/logout') {
       this.communityApi.logout().subscribe(() => {
         this.permissionsService.flushPermissions();
+        localStorage.removeItem('permissions');
       });
     }
    }
@@ -39,6 +40,7 @@ export class AuthComponent {
           this.loopbackAuthService.setToken(token);
           this.permissionsService.loadPermissions(roles);
 
+          // Store permissions for page reload
           localStorage.setItem('permissions', JSON.stringify(roles));
 
           this.router.navigate(['home']);

@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormComponent } from './form/form.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Cap01Component } from './form-types/cap01/cap01.component';
+import { InformationComponent } from './form-types/information/information.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -17,7 +18,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     FormComponent,
-    Cap01Component
+    Cap01Component,
+    InformationComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     NgxPermissionsModule.forChild()
+  ],
+  exports: [
+    InformationComponent
   ]
 })
 export class ReferralModule { }

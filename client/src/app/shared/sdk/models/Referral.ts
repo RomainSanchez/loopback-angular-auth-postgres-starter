@@ -57,7 +57,8 @@ export class Referral implements ReferralInterface {
       properties: {
         "approved": {
           name: 'approved',
-          type: 'boolean'
+          type: 'boolean',
+          default: false
         },
         "data": {
           name: 'data',

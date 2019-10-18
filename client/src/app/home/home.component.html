@@ -1,9 +1,10 @@
+
 <mat-horizontal-stepper #stepper labelPosition="bottom">
   <mat-step>
     <ng-template matStepLabel>Renseignements</ng-template>
     <div class="content">
-      <h3 class="mat-display-1">Veuillez remplir le formulaire</h3>
-
+      <h3 class="mat-display-1">Veuillez renseigner les champs suivants</h3>
+      <app-information (afterSubmit)="stepper.next()"></app-information>
     </div>
   </mat-step>
 

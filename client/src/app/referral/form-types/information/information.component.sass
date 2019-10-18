@@ -1,0 +1,30 @@
+form.information-form
+  display: flex
+  flex-direction: column
+
+  div.community
+    display: flex
+    flex-direction: row
+    align-items: center
+
+  .field
+    margin: 15px
+
+  mat-form-field
+    &.contact, &.community
+      width: 350px
+
+  div.button
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 50px
+
+    p.invalid
+      color: #f44336
+
+    button
+      display: block
+      width: 150px
+      color: #fff

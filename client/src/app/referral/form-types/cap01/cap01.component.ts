@@ -5,8 +5,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './cap01.component.html',
   styleUrls: ['./cap01.component.sass']
 })
+// Formulaire Détachement
 export class Cap01Component implements OnInit {
-  @Output() submit = new EventEmitter<any>();
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
   data: any = {};
 
   constructor() { }

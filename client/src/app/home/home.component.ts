@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.formApi.find().subscribe((forms: Form[]) => {
-      this.capFormTypes = forms.filter(form => form.committee === 'cap');
-      this.ctFormTypes = forms.filter(form => form.committee === 'ct');
+      this.capFormTypes = forms.filter(form => form.committee === 'cap').sort(this.sortFormTypes);
+      this.ctFormTypes = forms.filter(form => form.committee === 'ct').sort(this.sortFormTypes);
     });
   }
 
@@ -34,6 +34,13 @@ export class HomeComponent implements OnInit {
 
   form(formId: string) {
     this.router.navigate([`/referral/new/${formId}`]);
+  }
+
+  private sortFormTypes(a: Form, b: Form) {
+    const aName = a.name.toUpperCase();
+    const bName = b.name.toUpperCase();
+
+    return (aName < bName) ? -1 : (aName > bName) ? 1 : 0;
   }
 }
 
