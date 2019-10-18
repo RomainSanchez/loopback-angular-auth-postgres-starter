@@ -5,20 +5,22 @@ import {
 
 declare var Object: any;
 export interface ReferralInterface {
-  "createdAt": Date;
   "approved"?: boolean;
   "data": any;
   "id"?: number;
   "formId"?: number;
+  "createdAt": Date;
+  "updatedAt": Date;
   form?: Form;
 }
 
 export class Referral implements ReferralInterface {
-  "createdAt": Date;
   "approved": boolean;
   "data": any;
   "id": number;
   "formId": number;
+  "createdAt": Date;
+  "updatedAt": Date;
   form: Form;
   constructor(data?: ReferralInterface) {
     Object.assign(this, data);
@@ -53,10 +55,6 @@ export class Referral implements ReferralInterface {
       path: 'Referrals',
       idName: 'id',
       properties: {
-        "createdAt": {
-          name: 'createdAt',
-          type: 'Date'
-        },
         "approved": {
           name: 'approved',
           type: 'boolean'
@@ -72,6 +70,14 @@ export class Referral implements ReferralInterface {
         "formId": {
           name: 'formId',
           type: 'number'
+        },
+        "createdAt": {
+          name: 'createdAt',
+          type: 'Date'
+        },
+        "updatedAt": {
+          name: 'updatedAt',
+          type: 'Date'
         },
       },
       relations: {

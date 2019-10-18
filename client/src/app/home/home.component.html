@@ -30,13 +30,13 @@
     <div class="content">
       <h3 class="mat-display-1">Pour quel motif voulez vous saisir {{ committee === 'cap' ? 'la CAP' : 'le CT'}} ?</h3>
       <div *ngIf="committee === 'cap'" id="cap" class="form-types">
-        <mat-card *ngFor="let type of capFormTypes">
+        <mat-card *ngFor="let type of capFormTypes"  (click)="form(type.id)">
           <p class="form-type">{{ type.name }}</p>
         </mat-card>
       </div>
 
       <div *ngIf="committee === 'ct'" id="ct" class="form-types">
-        <mat-card *ngFor="let type of ctFormTypes">
+        <mat-card *ngFor="let type of ctFormTypes" (click)="form(type.id)">
           <p class="form-type">{{ type.name }}</p>
         </mat-card>
       </div>

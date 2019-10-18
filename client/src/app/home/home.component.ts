@@ -32,8 +32,8 @@ export class HomeComponent implements OnInit {
     this.stepper.next();
   }
 
-  setFormType(formType: string) {
-    this.router.navigate([`/form/${this.committee}/${formType}`]);
+  form(formId: string) {
+    this.router.navigate([`/referral/new/${formId}`]);
   }
 }
 

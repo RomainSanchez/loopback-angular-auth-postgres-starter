@@ -26,6 +26,9 @@
       }
     }
   },
+  "mixins": {
+    "TimeStamp": true
+  },
   "acls": [],
   "methods": {}
 }

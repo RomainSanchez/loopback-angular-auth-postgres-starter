@@ -5,12 +5,19 @@ import { MaterialModule } from 'src/material/material.module';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { HttpLoaderFactory } from '../app.module';
 import { HttpClient } from '@angular/common/http';
+import { FormComponent } from './form/form.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { Cap01Component } from './form-types/cap01/cap01.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
-
+    FormComponent,
+    Cap01Component
   ],
   imports: [
     CommonModule,
@@ -28,4 +35,4 @@ import { HttpClient } from '@angular/common/http';
     NgxPermissionsModule.forChild()
   ]
 })
-export class FormModule { }
+export class ReferralModule { }

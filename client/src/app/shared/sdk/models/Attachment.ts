@@ -9,6 +9,8 @@ export interface AttachmentInterface {
   "file": any;
   "id"?: number;
   "referralId"?: number;
+  "createdAt": Date;
+  "updatedAt": Date;
   referral?: Referral;
 }
 
@@ -17,6 +19,8 @@ export class Attachment implements AttachmentInterface {
   "file": any;
   "id": number;
   "referralId": number;
+  "createdAt": Date;
+  "updatedAt": Date;
   referral: Referral;
   constructor(data?: AttachmentInterface) {
     Object.assign(this, data);
@@ -66,6 +70,14 @@ export class Attachment implements AttachmentInterface {
         "referralId": {
           name: 'referralId',
           type: 'number'
+        },
+        "createdAt": {
+          name: 'createdAt',
+          type: 'Date'
+        },
+        "updatedAt": {
+          name: 'updatedAt',
+          type: 'Date'
         },
       },
       relations: {

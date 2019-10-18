@@ -6,10 +6,6 @@
     "validateUpsert": true
   },
   "properties": {
-    "createdAt": {
-      "type": "date",
-      "required": true
-    },
     "approved": {
       "type": "boolean"
     },
@@ -28,6 +24,9 @@
         "nestRemoting": true
       }
     }
+  },
+  "mixins": {
+    "TimeStamp": true
   },
   "acls": [],
   "methods": {}

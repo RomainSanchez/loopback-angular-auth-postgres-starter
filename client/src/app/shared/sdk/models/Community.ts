@@ -11,6 +11,8 @@ export interface CommunityInterface {
   "username"?: string;
   "emailVerified"?: boolean;
   "id"?: number;
+  "createdAt": Date;
+  "updatedAt": Date;
   "password"?: string;
   accessTokens?: any[];
   roles?: Role[];
@@ -23,6 +25,8 @@ export class Community implements CommunityInterface {
   "username": string;
   "emailVerified": boolean;
   "id": number;
+  "createdAt": Date;
+  "updatedAt": Date;
   "password": string;
   accessTokens: any[];
   roles: Role[];
@@ -82,6 +86,14 @@ export class Community implements CommunityInterface {
         "id": {
           name: 'id',
           type: 'number'
+        },
+        "createdAt": {
+          name: 'createdAt',
+          type: 'Date'
+        },
+        "updatedAt": {
+          name: 'updatedAt',
+          type: 'Date'
         },
         "password": {
           name: 'password',

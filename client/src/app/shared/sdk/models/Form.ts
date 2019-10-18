@@ -4,12 +4,14 @@ declare var Object: any;
 export interface FormInterface {
   "name": string;
   "committee": string;
+  "code": string;
   "id"?: number;
 }
 
 export class Form implements FormInterface {
   "name": string;
   "committee": string;
+  "code": string;
   "id": number;
   constructor(data?: FormInterface) {
     Object.assign(this, data);
@@ -50,8 +52,11 @@ export class Form implements FormInterface {
         },
         "committee": {
           name: 'committee',
-          type: 'string',
-          default: 'cap'
+          type: 'string'
+        },
+        "code": {
+          name: 'code',
+          type: 'string'
         },
         "id": {
           name: 'id',

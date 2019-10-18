@@ -32,6 +32,9 @@
       }
     }
   },
+  "mixins": {
+    "TimeStamp": true
+  },
   "acls": [
     {
       "accessType": "*",
