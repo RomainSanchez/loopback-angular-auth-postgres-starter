@@ -1,0 +1,49 @@
+<h2 class="mat-display-1">Saisines</h2>
+
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-progress-spinner class="spinner"
+    color="primary"
+    mode="indeterminate"
+    diameter="150"
+  ></mat-progress-spinner>
+</div>
+
+<mat-form-field *ngxPermissionsOnly="['backend']">
+  <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtrer">
+</mat-form-field>
+
+<mat-table *ngxPermissionsOnly="['backend']" class="communities-table mat-elevation-z4" matSort [dataSource]="tableDataSource">
+  <ng-container matColumnDef="committee">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Commission</mat-header-cell>
+      <mat-cell *matCellDef="let referral">{{ referral.form.committee }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="form">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Formulaire</mat-header-cell>
+    <mat-cell *matCellDef="let referral">{{ referral.form.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="community">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Collectivité</mat-header-cell>
+    <mat-cell *matCellDef="let referral">{{ referral.data.community }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="created">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Créé</mat-header-cell>
+    <mat-cell *matCellDef="let referral">Le {{ referral.createdAt }} par {{ referral.createdBy.name }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="approved">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Validé</mat-header-cell>
+      <mat-cell *matCellDef="let referral">Le {{ referral.createdAt }} par {{ referral.approvedBy?.name }}</mat-cell>
+    </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let referral; columns: displayedColumns"
+    (click)=rowClicked(referral.id)
+  ></mat-row>
+</mat-table>
+
+<mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+

@@ -63,8 +63,8 @@ module.exports = function(app) {
     { name: 'Régime indemnitaire', committee: 'ct', code: 'ct13' }
   ];
 
-  app.models.Community.create(admin);
-  app.models.Role.create(roles);
-  app.models.RoleMapping.create(roleMapping);
-  app.models.Form.create(forms);
+  // app.models.Community.create(admin);
+  // app.models.Role.create(roles);
+  // app.models.RoleMapping.create(roleMapping);
+  // app.models.Form.create(forms);
 };

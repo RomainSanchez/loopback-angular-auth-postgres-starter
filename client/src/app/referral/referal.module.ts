@@ -10,6 +10,7 @@ import { FormComponent } from './form/form.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Cap01Component } from './form-types/cap01/cap01.component';
 import { InformationComponent } from './form-types/information/information.component';
+import { ListComponent } from './list/list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -19,7 +20,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     FormComponent,
     Cap01Component,
-    InformationComponent
+    InformationComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,

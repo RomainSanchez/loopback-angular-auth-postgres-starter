@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Community } from 'src/app/shared/sdk/models/Community';
+import { Referral, ReferralApi } from 'src/app/shared/sdk';
 import { Router } from '@angular/router';
-import { CommunityApi } from 'src/app/shared/sdk/services/custom/Community';
 
 @Component({
   selector: 'app-list',
@@ -14,36 +13,43 @@ export class ListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns = [
-    'username',
-    'name',
-    'email',
-    'roles'
+    'committee',
+    'form',
+    'community',
+    'created',
+    'approved'
   ];
   pageSize = 10;
   pageSizeOptions = [5, 10, 20, 50, 100];
-  tableDataSource: MatTableDataSource<Community>;Z
+  tableDataSource: MatTableDataSource<Referral>;
   isLoading = false;
 
   constructor(
     private router: Router,
-    private communityApi: CommunityApi
+    private referralApi: ReferralApi
   ) {
-    this.tableDataSource = new MatTableDataSource<Community>();
+    this.tableDataSource = new MatTableDataSource<Referral>();
   }
 
   ngOnInit() {
-    this.getCommunities();
+    this.getReferrals();
     this.tableDataSource.filterPredicate = this.filter;
     this.tableDataSource.paginator = this.paginator;
     this.tableDataSource.sort = this.sort;
   }
 
-  getCommunities() {
+  getReferrals() {
     this.isLoading = true;
 
-    return this.communityApi.find({include: ['roles']}).subscribe((communities: Community[]) => {
-      this.tableDataSource.data = communities;
-
+    return this.referralApi.find({
+      where: {
+        formId: {
+          neq: null
+        }
+      },
+      include: ['form', 'createdBy', 'updatedBy'],
+    }).subscribe((referrals: Referral[]) => {
+      this.tableDataSource.data = referrals;
       this.isLoading = false;
     });
   }
@@ -52,15 +58,15 @@ export class ListComponent implements OnInit {
     this.tableDataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  rowClicked(communityId: number) {
-    this.router.navigate(['/user/profile', communityId]);
+  rowClicked(referralId: number) {
+    this.router.navigate(['/referral/edit', referralId]);
   }
 
-  private filter(community: Community, filters: string) {
+  private filter(referral: Referral, filters: string) {
     const matchFilter = [];
     const filterArray = filters.split('+');
 
-    const fields = Object.values(community).filter(Boolean);
+    const fields = Object.values(referral).filter(Boolean);
 
     filterArray.forEach(filter => {
       const customFilter = [];
@@ -75,6 +81,4 @@ export class ListComponent implements OnInit {
 
     return matchFilter.every(Boolean);
   }
-
-
 }

@@ -19,6 +19,7 @@ module.exports = function(Model, options) {
 
     if(ctx.instance) {
       ctx.instance.createdBy = userId;
+      ctx.updatedBy = userId;
     } else {
       ctx.data.updatedBy = userId;
     }

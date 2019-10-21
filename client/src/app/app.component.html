@@ -4,6 +4,7 @@
       <a routerLink="/"><img id="logo" src="assets/img/logo_cdg29.png" alt="Logo CDG29">{{ title }}</a>
     </span>
     <span *ngxPermissionsOnly="['admin']"><a routerLink="/users">Utilisateurs</a></span>
+    <span *ngxPermissionsOnly="['backend']"><a routerLink="/referrals">Saisines</a></span>
     <span
       id="logout"
       *ngIf="authService.getAccessTokenId()"
