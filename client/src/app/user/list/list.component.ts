@@ -10,7 +10,6 @@ import { CommunityApi } from 'src/app/shared/sdk/services/custom/Community';
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

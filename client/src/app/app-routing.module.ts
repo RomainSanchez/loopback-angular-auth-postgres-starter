@@ -6,8 +6,7 @@ import { UserRoutingModule } from './user/user-routing.module';
 import { ReferralRoutingModule } from './referral/referral-routing.module';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }
+  { path: '', component: HomeComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

@@ -27,7 +27,8 @@
     }
   },
   "mixins": {
-    "TimeStamp": true
+    "TimeStamp": true,
+    "Ownable": true
   },
   "acls": [],
   "methods": {}

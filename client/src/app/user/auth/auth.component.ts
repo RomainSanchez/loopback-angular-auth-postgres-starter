@@ -43,7 +43,7 @@ export class AuthComponent {
           // Store permissions for page reload
           localStorage.setItem('permissions', JSON.stringify(roles));
 
-          this.router.navigate(['home']);
+          this.router.navigate(['']);
         });
       },
       (error: any) => {
