@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
-  Form
+  Form,
+  Community
 } from '../index';
 
 declare var Object: any;
@@ -11,7 +12,11 @@ export interface ReferralInterface {
   "formId"?: number;
   "createdAt": Date;
   "updatedAt": Date;
+  "createdById"?: number;
+  "updatedById"?: number;
   form?: Form;
+  createdBy?: Community;
+  updatedBy?: Community;
 }
 
 export class Referral implements ReferralInterface {
@@ -21,7 +26,11 @@ export class Referral implements ReferralInterface {
   "formId": number;
   "createdAt": Date;
   "updatedAt": Date;
+  "createdById": number;
+  "updatedById": number;
   form: Form;
+  createdBy: Community;
+  updatedBy: Community;
   constructor(data?: ReferralInterface) {
     Object.assign(this, data);
   }
@@ -80,6 +89,14 @@ export class Referral implements ReferralInterface {
           name: 'updatedAt',
           type: 'Date'
         },
+        "createdById": {
+          name: 'createdById',
+          type: 'number'
+        },
+        "updatedById": {
+          name: 'updatedById',
+          type: 'number'
+        },
       },
       relations: {
         form: {
@@ -88,6 +105,22 @@ export class Referral implements ReferralInterface {
           model: 'Form',
           relationType: 'belongsTo',
                   keyFrom: 'formId',
+          keyTo: 'id'
+        },
+        createdBy: {
+          name: 'createdBy',
+          type: 'Community',
+          model: 'Community',
+          relationType: 'belongsTo',
+                  keyFrom: 'createdById',
+          keyTo: 'id'
+        },
+        updatedBy: {
+          name: 'updatedBy',
+          type: 'Community',
+          model: 'Community',
+          relationType: 'belongsTo',
+                  keyFrom: 'updatedById',
           keyTo: 'id'
         },
       }

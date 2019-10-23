@@ -5,12 +5,12 @@ module.exports = function(Model, options) {
     createdBy: {
       type: 'belongsTo',
       model: 'Community',
-      foreignKey: 'createdBy'
+      foreignKey: 'createdById'
     },
     updatedBy: {
       type: 'belongsTo',
       model: 'Community',
-      foreignKey: 'updatedBy'
+      foreignKey: 'updatedById'
     },
   });
 
@@ -18,10 +18,11 @@ module.exports = function(Model, options) {
     const userId = ctx.options.accessToken.userId
 
     if(ctx.instance) {
-      ctx.instance.createdBy = userId;
-      ctx.updatedBy = userId;
+      ctx.instance.createdById = userId;
+      ctx.updatedById = userId;
     } else {
-      ctx.data.updatedBy = userId;
+      console.log(userId);
+      ctx.data.updatedById = userId;
     }
 
     next();

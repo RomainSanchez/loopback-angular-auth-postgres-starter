@@ -1,9 +1,11 @@
+<h3 class="mat-display-1">{{ formType?.name }}</h3>
+
 <mat-card>
-  <mat-card-title>{{ formType?.name }}</mat-card-title>
-
-  <mat-divider></mat-divider>
-
   <mat-card-content>
-    <app-cap01 (submit)="formSubmit($event)" *ngIf="formType?.code === 'cap01'"></app-cap01>
+    <app-cap01
+      (formSubmit)="formSubmit($event)"
+      [data]="referral.data"
+      *ngIf="referral?.form?.code === 'cap01'"
+    ></app-cap01>
   </mat-card-content>
 </mat-card>

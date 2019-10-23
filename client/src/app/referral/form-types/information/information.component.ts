@@ -20,8 +20,7 @@ export class InformationComponent implements OnInit {
     referral.data.information = this.information;
 
     this.referralApi.create(referral).subscribe((theReferral: Referral) => {
-      console.log(theReferral);
-      this.afterSubmit.emit(this.information);
+      this.afterSubmit.emit(theReferral.id);
     });
   }
 

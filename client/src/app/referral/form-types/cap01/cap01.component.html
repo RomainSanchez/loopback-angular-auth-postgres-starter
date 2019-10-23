@@ -1,3 +1,105 @@
-<p>
-  cap01 works!
-</p>
+<form #dataForm="ngForm" (ngSubmit)="onSubmit()" class="cap01-form">
+  <div class="field checkbox">
+    <mat-checkbox
+      [(ngModel)]="data.initial"
+      name="community"
+      required
+    >
+      Première demande ou renouvellement
+    </mat-checkbox>
+  </div>
+  <div class="agent">
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.firstname"
+        name="firstName"
+        placeholder="Prénom"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.lastname"
+        name="lastName"
+        placeholder="Nom"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.birthdate"
+        [matDatepicker]="birthDatePicker"
+        name="birthdate"
+        placeholder="Date de naissance"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthDatePicker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <div>
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.nomination"
+        [matDatepicker]="nominationDatePicker"
+        name="nomination"
+        placeholder="Date de nomination"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="nominationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #nominationDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-select [(ngModel)]="data.grade" name="grade" placeholder="Grade">
+        <mat-option *ngFor="let choice of gradeChoices" [value]="choice">
+          {{ choice }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="field population">
+      <mat-select [(ngModel)]="data.population" name="population" placeholder="Strate démographique de la collectivité">
+        <mat-option *ngFor="let choice of populationChoices" [value]="choice.value">
+          {{ choice.label }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.date"
+        [matDatepicker]="dateDatePicker"
+        name="date"
+        placeholder="Date de détachement"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="dateDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field duration">
+      <input matInput type="number" min="1" max="60"
+        [(ngModel)]="data.duration"
+        name="duration"
+        placeholder="Durée du détachement"
+        required
+      >
+      <span matSuffix>mois</span>
+    </mat-form-field>
+  </div>
+
+  <div class="button">
+    <p *ngIf="dataForm.pristine">Veuillez remplir tous les champs</p>
+    <p class="invalid" *ngIf="dataForm.errors">Veuillez corriger tous les champs en rouge</p>
+    <button type="submit" mat-raised-button color="accent" [disabled]="dataForm.invalid">Valider</button>
+  </div>
+</form>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatStepper } from '@angular/material';
+import { MatStepper, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { Form, FormApi } from '../shared/sdk';
 
@@ -13,10 +13,12 @@ export class HomeComponent implements OnInit {
   committee: string;
   capFormTypes: Form[];
   ctFormTypes: Form[];
+  referralId: string;
 
   constructor(
     private router: Router,
-    private formApi: FormApi
+    private formApi: FormApi,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -33,7 +35,19 @@ export class HomeComponent implements OnInit {
   }
 
   form(formId: string) {
-    this.router.navigate([`/referral/new/${formId}`]);
+    if (this.referralId) {
+      this.router.navigate([`/referral/${this.referralId}/${formId}`]);
+
+      return;
+    }
+
+    this.stepper.reset();
+  }
+
+  informationSubmitted(referralId: string) {
+    this.referralId = referralId;
+
+    this.stepper.next();
   }
 
   private sortFormTypes(a: Form, b: Form) {

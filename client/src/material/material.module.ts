@@ -23,6 +23,7 @@ import {
   MatSlideToggleModule,
   MatStepperModule
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 const modules = [
   MatButtonModule,
@@ -46,7 +47,9 @@ const modules = [
   MatDatepickerModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatStepperModule
+  MatStepperModule,
+  MatDatepickerModule,
+  MatMomentDateModule
 ];
 
 @NgModule({

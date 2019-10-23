@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Cap01Component } from './form-types/cap01/cap01.component';
 import { InformationComponent } from './form-types/information/information.component';
 import { ListComponent } from './list/list.component';
+import { FileUploadComponent } from '../file-upload/file-upload.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -21,7 +22,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormComponent,
     Cap01Component,
     InformationComponent,
-    ListComponent
+    ListComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,

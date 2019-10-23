@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FormComponent implements OnInit {
   formType: Form;
-  referral: Referral = new Referral();
+  referral: Referral;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,15 +18,31 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    const referralId = this.route.snapshot.paramMap.get('referralId');
     const formId = this.route.snapshot.paramMap.get('formId');
 
-    this.formApi.findById(formId).subscribe((form: Form) => {
-      this.formType = form;
+    this.referralApi.findById(referralId).subscribe((referral: Referral) => {
+      this.referral = referral;
+      this.referral.formId = parseInt(formId, null);
+
+      this.formApi.findById(formId).subscribe((form: Form) => {
+        this.referral.form = form;
+      });
+
+      console.log(this.referral)
     });
   }
 
   formSubmit(data: any) {
     console.log(data);
+    console.log(this.referral.data);
+    data.information = this.referral.data.information;
+    this.referral.data = data;
+    console.log(this.referral)
+
+    this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
+      console.log(referral);
+    });
   }
 
 }

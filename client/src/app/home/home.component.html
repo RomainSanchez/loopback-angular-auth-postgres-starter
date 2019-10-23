@@ -4,7 +4,7 @@
     <ng-template matStepLabel>Renseignements</ng-template>
     <div class="content">
       <h3 class="mat-display-1">Veuillez renseigner les champs suivants</h3>
-      <app-information (afterSubmit)="stepper.next()"></app-information>
+      <app-information (afterSubmit)="informationSubmitted($event)"></app-information>
     </div>
   </mat-step>
 
