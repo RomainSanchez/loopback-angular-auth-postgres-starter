@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormApi, Referral, ReferralApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-form',
@@ -14,7 +15,8 @@ export class FormComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private formApi: FormApi,
-    private referralApi: ReferralApi
+    private referralApi: ReferralApi,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -28,20 +30,15 @@ export class FormComponent implements OnInit {
       this.formApi.findById(formId).subscribe((form: Form) => {
         this.referral.form = form;
       });
-
-      console.log(this.referral)
     });
   }
 
   formSubmit(data: any) {
-    console.log(data);
-    console.log(this.referral.data);
     data.information = this.referral.data.information;
     this.referral.data = data;
-    console.log(this.referral)
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
-      console.log(referral);
+      this.snackbar.open('Saisine enregistrée', null, {duration: 2000});
     });
   }
 

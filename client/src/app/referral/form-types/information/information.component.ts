@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ReferralApi, Referral } from 'src/app/shared/sdk';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-information',
@@ -10,7 +11,10 @@ export class InformationComponent implements OnInit {
   @Output() afterSubmit: EventEmitter<any> = new EventEmitter<any>();
   information: any = {};
 
-  constructor(private referralApi: ReferralApi) {}
+  constructor(
+    private referralApi: ReferralApi,
+    private snackbar: MatSnackBar
+  ) {}
 
   ngOnInit() {}
 
@@ -21,6 +25,8 @@ export class InformationComponent implements OnInit {
 
     this.referralApi.create(referral).subscribe((theReferral: Referral) => {
       this.afterSubmit.emit(theReferral.id);
+
+      this.snackbar.open('Renseignements enregistrés', null, {duration: 2000});
     });
   }
 

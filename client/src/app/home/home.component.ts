@@ -41,6 +41,8 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    this.snackBar.open('Le formulaire de renseignement n\'a pas été rempli', null, {duration: 2000});
+
     this.stepper.reset();
   }
 
