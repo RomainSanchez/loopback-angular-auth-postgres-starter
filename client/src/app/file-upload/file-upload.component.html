@@ -1,0 +1,11 @@
+<button mat-raised-button color="accent" (click)="dropzone.showFileSelector()">
+  <mat-icon class="mat-18">arrow_upward</mat-icon>
+  Importer un fichier
+</button>
+
+<ngx-dropzone #dropzone (change)="fileAdded($event)" [expandable]="true">
+    <ngx-dropzone-label>Déposer les fichiers ici</ngx-dropzone-label>
+    <ngx-dropzone-preview *ngFor="let file of referral?.attachments" [removable]="true" (removed)="fileRemoved(file)">
+        <ngx-dropzone-label>{{ file.name }}</ngx-dropzone-label>
+    </ngx-dropzone-preview>
+</ngx-dropzone>

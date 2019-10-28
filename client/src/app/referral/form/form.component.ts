@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Form, FormApi, Referral, ReferralApi } from 'src/app/shared/sdk';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Form, FormApi, Referral, ReferralApi, Attachment } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-form',
@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./form.component.sass']
 })
 export class FormComponent implements OnInit {
+  @ViewChild('stepper') private stepper: MatStepper;
   formType: Form;
   referral: Referral;
 
@@ -23,7 +24,7 @@ export class FormComponent implements OnInit {
     const referralId = this.route.snapshot.paramMap.get('referralId');
     const formId = this.route.snapshot.paramMap.get('formId');
 
-    this.referralApi.findById(referralId).subscribe((referral: Referral) => {
+    this.referralApi.findById(referralId, {include: ['attachments']}).subscribe((referral: Referral) => {
       this.referral = referral;
       this.referral.formId = parseInt(formId, null);
 
@@ -38,8 +39,14 @@ export class FormComponent implements OnInit {
     this.referral.data = data;
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
-      this.snackbar.open('Saisine enregistrée', null, {duration: 2000});
+      this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
+
+      this.stepper.next();
     });
+  }
+
+  fileChange(referral: Referral) {
+    this.referral = referral;
   }
 
 }

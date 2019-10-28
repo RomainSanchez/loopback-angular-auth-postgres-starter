@@ -5,6 +5,10 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": true,
+    "Ownable": true
+  },
   "properties": {
     "approved": {
       "type": "boolean",
@@ -24,11 +28,15 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "attachments": {
+      "type": "hasMany",
+      "model": "Attachment",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
+      }
     }
-  },
-  "mixins": {
-    "TimeStamp": true,
-    "Ownable": true
   },
   "acls": [],
   "methods": {}

@@ -5,6 +5,7 @@ import { MaterialModule } from 'src/material/material.module';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 import { HttpClient } from '@angular/common/http';
 import { FormComponent } from './form/form.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgxPermissionsModule.forChild()
+    NgxPermissionsModule.forChild(),
+    NgxDropzoneModule
   ],
   exports: [
     InformationComponent
