@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
   templateUrl: './cap01.component.html',
   styleUrls: ['./cap01.component.sass']
 })
-// Formulaire Détachement
+// Formulaire Détachement sur emploi fonctionnel
 export class Cap01Component {
   @Input() data: any = {};
   @Output() formSubmit: EventEmitter<any> = new EventEmitter<any>();

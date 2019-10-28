@@ -17,6 +17,10 @@
     "code": {
       "type": "string",
       "required": true
+    },
+    "requiredAttachments": {
+      "type": "object",
+      "required": false
     }
   },
   "validations": [],

@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
           neq: null
         }
       },
-      include: ['form', 'createdBy', 'updatedBy'],
+      include: ['form', 'attachments', 'createdBy', 'updatedBy'],
     }).subscribe((referrals: Referral[]) => {
       this.tableDataSource.data = referrals;
       this.isLoading = false;

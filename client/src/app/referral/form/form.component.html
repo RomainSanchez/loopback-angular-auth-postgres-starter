@@ -1,11 +1,51 @@
 <h3 class="mat-display-1">{{ formType?.name }}</h3>
 
-<mat-card>
-  <mat-card-content>
-    <app-cap01
-      (formSubmit)="formSubmit($event)"
-      [data]="referral.data"
-      *ngIf="referral?.form?.code === 'cap01'"
-    ></app-cap01>
-  </mat-card-content>
-</mat-card>
+<mat-horizontal-stepper #stepper labelPosition="bottom">
+  <mat-step>
+    <ng-template matStepLabel>Formulaire</ng-template>
+    <div class="content">
+      <h3 class="mat-display-1">Veuillez renseigner le formulaire de saisine</h3>
+      <mat-card>
+        <mat-card-content>
+          <app-cap01
+            (formSubmit)="formSubmit($event)"
+            [data]="referral.data"
+            *ngIf="referral?.form?.code === 'cap01'"
+          ></app-cap01>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Justificatifs</ng-template>
+    <div class="content">
+      <h3 class="mat-display-1">Veuillez fournir {{ referral?.form?.requiredAttachments.length > 1 ?
+        'les justificatifs suivants':
+        'le justificatif suivant' }}
+      </h3>
+      <p *ngFor="let attachment of referral?.form?.requiredAttachments" class="mat-title">
+        {{ attachment }}
+      </p>
+      <app-file-upload
+        [referral]="referral"
+        purpose="attachment"
+        (fileChange)="fileChange($event)"
+        (uploadDone)="attachmentsDone($event)"
+      >
+      </app-file-upload>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Signature</ng-template>
+    <div class="content">
+
+    </div>
+  </mat-step>
+
+  <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+
+</mat-horizontal-stepper>

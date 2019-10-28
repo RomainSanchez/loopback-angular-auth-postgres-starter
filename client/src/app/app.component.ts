@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoopBackConfig, LoopBackAuth } from './shared/sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +15,16 @@ export class AppComponent {
   constructor(
     private authService: LoopBackAuth,
     private translateService: TranslateService,
-    private permissionsService: NgxPermissionsService
+    private permissionsService: NgxPermissionsService,
+    private dateAdapter: DateAdapter<any>
   ) {
     LoopBackConfig.setBaseURL('http://pow101825:3000');
     LoopBackConfig.setApiVersion('api');
 
-    translateService.setDefaultLang('fr');
-    translateService.use('fr');
+    this.translateService.setDefaultLang('fr');
+    this.translateService.use('fr');
+
+    this.dateAdapter.setLocale('fr');
 
     const permissions = JSON.parse(localStorage.getItem('permissions'));
 

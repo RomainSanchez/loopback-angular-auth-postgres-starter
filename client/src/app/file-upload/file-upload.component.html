@@ -1,0 +1,18 @@
+<div class="file-upload">
+  <button mat-flat-button color="accent" (click)="dropzone.showFileSelector()">
+    <mat-icon class="mat-18">folder</mat-icon>
+    Pacourir
+  </button>
+
+  <ngx-dropzone #dropzone (change)="fileAdded($event)" [expandable]="true">
+    <ngx-dropzone-label>Glisser/Déposer les fichiers ici ou cliquer sur parcourir</ngx-dropzone-label>
+    <ngx-dropzone-preview *ngFor="let file of referral?.attachments" [removable]="true" (removed)="fileRemoved(file)">
+      <ngx-dropzone-label>{{ file.name }}</ngx-dropzone-label>
+    </ngx-dropzone-preview>
+  </ngx-dropzone>
+
+  <button mat-raised-button color="accent" class="next"
+    [disabled]="referral?.attachments.length !== referral?.form?.requiredAttachments.length"
+    (click)="done()"
+  >Valider</button>
+</div>

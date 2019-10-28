@@ -1,12 +1,11 @@
 <form #dataForm="ngForm" (ngSubmit)="onSubmit()" class="cap01-form">
+  <p class="mat-title">Détachement sur emploi fonctionnel</p>
+  <mat-divider></mat-divider>
   <div class="field checkbox">
-    <mat-checkbox
-      [(ngModel)]="data.initial"
-      name="community"
-      required
-    >
-      Première demande ou renouvellement
-    </mat-checkbox>
+    <mat-radio-group name="initial" [(ngModel)]="data.initial">
+      <mat-radio-button value="true">Première demande</mat-radio-button>
+      <mat-radio-button value="false">Renouvellement</mat-radio-button>
+    </mat-radio-group>
   </div>
   <div class="agent">
     <mat-form-field class="field">

@@ -1,7 +1,8 @@
 /* tslint:disable */
 import {
   Form,
-  Community
+  Community,
+  Attachment
 } from '../index';
 
 declare var Object: any;
@@ -17,6 +18,7 @@ export interface ReferralInterface {
   form?: Form;
   createdBy?: Community;
   updatedBy?: Community;
+  attachments?: Attachment[];
 }
 
 export class Referral implements ReferralInterface {
@@ -31,6 +33,7 @@ export class Referral implements ReferralInterface {
   form: Form;
   createdBy: Community;
   updatedBy: Community;
+  attachments: Attachment[];
   constructor(data?: ReferralInterface) {
     Object.assign(this, data);
   }
@@ -122,6 +125,14 @@ export class Referral implements ReferralInterface {
           relationType: 'belongsTo',
                   keyFrom: 'updatedById',
           keyTo: 'id'
+        },
+        attachments: {
+          name: 'attachments',
+          type: 'Attachment[]',
+          model: 'Attachment',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'referralId'
         },
       }
     }

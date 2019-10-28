@@ -35,7 +35,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -123,11 +123,37 @@ export class AttachmentApi extends BaseLoopBackApi {
   }
 
   /**
+   * Upload a file
+   *
+   * @param {object} data Request data.
+   *
+   *  - `req` – `{object}` - The http request
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `response` – `{string}` - The http response
+   */
+  public upload(req: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Attachments/upload";
+    let _routeParams: any = {};
+    let _postBody: any = {data: req};
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * Fetches belongsTo relation form.
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -157,7 +183,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -187,7 +213,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned

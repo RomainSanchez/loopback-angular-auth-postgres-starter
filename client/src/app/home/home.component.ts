@@ -35,11 +35,11 @@ export class HomeComponent implements OnInit {
   }
 
   form(formId: string) {
-    if (this.referralId) {
+    //if (this.referralId) {
       this.router.navigate([`/referral/${this.referralId}/${formId}`]);
 
       return;
-    }
+    //}
 
     this.snackBar.open('Le formulaire de renseignement n\'a pas été rempli', null, {duration: 2000});
 

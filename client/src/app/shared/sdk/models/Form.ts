@@ -5,6 +5,7 @@ export interface FormInterface {
   "name": string;
   "committee": string;
   "code": string;
+  "requiredAttachments"?: any;
   "id"?: number;
 }
 
@@ -12,6 +13,7 @@ export class Form implements FormInterface {
   "name": string;
   "committee": string;
   "code": string;
+  "requiredAttachments": any;
   "id": number;
   constructor(data?: FormInterface) {
     Object.assign(this, data);
@@ -57,6 +59,10 @@ export class Form implements FormInterface {
         "code": {
           name: 'code',
           type: 'string'
+        },
+        "requiredAttachments": {
+          name: 'requiredAttachments',
+          type: 'any'
         },
         "id": {
           name: 'id',

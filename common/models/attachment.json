@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": true
+  },
   "properties": {
     "name": {
       "type": "string",
@@ -26,9 +29,36 @@
       }
     }
   },
-  "mixins": {
-    "TimeStamp": true
-  },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "upload": {
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "req"
+          },
+          "description": "The http request"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "required": true,
+          "description": "The http response",
+          "root": true
+        }
+      ],
+      "description": "Upload a file",
+      "http": [
+        {
+          "path": "/upload",
+          "verb": "post"
+        }
+      ]
+    }
+  }
 }
