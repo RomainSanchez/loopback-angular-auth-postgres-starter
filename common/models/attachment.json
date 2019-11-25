@@ -59,6 +59,35 @@
           "verb": "post"
         }
       ]
+    },
+    "uploadSignedDocument": {
+      "accepts": [
+        {
+          "arg": "data",
+          "type": "object",
+          "required": true,
+          "http": {
+            "source": "req"
+          },
+          "description": "The http request"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "required": true,
+          "description": "The http response",
+          "root": true
+        }
+      ],
+      "description": "Upload a file as referral signed document",
+      "http": [
+        {
+          "path": "/upload-signed",
+          "verb": "post"
+        }
+      ]
     }
   }
 }

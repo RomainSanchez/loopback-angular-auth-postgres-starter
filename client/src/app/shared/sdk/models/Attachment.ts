@@ -9,6 +9,7 @@ export interface AttachmentInterface {
   "file": any;
   "id"?: number;
   "referralId"?: number;
+  "signedDocumentOfId"?: number;
   "createdAt": Date;
   "updatedAt": Date;
   referral?: Referral;
@@ -19,6 +20,7 @@ export class Attachment implements AttachmentInterface {
   "file": any;
   "id": number;
   "referralId": number;
+  "signedDocumentOfId": number;
   "createdAt": Date;
   "updatedAt": Date;
   referral: Referral;
@@ -69,6 +71,10 @@ export class Attachment implements AttachmentInterface {
         },
         "referralId": {
           name: 'referralId',
+          type: 'number'
+        },
+        "signedDocumentOfId": {
+          name: 'signedDocumentOfId',
           type: 'number'
         },
         "createdAt": {

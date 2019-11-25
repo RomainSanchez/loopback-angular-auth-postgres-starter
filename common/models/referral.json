@@ -35,6 +35,14 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "signedDocument": {
+      "type": "hasOne",
+      "model": "Attachment",
+      "foreignKey": "signedDocumentOfId",
+      "options": {
+        "nestRemoting": true
+      }
     }
   },
   "acls": [],

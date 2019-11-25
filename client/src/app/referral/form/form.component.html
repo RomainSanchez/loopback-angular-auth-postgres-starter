@@ -27,20 +27,47 @@
       <p *ngFor="let attachment of referral?.form?.requiredAttachments" class="mat-title">
         {{ attachment }}
       </p>
-      <app-file-upload
-        [referral]="referral"
-        purpose="attachment"
-        (fileChange)="fileChange($event)"
-        (uploadDone)="attachmentsDone($event)"
-      >
-      </app-file-upload>
+      <mat-card>
+        <app-file-upload
+          [referral]="referral"
+          purpose="attachment"
+          (fileChange)="fileChange($event)"
+          (uploadDone)="attachmentsDone($event)"
+        ></app-file-upload>
+      </mat-card>
     </div>
   </mat-step>
 
   <mat-step>
     <ng-template matStepLabel>Signature</ng-template>
     <div class="content">
+      <h3 class="mat-display-1">Téléchargement et signature de la saisine</h3>
 
+      <mat-card>
+        <p class="mat-title">Veuillez télécharger la saisine et la signer vous pourrez la transmettre à la prochaine étape</p>
+
+      </mat-card>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Transmission</ng-template>
+    <div class="content">
+      <h3 class="mat-display-1">Transmission de la saisine signée</h3>
+      <mat-card>
+        <div class="instructions">
+          <p>Déposez un scan de la saisine signée directement ou plus tard en revenant sur votre espace</p>
+          <p>Vous pouvez également la transmettre par mail à l'addresse
+            <a href="mailto:?to=instances@cdg29.bzh">instances@cdg29.bzh</a>
+          </p>
+        </div>
+        <app-file-upload
+          [referral]="referral"
+          purpose="signature"
+          (fileChange)="fileChange($event)"
+          (uploadDone)="attachmentsDone($event)"
+        ></app-file-upload>
+      </mat-card>
     </div>
   </mat-step>
 

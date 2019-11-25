@@ -12,7 +12,6 @@ export class FileUploadComponent {
   @Input() referral: Referral;
   @Input() purpose: string;
   @Output() fileChange = new EventEmitter<any>();
-  @Output() uploadDone = new EventEmitter<any>();
 
   constructor(
     private attachmentApi: AttachmentApi,
@@ -26,8 +25,14 @@ export class FileUploadComponent {
       data.append('file', file);
       data.append('referral', this.referral.id + '');
 
-      if (this.purpose === 'attachment') {
-        this.uploadAttachment(data);
+      switch (this.purpose) {
+        case 'signature':
+          this.uploadSignedDocument(data);
+
+          break;
+
+        default:
+          this.uploadAttachment(data);
       }
     });
 
@@ -38,20 +43,37 @@ export class FileUploadComponent {
 
   fileRemoved(file: Attachment) {
     this.attachmentApi.deleteById(file.id).subscribe(() => {
-      this.referral.attachments = this.referral.attachments.filter(attachment => file.id !== attachment.id);
+      switch (this.purpose) {
+        case 'signature':
+          this.referral.signedDocument = null;
+
+          break;
+        default:
+          this.referral.attachments = this.referral.attachments.filter(attachment => file.id !== attachment.id);
+      }
+
       this.fileChange.emit(this.referral);
     });
-  }
-
-  done() {
-    this.uploadDone.emit(this.referral);
   }
 
   private uploadAttachment(data: FormData) {
     this.attachmentApi.upload(data, () => {}).subscribe(
       (attachment: Attachment) => {
-        console.log(data.get('file'));
         this.referral.attachments.push(attachment);
+
+        this.fileChange.emit(this.referral);
+      },
+      error => {
+        this.snackbar.open(`Une erreur s'est produite pendant l'ajout du fichier`, null, {duration: 2000});
+      }
+    );
+  }
+
+  private uploadSignedDocument(data: FormData) {
+    this.attachmentApi.uploadSignedDocument(data, () => {}).subscribe(
+      (attachment: Attachment) => {
+        this.referral.signedDocument = attachment;
+
         this.fileChange.emit(this.referral);
       },
       error => {

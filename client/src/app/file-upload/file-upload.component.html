@@ -1,18 +1,43 @@
 <div class="file-upload">
-  <button mat-flat-button color="accent" (click)="dropzone.showFileSelector()">
-    <mat-icon class="mat-18">folder</mat-icon>
-    Pacourir
-  </button>
+  <div class="attachment-dropzone" *ngIf="purpose === 'attachment'">
+    <button mat-flat-button color="accent"
+      (click)="dropzone.showFileSelector()"
+      [disabled]="referral?.attachments.length === referral?.form?.requiredAttachments.length"
+    >
+      <mat-icon class="mat-18">folder</mat-icon>
+      Pacourir
+    </button>
 
-  <ngx-dropzone #dropzone (change)="fileAdded($event)" [expandable]="true">
-    <ngx-dropzone-label>Glisser/Déposer les fichiers ici ou cliquer sur parcourir</ngx-dropzone-label>
-    <ngx-dropzone-preview *ngFor="let file of referral?.attachments" [removable]="true" (removed)="fileRemoved(file)">
-      <ngx-dropzone-label>{{ file.name }}</ngx-dropzone-label>
-    </ngx-dropzone-preview>
-  </ngx-dropzone>
+    <ngx-dropzone #dropzone (change)="fileAdded($event)" [expandable]="true">
+      <ngx-dropzone-label>Glisser/Déposer les fichiers ici ou cliquer sur parcourir</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngFor="let file of referral?.attachments" [removable]="true" (removed)="fileRemoved(file)">
+        <ngx-dropzone-label>{{ file.name }}</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
 
-  <button mat-raised-button color="accent" class="next"
-    [disabled]="referral?.attachments.length !== referral?.form?.requiredAttachments.length"
-    (click)="done()"
-  >Valider</button>
+    <button mat-raised-button color="accent" class="next"
+      [disabled]="referral?.attachments.length !== referral?.form?.requiredAttachments.length"
+    >Valider</button>
+  </div>
+
+  <div class="signature-dropzone" *ngIf="purpose === 'signature'">
+    <button mat-flat-button color="accent"
+      (click)="signatureDropzone.showFileSelector()"
+      [disabled]="referral?.signedDocument"
+    >
+      <mat-icon class="mat-18">folder</mat-icon>
+      Pacourir
+    </button>
+
+    <ngx-dropzone #signatureDropzone (change)="fileAdded($event)" [expandable]="true">
+      <ngx-dropzone-label>Glisser/Déposer le fichier ici ou cliquer sur parcourir</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngIf="referral?.signedDocument" [removable]="true" (removed)="fileRemoved(referral?.signedDocument)">
+        <ngx-dropzone-label>{{ referral?.signedDocument?.name }}</ngx-dropzone-label>
+      </ngx-dropzone-preview>
+    </ngx-dropzone>
+
+    <button mat-raised-button color="accent" class="next"
+      [disabled]="!referral?.signedDocument"
+    >Valider</button>
+  </div>
 </div>

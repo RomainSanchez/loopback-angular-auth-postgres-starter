@@ -19,6 +19,7 @@ export interface ReferralInterface {
   createdBy?: Community;
   updatedBy?: Community;
   attachments?: Attachment[];
+  signedDocument?: Attachment;
 }
 
 export class Referral implements ReferralInterface {
@@ -34,6 +35,7 @@ export class Referral implements ReferralInterface {
   createdBy: Community;
   updatedBy: Community;
   attachments: Attachment[];
+  signedDocument: Attachment;
   constructor(data?: ReferralInterface) {
     Object.assign(this, data);
   }
@@ -133,6 +135,14 @@ export class Referral implements ReferralInterface {
           relationType: 'hasMany',
                   keyFrom: 'id',
           keyTo: 'referralId'
+        },
+        signedDocument: {
+          name: 'signedDocument',
+          type: 'Attachment',
+          model: 'Attachment',
+          relationType: 'hasOne',
+                  keyFrom: 'id',
+          keyTo: 'signedDocumentOfId'
         },
       }
     }

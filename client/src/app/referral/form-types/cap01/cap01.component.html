@@ -1,7 +1,7 @@
 <form #dataForm="ngForm" (ngSubmit)="onSubmit()" class="cap01-form">
   <p class="mat-title">Détachement sur emploi fonctionnel</p>
   <mat-divider></mat-divider>
-  <div class="field checkbox">
+  <div class="field radio">
     <mat-radio-group name="initial" [(ngModel)]="data.initial">
       <mat-radio-button value="true">Première demande</mat-radio-button>
       <mat-radio-button value="false">Renouvellement</mat-radio-button>
@@ -60,9 +60,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
 
-  <div>
     <mat-form-field class="field population">
       <mat-select [(ngModel)]="data.population" name="population" placeholder="Strate démographique de la collectivité">
         <mat-option *ngFor="let choice of populationChoices" [value]="choice.value">

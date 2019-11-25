@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Form, FormApi, Referral, ReferralApi, Attachment } from 'src/app/shared/sdk';
+import { Form, FormApi, Referral, ReferralApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatStepper } from '@angular/material';
 
@@ -23,8 +23,9 @@ export class FormComponent implements OnInit {
     const referralId = this.route.snapshot.paramMap.get('referralId');
     const formId = this.route.snapshot.paramMap.get('formId');
 
-    this.referralApi.findById(referralId, {include: ['attachments']}).subscribe((referral: Referral) => {
+    this.referralApi.findById(referralId, {include: ['attachments', 'signedDocument']}).subscribe((referral: Referral) => {
       this.referral = referral;
+      console.log(referral)
       this.referral.formId = parseInt(formId, null);
 
       this.formApi.findById(formId).subscribe((form: Form) => {
