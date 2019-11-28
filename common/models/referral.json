@@ -36,15 +36,44 @@
         "nestRemoting": true
       }
     },
-    "signedDocument": {
+    "signedSummary": {
       "type": "hasOne",
       "model": "Attachment",
-      "foreignKey": "signedDocumentOfId",
+      "foreignKey": "signedSummaryOfId",
       "options": {
         "nestRemoting": true
       }
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "generateSummary": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "number",
+          "required": true,
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "required": true,
+          "description": "The http response",
+          "root": true
+        }
+      ],
+      "description": "Generate referral summary",
+      "http": [
+        {
+          "path": "/summary",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

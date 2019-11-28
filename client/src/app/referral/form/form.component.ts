@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form, FormApi, Referral, ReferralApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatStepper } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-form',
@@ -10,22 +11,25 @@ import { MatSnackBar, MatStepper } from '@angular/material';
 })
 export class FormComponent implements OnInit {
   @ViewChild('stepper') private stepper: MatStepper;
+  @ViewChild('summaryDownloadLink') private summaryDownloadLink: any;
   referral: Referral;
+  summaryDownloadUrl = '';
 
   constructor(
     private route: ActivatedRoute,
     private formApi: FormApi,
     private referralApi: ReferralApi,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
     const referralId = this.route.snapshot.paramMap.get('referralId');
     const formId = this.route.snapshot.paramMap.get('formId');
 
-    this.referralApi.findById(referralId, {include: ['attachments', 'signedDocument']}).subscribe((referral: Referral) => {
+    this.referralApi.findById(referralId, {include: ['attachments', 'signedSummary']}).subscribe((referral: Referral) => {
       this.referral = referral;
-      console.log(referral)
+
       this.referral.formId = parseInt(formId, null);
 
       this.formApi.findById(formId).subscribe((form: Form) => {
@@ -45,12 +49,21 @@ export class FormComponent implements OnInit {
     });
   }
 
-  attachmentsDone() {
-    this.stepper.next();
-  }
-
   fileChange(referral: Referral) {
     this.referral = referral;
   }
 
+  downloadSummary() {
+    this.referralApi.generateSummary(this.referral.id).subscribe(async res => {
+      const link = document.createElement('a');
+
+      link.href = `data:application/pdf;base64,${res.$data}`;
+      link.download = `saisine.pdf`;
+
+      document.body.appendChild(link);
+      link.click();
+
+      this.stepper.next();
+    });
+  }
 }

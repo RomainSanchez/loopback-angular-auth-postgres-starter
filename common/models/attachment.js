@@ -29,7 +29,7 @@ module.exports = function(Attachment) {
     });
   };
 
-  Attachment.uploadSignedDocument = (req, callback) => {
+  Attachment.uploadSignedSummary = (req, callback) => {
     return new Promise((resolve, reject) => {
       const form = new multiparty.Form();
 
@@ -44,15 +44,11 @@ module.exports = function(Attachment) {
         const attachment = {
           name: file.originalFilename,
           file: fileContent,
-          signedDocumentOfId: referralId
+          signedSummaryOfId: referralId
         };
 
         Attachment.create(attachment).then((theAttachment) => {
-          // Attachment.app.models.Referral.findById(referralId).then(referral => {
-          //   referral.signedDocument = attachment;
-
-            resolve(theAttachment);
-          // });
+          resolve(theAttachment);
         });
       });
     });

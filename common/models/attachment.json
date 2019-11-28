@@ -60,7 +60,7 @@
         }
       ]
     },
-    "uploadSignedDocument": {
+    "uploadSignedSummary": {
       "accepts": [
         {
           "arg": "data",
@@ -81,7 +81,7 @@
           "root": true
         }
       ],
-      "description": "Upload a file as referral signed document",
+      "description": "Upload a file as referral signed summary",
       "http": [
         {
           "path": "/upload-signed",

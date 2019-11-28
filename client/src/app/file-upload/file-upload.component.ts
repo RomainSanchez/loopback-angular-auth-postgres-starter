@@ -11,7 +11,8 @@ import { MatSnackBar } from '@angular/material';
 export class FileUploadComponent {
   @Input() referral: Referral;
   @Input() purpose: string;
-  @Output() fileChange = new EventEmitter<any>();
+  @Output() fileChange = new EventEmitter<Referral>();
+  @Output() done = new EventEmitter<boolean>();
 
   constructor(
     private attachmentApi: AttachmentApi,
@@ -27,7 +28,7 @@ export class FileUploadComponent {
 
       switch (this.purpose) {
         case 'signature':
-          this.uploadSignedDocument(data);
+          this.uploadSignedSummary(data);
 
           break;
 
@@ -45,7 +46,7 @@ export class FileUploadComponent {
     this.attachmentApi.deleteById(file.id).subscribe(() => {
       switch (this.purpose) {
         case 'signature':
-          this.referral.signedDocument = null;
+          this.referral.signedSummary = null;
 
           break;
         default:
@@ -69,10 +70,10 @@ export class FileUploadComponent {
     );
   }
 
-  private uploadSignedDocument(data: FormData) {
-    this.attachmentApi.uploadSignedDocument(data, () => {}).subscribe(
+  private uploadSignedSummary(data: FormData) {
+    this.attachmentApi.uploadSignedSummary(data, () => {}).subscribe(
       (attachment: Attachment) => {
-        this.referral.signedDocument = attachment;
+        this.referral.signedSummary = attachment;
 
         this.fileChange.emit(this.referral);
       },

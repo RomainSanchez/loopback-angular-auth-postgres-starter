@@ -16,6 +16,7 @@
     </ngx-dropzone>
 
     <button mat-raised-button color="accent" class="next"
+      (click)="done.emit(true)"
       [disabled]="referral?.attachments.length !== referral?.form?.requiredAttachments.length"
     >Valider</button>
   </div>
@@ -23,7 +24,7 @@
   <div class="signature-dropzone" *ngIf="purpose === 'signature'">
     <button mat-flat-button color="accent"
       (click)="signatureDropzone.showFileSelector()"
-      [disabled]="referral?.signedDocument"
+      [disabled]="referral?.signedSummary"
     >
       <mat-icon class="mat-18">folder</mat-icon>
       Pacourir
@@ -31,13 +32,14 @@
 
     <ngx-dropzone #signatureDropzone (change)="fileAdded($event)" [expandable]="true">
       <ngx-dropzone-label>Glisser/Déposer le fichier ici ou cliquer sur parcourir</ngx-dropzone-label>
-      <ngx-dropzone-preview *ngIf="referral?.signedDocument" [removable]="true" (removed)="fileRemoved(referral?.signedDocument)">
-        <ngx-dropzone-label>{{ referral?.signedDocument?.name }}</ngx-dropzone-label>
+      <ngx-dropzone-preview *ngIf="referral?.signedSummary" [removable]="true" (removed)="fileRemoved(referral?.signedSummary)">
+        <ngx-dropzone-label>{{ referral?.signedSummary?.name }}</ngx-dropzone-label>
       </ngx-dropzone-preview>
     </ngx-dropzone>
 
     <button mat-raised-button color="accent" class="next"
-      [disabled]="!referral?.signedDocument"
+      (click)="done.emit(true)"
+      [disabled]="!referral?.signedSummary"
     >Valider</button>
   </div>
 </div>

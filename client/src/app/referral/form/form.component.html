@@ -32,7 +32,7 @@
           [referral]="referral"
           purpose="attachment"
           (fileChange)="fileChange($event)"
-          (uploadDone)="attachmentsDone($event)"
+          (done)="stepper.next()"
         ></app-file-upload>
       </mat-card>
     </div>
@@ -44,8 +44,13 @@
       <h3 class="mat-display-1">Téléchargement et signature de la saisine</h3>
 
       <mat-card>
-        <p class="mat-title">Veuillez télécharger la saisine et la signer vous pourrez la transmettre à la prochaine étape</p>
+        <p class="mat-title">Veuillez télécharger la saisine et la signer</p>
+        <p>Vous pourrez la transmettre à la prochaine étape</p>
 
+        <button mat-flat-button color="accent" (click)="downloadSummary()">
+          <mat-icon class="mat-18">arrow_downward</mat-icon>
+          Télécharger la saisine
+        </button>
       </mat-card>
     </div>
   </mat-step>
@@ -65,7 +70,7 @@
           [referral]="referral"
           purpose="signature"
           (fileChange)="fileChange($event)"
-          (uploadDone)="attachmentsDone($event)"
+          (uploadDone)="stepper.next()"
         ></app-file-upload>
       </mat-card>
     </div>

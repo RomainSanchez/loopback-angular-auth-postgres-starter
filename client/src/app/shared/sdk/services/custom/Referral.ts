@@ -37,7 +37,7 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * @param {any} id Referral id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -67,7 +67,7 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * @param {any} id Referral id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -97,7 +97,7 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * @param {any} id Referral id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -216,11 +216,11 @@ export class ReferralApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches hasOne relation signedDocument.
+   * Fetches hasOne relation signedSummary.
    *
    * @param {any} id Referral id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -231,10 +231,10 @@ export class ReferralApi extends BaseLoopBackApi {
    * This usually means the response is a `Referral` object.)
    * </em>
    */
-  public getSignedDocument(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getSignedSummary(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Referrals/:id/signedDocument";
+    "/Referrals/:id/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -246,7 +246,7 @@ export class ReferralApi extends BaseLoopBackApi {
   }
 
   /**
-   * Creates a new instance in signedDocument of this model.
+   * Creates a new instance in signedSummary of this model.
    *
    * @param {any} id Referral id
    *
@@ -263,10 +263,10 @@ export class ReferralApi extends BaseLoopBackApi {
    * This usually means the response is a `Referral` object.)
    * </em>
    */
-  public createSignedDocument(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createSignedSummary(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Referrals/:id/signedDocument";
+    "/Referrals/:id/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -279,7 +279,7 @@ export class ReferralApi extends BaseLoopBackApi {
   }
 
   /**
-   * Update signedDocument of this model.
+   * Update signedSummary of this model.
    *
    * @param {any} id Referral id
    *
@@ -296,10 +296,10 @@ export class ReferralApi extends BaseLoopBackApi {
    * This usually means the response is a `Referral` object.)
    * </em>
    */
-  public updateSignedDocument(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateSignedSummary(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Referrals/:id/signedDocument";
+    "/Referrals/:id/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -312,7 +312,7 @@ export class ReferralApi extends BaseLoopBackApi {
   }
 
   /**
-   * Deletes signedDocument of this model.
+   * Deletes signedSummary of this model.
    *
    * @param {any} id Referral id
    *
@@ -322,10 +322,10 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroySignedDocument(id: any, customHeaders?: Function): Observable<any> {
+  public destroySignedSummary(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Referrals/:id/signedDocument";
+    "/Referrals/:id/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -340,7 +340,7 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * @param {any} id Referral id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -435,7 +435,7 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countAttachments(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -514,11 +514,33 @@ export class ReferralApi extends BaseLoopBackApi {
   }
 
   /**
+   * Generate referral summary
+   *
+   * @param {number} id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The http response
+   */
+  public generateSummary(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Referrals/summary";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {id: id};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * Fetches belongsTo relation referral.
    *
    * @param {any} id Referral id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -529,10 +551,10 @@ export class ReferralApi extends BaseLoopBackApi {
    * This usually means the response is a `Referral` object.)
    * </em>
    */
-  public getSignedDocumentReferral(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getSignedSummaryReferral(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Referrals/:id/signedDocument/referral";
+    "/Referrals/:id/signedSummary/referral";
     let _routeParams: any = {
       id: id
     };
@@ -550,7 +572,7 @@ export class ReferralApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for attachments.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -577,7 +599,7 @@ export class ReferralApi extends BaseLoopBackApi {
   }
 
   /**
-   * Creates a new instance in signedDocument of this model.
+   * Creates a new instance in signedSummary of this model.
    *
    * @param {any} id Referral id
    *
@@ -594,10 +616,10 @@ export class ReferralApi extends BaseLoopBackApi {
    * This usually means the response is a `Referral` object.)
    * </em>
    */
-  public createManySignedDocument(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManySignedSummary(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Referrals/:id/signedDocument";
+    "/Referrals/:id/signedSummary";
     let _routeParams: any = {
       id: id
     };

@@ -135,19 +135,19 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * The http response
    */
-  public upload(req: any, customHeaders?: Function): Observable<any> {
+  public upload(data: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Attachments/upload";
     let _routeParams: any = {};
-    let _postBody: any = {data: req};
+    let _postBody: any = {data: data};
     let _urlParams: any = {};
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
 
   /**
-   * Upload a file as referral signed document
+   * Upload a file as referral signed summary
    *
    * @param {object} data Request data.
    *
@@ -159,7 +159,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * The http response
    */
-  public uploadSignedDocument(data: any, customHeaders?: Function): Observable<any> {
+  public uploadSignedSummary(data: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Attachments/upload-signed";
@@ -354,7 +354,7 @@ export class AttachmentApi extends BaseLoopBackApi {
   }
 
   /**
-   * Fetches hasOne relation signedDocument.
+   * Fetches hasOne relation signedSummary.
    *
    * @param {any} id Attachment id
    *
@@ -369,10 +369,10 @@ export class AttachmentApi extends BaseLoopBackApi {
    * This usually means the response is a `Attachment` object.)
    * </em>
    */
-  public getReferralSignedDocument(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
+  public getReferralSignedSummary(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Attachments/:id/referral/signedDocument";
+    "/Attachments/:id/referral/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -384,7 +384,7 @@ export class AttachmentApi extends BaseLoopBackApi {
   }
 
   /**
-   * Creates a new instance in signedDocument of this model.
+   * Creates a new instance in signedSummary of this model.
    *
    * @param {any} id Attachment id
    *
@@ -401,10 +401,10 @@ export class AttachmentApi extends BaseLoopBackApi {
    * This usually means the response is a `Attachment` object.)
    * </em>
    */
-  public createReferralSignedDocument(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public createReferralSignedSummary(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Attachments/:id/referral/signedDocument";
+    "/Attachments/:id/referral/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -417,7 +417,7 @@ export class AttachmentApi extends BaseLoopBackApi {
   }
 
   /**
-   * Update signedDocument of this model.
+   * Update signedSummary of this model.
    *
    * @param {any} id Attachment id
    *
@@ -434,10 +434,10 @@ export class AttachmentApi extends BaseLoopBackApi {
    * This usually means the response is a `Attachment` object.)
    * </em>
    */
-  public updateReferralSignedDocument(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
+  public updateReferralSignedSummary(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Attachments/:id/referral/signedDocument";
+    "/Attachments/:id/referral/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -450,7 +450,7 @@ export class AttachmentApi extends BaseLoopBackApi {
   }
 
   /**
-   * Deletes signedDocument of this model.
+   * Deletes signedSummary of this model.
    *
    * @param {any} id Attachment id
    *
@@ -460,10 +460,10 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public destroyReferralSignedDocument(id: any, customHeaders?: Function): Observable<any> {
+  public destroyReferralSignedSummary(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Attachments/:id/referral/signedDocument";
+    "/Attachments/:id/referral/signedSummary";
     let _routeParams: any = {
       id: id
     };
@@ -590,7 +590,7 @@ export class AttachmentApi extends BaseLoopBackApi {
   }
 
   /**
-   * Creates a new instance in signedDocument of this model.
+   * Creates a new instance in signedSummary of this model.
    *
    * @param {any} id Attachment id
    *
@@ -607,10 +607,10 @@ export class AttachmentApi extends BaseLoopBackApi {
    * This usually means the response is a `Attachment` object.)
    * </em>
    */
-  public createManyReferralSignedDocument(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
+  public createManyReferralSignedSummary(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Attachments/:id/referral/signedDocument";
+    "/Attachments/:id/referral/signedSummary";
     let _routeParams: any = {
       id: id
     };
