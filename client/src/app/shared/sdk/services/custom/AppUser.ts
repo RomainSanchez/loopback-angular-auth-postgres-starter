@@ -9,16 +9,16 @@ import { LoopBackFilter, SDKToken, AccessToken } from '../../models/BaseModels';
 import { ErrorHandler } from '../core/error.service';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Community } from '../../models/Community';
+import { AppUser } from '../../models/AppUser';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { Role } from '../../models/Role';
 
 
 /**
- * Api services for the `Community` model.
+ * Api services for the `AppUser` model.
  */
 @Injectable()
-export class CommunityApi extends BaseLoopBackApi {
+export class AppUserApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -33,7 +33,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Find a related item by id for accessTokens.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for accessTokens
    *
@@ -43,7 +43,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public findByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
@@ -63,7 +63,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Delete a related item by id for accessTokens.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for accessTokens
    *
@@ -90,7 +90,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Update a related item by id for accessTokens.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for accessTokens
    *
@@ -104,7 +104,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public updateByIdAccessTokens(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
@@ -126,7 +126,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Find a related item by id for roles.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for roles
    *
@@ -136,7 +136,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public findByIdRoles(id: any, fk: any, customHeaders?: Function): Observable<any> {
@@ -156,7 +156,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Delete a related item by id for roles.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for roles
    *
@@ -183,7 +183,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Update a related item by id for roles.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for roles
    *
@@ -197,7 +197,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public updateByIdRoles(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
@@ -219,7 +219,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Add a related item by id for roles.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for roles
    *
@@ -233,7 +233,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public linkRoles(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
@@ -255,7 +255,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Remove the roles relation to an item by id.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for roles
    *
@@ -282,7 +282,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Check the existence of roles relation to an item by id.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {any} fk Foreign key for roles
    *
@@ -292,7 +292,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public existsRoles(id: any, fk: any, customHeaders?: Function): Observable<any> {
@@ -310,11 +310,11 @@ export class CommunityApi extends BaseLoopBackApi {
   }
 
   /**
-   * Queries accessTokens of Community.
+   * Queries accessTokens of AppUser.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -322,7 +322,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public getAccessTokens(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
@@ -342,7 +342,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in accessTokens of this model.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} data Request data.
    *
@@ -354,7 +354,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public createAccessTokens(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
@@ -375,7 +375,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Deletes all accessTokens of this model.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -397,9 +397,9 @@ export class CommunityApi extends BaseLoopBackApi {
   }
 
   /**
-   * Counts accessTokens of Community.
+   * Counts accessTokens of AppUser.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -409,7 +409,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countAccessTokens(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -426,11 +426,11 @@ export class CommunityApi extends BaseLoopBackApi {
   }
 
   /**
-   * Queries roles of Community.
+   * Queries roles of AppUser.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -438,7 +438,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public getRoles(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
@@ -458,7 +458,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in roles of this model.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} data Request data.
    *
@@ -470,7 +470,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public createRoles(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
@@ -491,7 +491,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Deletes all roles of this model.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -513,9 +513,9 @@ export class CommunityApi extends BaseLoopBackApi {
   }
 
   /**
-   * Counts roles of Community.
+   * Counts roles of AppUser.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} where Criteria to match model instances
    *
@@ -525,7 +525,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countRoles(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -554,7 +554,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
@@ -573,7 +573,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} data Request data.
    *
@@ -585,7 +585,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
@@ -623,9 +623,9 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * The response body contains properties of the AccessToken created on login.
    * Depending on the value of `include` parameter, the body may contain additional properties:
-   * 
+   *
    *   - `user` - `U+007BUserU+007D` - Data of the currently logged in user. (`include=user`)
-   * 
+   *
    *
    */
   public login(credentials: any, include: any = 'user', rememberMe: boolean = true, customHeaders?: Function): Observable<any> {
@@ -650,7 +650,7 @@ export class CommunityApi extends BaseLoopBackApi {
       )
       );
       return result;
-      
+
   }
 
   /**
@@ -674,7 +674,7 @@ export class CommunityApi extends BaseLoopBackApi {
     let _postBody: any = {};
     let _urlParams: any = {};
        _urlParams.access_token = this.auth.getAccessTokenId();
-    this.auth.clear(); 
+    this.auth.clear();
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
   }
@@ -682,7 +682,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Trigger user's identity verification with configured verifyOptions
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} data Request data.
    *
@@ -710,11 +710,11 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Confirm a user registration with identity verification token.
    *
-   * @param {string} uid 
+   * @param {string} uid
    *
-   * @param {string} token 
+   * @param {string} token
    *
-   * @param {string} redirect 
+   * @param {string} redirect
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -767,9 +767,9 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `oldPassword` – `{string}` - 
+   *  - `oldPassword` – `{string}` -
    *
-   *  - `newPassword` – `{string}` - 
+   *  - `newPassword` – `{string}` -
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -798,7 +798,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * @param {object} data Request data.
    *
-   *  - `newPassword` – `{string}` - 
+   *  - `newPassword` – `{string}` -
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -822,11 +822,11 @@ export class CommunityApi extends BaseLoopBackApi {
   }
 
   /**
-   * Remove a role from a Community (user)
+   * Remove a role from a AppUser (user)
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
-   * @param {string} communityId The community id
+   * @param {string} appUserId The appUser id
    *
    * @param {string} roleId The role id
    *
@@ -836,7 +836,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * This method returns no data.
    */
-  public removeRole(id: any, communityId: any, roleId: any, customHeaders?: Function): Observable<any> {
+  public removeRole(id: any, appUserId: any, roleId: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Communities/:id/role/remove";
@@ -845,7 +845,7 @@ export class CommunityApi extends BaseLoopBackApi {
     };
     let _postBody: any = {};
     let _urlParams: any = {};
-    if (typeof communityId !== 'undefined' && communityId !== null) _urlParams.communityId = communityId;
+    if (typeof appUserId !== 'undefined' && appUserId !== null) _urlParams.appUserId = appUserId;
     if (typeof roleId !== 'undefined' && roleId !== null) _urlParams.roleId = roleId;
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
@@ -854,7 +854,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in accessTokens of this model.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} data Request data.
    *
@@ -866,7 +866,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public createManyAccessTokens(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
@@ -887,7 +887,7 @@ export class CommunityApi extends BaseLoopBackApi {
   /**
    * Creates a new instance in roles of this model.
    *
-   * @param {any} id Community id
+   * @param {any} id AppUser id
    *
    * @param {object} data Request data.
    *
@@ -899,7 +899,7 @@ export class CommunityApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Community` object.)
+   * This usually means the response is a `AppUser` object.)
    * </em>
    */
   public createManyRoles(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
@@ -918,8 +918,8 @@ export class CommunityApi extends BaseLoopBackApi {
   }
   /**
    * @ngdoc method
-   * @name sdk.Community#getCurrent
-   * @methodOf sdk.Community
+   * @name sdk.AppUser#getCurrent
+   * @methodOf sdk.AppUser
    *
    * @description
    *
@@ -944,8 +944,8 @@ export class CommunityApi extends BaseLoopBackApi {
   }
   /**
    * Get data of the currently logged user that was returned by the last
-   * call to {@link sdk.Community#login} or
-   * {@link sdk.Community#getCurrent}. Return null when there
+   * call to {@link sdk.AppUser#login} or
+   * {@link sdk.AppUser#getCurrent}. Return null when there
    * is no user logged in or the data of the current user were not fetched
    * yet.
    *
@@ -956,7 +956,7 @@ export class CommunityApi extends BaseLoopBackApi {
   }
   /**
    * Get data of the currently logged access tokern that was returned by the last
-   * call to {@link sdk.Community#login}
+   * call to {@link sdk.AppUser#login}
    *
    * @returns object An AccessToken instance.
    */
@@ -964,7 +964,7 @@ export class CommunityApi extends BaseLoopBackApi {
     return this.auth.getToken();
   }
   /**
-   * @name sdk.Community#isAuthenticated
+   * @name sdk.AppUser#isAuthenticated
    *
    * @returns {boolean} True if the current user is authenticated (logged in).
    */
@@ -973,7 +973,7 @@ export class CommunityApi extends BaseLoopBackApi {
   }
 
   /**
-   * @name sdk.Community#getCurrentId
+   * @name sdk.AppUser#getCurrentId
    *
    * @returns object Id of the currently logged-in user or null.
    */
@@ -983,9 +983,9 @@ export class CommunityApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Community`.
+   * i.e. `AppUser`.
    */
   public getModelName() {
-    return "Community";
+    return "AppUser";
   }
 }

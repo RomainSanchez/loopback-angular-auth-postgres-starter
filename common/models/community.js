@@ -1,18 +1,18 @@
 'use strict';
 
-module.exports = function(Community) {
+module.exports = function(AppUser) {
   /**
-   * Remove a role from a Community (user)
-   * @param {string} id The community id
+   * Remove a role from a AppUser (user)
+   * @param {string} id The appUser id
    * @param {string} roleId The role id
    * @param {Function(Error)} callback
    */
-  Community.prototype.removeRole = async (communityId, roleId, callback) => {
-    const roleMappingModel = Community.app.models.RoleMapping;
+  AppUser.prototype.removeRole = async (appUserId, roleId, callback) => {
+    const roleMappingModel = AppUser.app.models.RoleMapping;
 
     const mapping = await roleMappingModel.findOne({where: {
       principalType: 'USER',
-      principalId: communityId,
+      principalId: appUserId,
       roleId: roleId
     }});
 

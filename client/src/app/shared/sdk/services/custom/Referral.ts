@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 import { Referral } from '../../models/Referral';
 import { SocketConnection } from '../../sockets/socket.connections';
 import { Form } from '../../models/Form';
-import { Community } from '../../models/Community';
+import { AppUser } from '../../models/AppUser';
 import { Attachment } from '../../models/Attachment';
 
 

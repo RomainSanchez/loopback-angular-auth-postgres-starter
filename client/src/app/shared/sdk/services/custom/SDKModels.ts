@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import { Role } from '../../models/Role';
-import { Community } from '../../models/Community';
+import { AppUser } from '../../models/AppUser';
 import { Form } from '../../models/Form';
 import { Referral } from '../../models/Referral';
 import { Attachment } from '../../models/Attachment';
@@ -13,11 +13,11 @@ export class SDKModels {
 
   private models: Models = {
     Role: Role,
-    Community: Community,
+    AppUser: AppUser,
     Form: Form,
     Referral: Referral,
     Attachment: Attachment,
-    
+
   };
 
   public get(modelName: string): any {

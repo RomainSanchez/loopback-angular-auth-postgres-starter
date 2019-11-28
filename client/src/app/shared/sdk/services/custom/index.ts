@@ -1,6 +1,6 @@
 /* tslint:disable */
 export * from './Role';
-export * from './Community';
+export * from './AppUser';
 export * from './Form';
 export * from './Referral';
 export * from './Attachment';

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { LoopBackAuth, SDKToken } from '../../shared/sdk';
 import { Router } from '@angular/router';
-import { CommunityApi } from 'src/app/shared/sdk/services/custom/Community';
-import { Community } from 'src/app/shared/sdk/models/Community';
+import { AppUserApi } from 'src/app/shared/sdk/services/custom/AppUser';
+import { AppUser } from 'src/app/shared/sdk/models/AppUser';
 import { NgxPermissionsService } from 'ngx-permissions';
 
 @Component({
@@ -11,17 +11,17 @@ import { NgxPermissionsService } from 'ngx-permissions';
   styleUrls: ['./auth.component.sass']
 })
 export class AuthComponent {
-  community: Community = new Community();
+  appUser: AppUser = new AppUser();
   error: string;
 
   constructor(
     private router: Router,
-    private communityApi: CommunityApi,
+    private appUserApi: AppUserApi,
     private loopbackAuthService: LoopBackAuth,
     private permissionsService: NgxPermissionsService
   ) {
     if (router.url === '/logout') {
-      this.communityApi.logout().subscribe(() => {
+      this.appUserApi.logout().subscribe(() => {
         this.permissionsService.flushPermissions();
         localStorage.removeItem('permissions');
       });
@@ -29,12 +29,12 @@ export class AuthComponent {
    }
 
   authenticate() {
-    this.communityApi.login(this.community).subscribe(
+    this.appUserApi.login(this.appUser).subscribe(
       (token: SDKToken) => {
         console.log(token);
         // Retrieve roles
-        this.communityApi.findById(token.user.id, { include: ['roles'] }).subscribe((community: Community) => {
-          token.user = community;
+        this.appUserApi.findById(token.user.id, { include: ['roles'] }).subscribe((appUser: AppUser) => {
+          token.user = appUser;
           const roles = this.getRoleNames(token.user.roles);
 
           this.loopbackAuthService.setToken(token);

@@ -1,7 +1,7 @@
 /* tslint:disable */
 import {
   Form,
-  Community,
+  AppUser,
   Attachment
 } from '../index';
 
@@ -16,8 +16,8 @@ export interface ReferralInterface {
   "createdById"?: number;
   "updatedById"?: number;
   form?: Form;
-  createdBy?: Community;
-  updatedBy?: Community;
+  createdBy?: AppUser;
+  updatedBy?: AppUser;
   attachments?: Attachment[];
   signedSummary?: Attachment;
 }
@@ -32,8 +32,8 @@ export class Referral implements ReferralInterface {
   "createdById": number;
   "updatedById": number;
   form: Form;
-  createdBy: Community;
-  updatedBy: Community;
+  createdBy: AppUser;
+  updatedBy: AppUser;
   attachments: Attachment[];
   signedSummary: Attachment;
   constructor(data?: ReferralInterface) {
@@ -114,16 +114,16 @@ export class Referral implements ReferralInterface {
         },
         createdBy: {
           name: 'createdBy',
-          type: 'Community',
-          model: 'Community',
+          type: 'AppUser',
+          model: 'AppUser',
           relationType: 'belongsTo',
                   keyFrom: 'createdById',
           keyTo: 'id'
         },
         updatedBy: {
           name: 'updatedBy',
-          type: 'Community',
-          model: 'Community',
+          type: 'AppUser',
+          model: 'AppUser',
           relationType: 'belongsTo',
                   keyFrom: 'updatedById',
           keyTo: 'id'

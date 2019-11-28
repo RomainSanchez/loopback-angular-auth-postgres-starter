@@ -1,5 +1,5 @@
 {
-  "name": "Community",
+  "name": "AppUser",
   "plural": "Communities",
   "base": "User",
   "options": {
@@ -46,10 +46,10 @@
     "prototype.removeRole": {
       "accepts": [
         {
-          "arg": "communityId",
+          "arg": "appUserId",
           "type": "string",
           "required": true,
-          "description": "The community id"
+          "description": "The appUser id"
         },
         {
           "arg": "roleId",
@@ -59,7 +59,7 @@
         }
       ],
       "returns": [],
-      "description": "Remove a role from a Community (user)",
+      "description": "Remove a role from a AppUser (user)",
       "http": [
         {
           "path": "role/remove",

@@ -37,7 +37,7 @@
     "dataSource": "postgres",
     "public": true
   },
-  "Community": {
+  "AppUser": {
     "dataSource": "postgres",
     "public": true,
     "options": {

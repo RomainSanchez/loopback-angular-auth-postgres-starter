@@ -16,7 +16,7 @@
 * ============================================================================
 * import { NgModule }       from '@angular/core';
 * import { BrowserModule }  from '@angular/platform-browser';
-* // App Root 
+* // App Root
 * import { AppComponent }   from './app.component';
 * // Feature Modules
 * import { SDK[Browser|Node|Native]Module } from './shared/sdk/sdk.module';
@@ -49,7 +49,7 @@ import { SocketDriver } from './sockets/socket.driver';
 import { SocketConnection } from './sockets/socket.connections';
 import { RealTime } from './services/core/real.time';
 import { RoleApi } from './services/custom/Role';
-import { CommunityApi } from './services/custom/Community';
+import { AppUserApi } from './services/custom/AppUser';
 import { FormApi } from './services/custom/Form';
 import { ReferralApi } from './services/custom/Referral';
 import { AttachmentApi } from './services/custom/Attachment';
@@ -84,7 +84,7 @@ export class SDKBrowserModule {
         SDKModels,
         RealTime,
         RoleApi,
-        CommunityApi,
+        AppUserApi,
         FormApi,
         ReferralApi,
         AttachmentApi,

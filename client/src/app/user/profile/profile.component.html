@@ -1,24 +1,24 @@
-<h2 class="mat-display-1" *ngIf="community?.id">Modifier un utilisateur</h2>
-<h2 class="mat-display-1" *ngIf="!community.id">Nouvel utilisateur</h2>
+<h2 class="mat-display-1" *ngIf="app-user?.id">Modifier un utilisateur</h2>
+<h2 class="mat-display-1" *ngIf="!app-user.id">Nouvel utilisateur</h2>
 
 <mat-card  *ngxPermissionsOnly="['admin']">
   <mat-card-title></mat-card-title>
-  <form class="community-form" #communityForm="ngForm" (ngSubmit)="onSubmit()">
+  <form class="app-user-form" #appUserForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-card-content>
       <mat-form-field class="field">
-        <input matInput [(ngModel)]="community.name"  name="name" placeholder="Nom">
+        <input matInput [(ngModel)]="appUser.name"  name="name" placeholder="Nom">
       </mat-form-field>
 
       <mat-form-field class="field">
-        <input matInput [(ngModel)]="community.username"  name="username" placeholder="Nom d'utilisateur">
+        <input matInput [(ngModel)]="appUser.username"  name="username" placeholder="Nom d'utilisateur">
       </mat-form-field>
 
       <mat-form-field class="field">
-        <input matInput [(ngModel)]="community.email"  name="email" placeholder="Email">
+        <input matInput [(ngModel)]="appUser.email"  name="email" placeholder="Email">
       </mat-form-field>
 
-      <mat-form-field *ngIf="!community.id" class="field">
-        <input matInput type="password" [(ngModel)]="community.password"  name="password" placeholder="Mot de passe">
+      <mat-form-field *ngIf="!appUser.id" class="field">
+        <input matInput type="password" [(ngModel)]="appUser.password"  name="password" placeholder="Mot de passe">
       </mat-form-field>
 
       <div class="roles">

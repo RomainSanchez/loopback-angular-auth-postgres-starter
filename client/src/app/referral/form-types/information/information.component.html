@@ -1,12 +1,12 @@
 <form #informationForm="ngForm" (ngSubmit)="submit()" class="information-form">
   <mat-card>
       <label class="mat-title">Collectivité</label>
-      <div class="community">
-        <mat-form-field class="field community">
+      <div class="app-user">
+        <mat-form-field class="field app-user">
           <input type="text" matInput
             placeholder="Nom de l'établissement"
-            [(ngModel)]="information.community"
-            name="community"
+            [(ngModel)]="information.appUser"
+            name="app-user"
             required
           >
         </mat-form-field>

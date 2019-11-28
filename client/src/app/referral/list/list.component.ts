@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
   displayedColumns = [
     'committee',
     'form',
-    'community',
+    'appUser',
     'created',
     'approved'
   ];

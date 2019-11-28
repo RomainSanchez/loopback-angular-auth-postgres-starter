@@ -4,13 +4,13 @@
     <form (ngSubmit)="authenticate()" class="login-form">
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Utilisateur" [(ngModel)]="community.username" name="username" required>
+          <input type="text" matInput placeholder="Utilisateur" [(ngModel)]="appUser.username" name="username" required>
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field>
-            <input matInput placeholder="Mot de passe" [(ngModel)]="community.password" type="password" name="password" required>
+            <input matInput placeholder="Mot de passe" [(ngModel)]="appUser.password" type="password" name="password" required>
         </mat-form-field>
       </p>
 

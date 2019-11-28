@@ -17,28 +17,28 @@
 <mat-table *ngxPermissionsOnly="['admin']" class="communities-table mat-elevation-z4" matSort [dataSource]="tableDataSource">
     <ng-container matColumnDef="username">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Identifiant</mat-header-cell>
-        <mat-cell *matCellDef="let community">{{ community.username }}</mat-cell>
+        <mat-cell *matCellDef="let appUser">{{ appUser.username }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
-      <mat-cell *matCellDef="let community">{{ community.name }}</mat-cell>
+      <mat-cell *matCellDef="let appUser">{{ appUser.name }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-      <mat-cell *matCellDef="let community">{{ community.email }}</mat-cell>
+      <mat-cell *matCellDef="let appUser">{{ appUser.email }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="roles">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Roles</mat-header-cell>
-      <mat-cell *matCellDef="let community">{{ community.roles| roles }}</mat-cell>
+      <mat-cell *matCellDef="let appUser">{{ appUser.roles| roles }}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-    <mat-row *matRowDef="let community; columns: displayedColumns"
-      (click)=rowClicked(community.id)
+    <mat-row *matRowDef="let appUser; columns: displayedColumns"
+      (click)=rowClicked(appUser.id)
     ></mat-row>
 </mat-table>
 

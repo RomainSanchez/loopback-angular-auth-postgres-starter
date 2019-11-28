@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Community } from 'src/app/shared/sdk/models/Community';
+import { AppUser } from 'src/app/shared/sdk/models/AppUser';
 import { Router } from '@angular/router';
-import { CommunityApi } from 'src/app/shared/sdk/services/custom/Community';
+import { AppUserApi } from 'src/app/shared/sdk/services/custom/AppUser';
 
 @Component({
   selector: 'app-list',
@@ -21,14 +21,14 @@ export class ListComponent implements OnInit {
   ];
   pageSize = 10;
   pageSizeOptions = [5, 10, 20, 50, 100];
-  tableDataSource: MatTableDataSource<Community>;Z
+  tableDataSource: MatTableDataSource<AppUser>;Z
   isLoading = false;
 
   constructor(
     private router: Router,
-    private communityApi: CommunityApi
+    private appUserApi: AppUserApi
   ) {
-    this.tableDataSource = new MatTableDataSource<Community>();
+    this.tableDataSource = new MatTableDataSource<AppUser>();
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class ListComponent implements OnInit {
   getCommunities() {
     this.isLoading = true;
 
-    return this.communityApi.find({include: ['roles']}).subscribe((communities: Community[]) => {
+    return this.appUserApi.find({include: ['roles']}).subscribe((communities: AppUser[]) => {
       this.tableDataSource.data = communities;
 
       this.isLoading = false;
@@ -52,15 +52,15 @@ export class ListComponent implements OnInit {
     this.tableDataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  rowClicked(communityId: number) {
-    this.router.navigate(['/user/profile', communityId]);
+  rowClicked(appUserId: number) {
+    this.router.navigate(['/user/profile', appUserId]);
   }
 
-  private filter(community: Community, filters: string) {
+  private filter(appUser: AppUser, filters: string) {
     const matchFilter = [];
     const filterArray = filters.split('+');
 
-    const fields = Object.values(community).filter(Boolean);
+    const fields = Object.values(appUser).filter(Boolean);
 
     filterArray.forEach(filter => {
       const customFilter = [];

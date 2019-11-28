@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Community, RoleApi, Role, CommunityApi } from 'src/app/shared/sdk';
+import { AppUser, RoleApi, Role, AppUserApi } from 'src/app/shared/sdk';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -12,12 +12,12 @@ import { MatSnackBar } from '@angular/material';
 export class ProfileComponent implements OnInit {
   roles: Role[];
   userRoles: Role[] = [];
-  community: Community = new Community();
+  appUser: AppUser = new AppUser();
 
   constructor(
     private route: ActivatedRoute,
     private roleApi: RoleApi,
-    private communityApi: CommunityApi,
+    private appUserApi: AppUserApi,
     private snackBar: MatSnackBar
   ) { }
 
@@ -26,35 +26,35 @@ export class ProfileComponent implements OnInit {
       this.roles = roles;
     });
 
-    this.community.roles = [];
+    this.appUser.roles = [];
 
-    const communityId = this.route.snapshot.paramMap.get('communityId');
+    const appUserId = this.route.snapshot.paramMap.get('appUserId');
 
-    if (communityId) {
-      this.communityApi.findById(communityId, {include: ['roles']}).subscribe((community: Community) => {
-        this.community = community;
-        this.userRoles = Object.assign([], community.roles);
+    if (appUserId) {
+      this.appUserApi.findById(appUserId, {include: ['roles']}).subscribe((appUser: AppUser) => {
+        this.appUser = appUser;
+        this.userRoles = Object.assign([], appUser.roles);
       });
     }
   }
 
   onSubmit() {
-    this.community.realm = 'backend';
+    this.appUser.realm = 'backend';
 
-    this.communityApi.patchOrCreate(this.community).subscribe((community: Community) => {
+    this.appUserApi.patchOrCreate(this.appUser).subscribe((appUser: AppUser) => {
       this.snackBar.open('Utilisateur enregistré', '', {duration: 2000});
 
-      if (!this.community.id) {
-        const roles = this.community.roles;
-        this.community = community;
-        this.community.roles = roles;
+      if (!this.appUser.id) {
+        const roles = this.appUser.roles;
+        this.appUser = appUser;
+        this.appUser.roles = roles;
       }
 
-      this.community.roles.forEach((role: Role) => {
+      this.appUser.roles.forEach((role: Role) => {
         if (!this.hadRole(role.name)) {
           this.roleApi.createPrincipals(role.id, {
             principalType: 'USER',
-            principalId: this.community.id,
+            principalId: this.appUser.id,
             roleId: role.id
           }).subscribe(() => {
             this.userRoles.push(role);
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
   }
 
   hasRole(roleName: string): boolean {
-    return this.community.roles.filter(role => role.name === roleName).length > 0;
+    return this.appUser.roles.filter(role => role.name === roleName).length > 0;
   }
 
   hadRole(roleName: string): boolean {
@@ -76,14 +76,14 @@ export class ProfileComponent implements OnInit {
     const hasRole = this.hasRole(role.name);
 
     if (hasRole) {
-      this.communityApi.removeRole(this.community.id, this.community.id, role.id).subscribe(() => {
-        this.community.roles = this.community.roles.filter(theRole => theRole.name !== role.name);
+      this.appUserApi.removeRole(this.appUser.id, this.appUser.id, role.id).subscribe(() => {
+        this.appUser.roles = this.appUser.roles.filter(theRole => theRole.name !== role.name);
         this.userRoles = this.userRoles.filter(theRole => theRole.name !== role.name);
       });
 
       return;
     }
 
-    this.community.roles.push(role);
+    this.appUser.roles.push(role);
   }
 }

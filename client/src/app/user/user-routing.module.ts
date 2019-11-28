@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'logout', component: AuthComponent },
   { path: 'users', component: ListComponent, canActivate: [AuthGuardService] },
-  { path: 'user/profile/:communityId', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'user/profile/:appUserId', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'user/new', component: ProfileComponent, canActivate: [AuthGuardService],
   }

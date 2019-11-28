@@ -17,7 +17,7 @@ module.exports = function(app) {
   const roles = [
     { name: 'admin', description: 'Administrateur' },
     { name: 'backend', description: 'Accès back office' },
-    { name: 'community', description: 'Collectivité' }
+    { name: 'appUser', description: 'Collectivité' }
   ];
 
   const roleMapping = [
@@ -99,7 +99,7 @@ module.exports = function(app) {
     { name: 'Régime indemnitaire', committee: 'ct', code: 'ct13', requiredAttachments: ['Tableau des groupes de fonctions'] }
   ];
 
-  // app.models.Community.create(admin);
+  // app.models.AppUser.create(admin);
   // app.models.Role.create(roles);
   // app.models.RoleMapping.create(roleMapping);
   // app.models.Form.create(forms);

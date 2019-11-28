@@ -4,12 +4,12 @@ module.exports = function(Model, options) {
   Model.dataSource.defineRelations(Model, {
     createdBy: {
       type: 'belongsTo',
-      model: 'Community',
+      model: 'AppUser',
       foreignKey: 'createdById'
     },
     updatedBy: {
       type: 'belongsTo',
-      model: 'Community',
+      model: 'AppUser',
       foreignKey: 'updatedById'
     },
   });

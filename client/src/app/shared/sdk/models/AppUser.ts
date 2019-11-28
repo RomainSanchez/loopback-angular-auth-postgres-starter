@@ -4,7 +4,7 @@ import {
 } from '../index';
 
 declare var Object: any;
-export interface CommunityInterface {
+export interface AppUserInterface {
   "name": string;
   "email"?: string;
   "realm"?: string;
@@ -18,7 +18,7 @@ export interface CommunityInterface {
   roles?: Role[];
 }
 
-export class Community implements CommunityInterface {
+export class AppUser implements AppUserInterface {
   "name": string;
   "email": string;
   "realm": string;
@@ -30,24 +30,24 @@ export class Community implements CommunityInterface {
   "password": string;
   accessTokens: any[];
   roles: Role[];
-  constructor(data?: CommunityInterface) {
+  constructor(data?: AppUserInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Community`.
+   * i.e. `AppUser`.
    */
   public static getModelName() {
-    return "Community";
+    return "AppUser";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of Community for dynamic purposes.
+  * This method creates an instance of AppUser for dynamic purposes.
   **/
-  public static factory(data: CommunityInterface): Community{
-    return new Community(data);
+  public static factory(data: AppUserInterface): AppUser{
+    return new AppUser(data);
   }
   /**
   * @method getModelDefinition
@@ -58,7 +58,7 @@ export class Community implements CommunityInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'Community',
+      name: 'AppUser',
       plural: 'Communities',
       path: 'Communities',
       idName: 'id',
