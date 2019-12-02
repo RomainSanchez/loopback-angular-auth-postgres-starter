@@ -63,8 +63,8 @@
 
     <mat-form-field class="field population">
       <mat-select [(ngModel)]="data.population" name="population" placeholder="Strate démographique de la collectivité">
-        <mat-option *ngFor="let choice of populationChoices" [value]="choice.value">
-          {{ choice.label }}
+        <mat-option *ngFor="let choice of populationChoices" [value]="choice">
+          {{ choice }}
         </mat-option>
       </mat-select>
     </mat-form-field>

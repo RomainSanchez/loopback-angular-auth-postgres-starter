@@ -1,0 +1,23 @@
+<form #dataForm="ngForm" (ngSubmit)="onSubmit()" class="ct01-form">
+  <p class="mat-title">Règlement Intérieur</p>
+  <mat-divider></mat-divider>
+  <div class="field radio">
+    <mat-radio-group name="creation" [(ngModel)]="data.creation">
+      <mat-radio-button value="true">Création</mat-radio-button>
+      <mat-radio-button value="false">Modification</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field class="field">
+    <textarea [(ngModel)]="data.modifications" matInput name="modifications" id="modifications" placeholder="Modifications apportées"></textarea>
+  </mat-form-field>
+
+  <div class="field">
+    <mat-checkbox [(ngModel)]="data.staffConsulted" name="staff-consulted">Le personnel a-t-il été consulté ?</mat-checkbox>
+  </div>
+  <div class="button">
+    <p *ngIf="dataForm.pristine">Veuillez remplir tous les champs</p>
+    <p class="invalid" *ngIf="dataForm.errors">Veuillez corriger tous les champs en rouge</p>
+    <button type="submit" mat-raised-button color="accent" [disabled]="dataForm.invalid">Valider</button>
+  </div>
+</form>
+
