@@ -13,12 +13,12 @@
     <div class="content">
       <h3 class="mat-display-1">Quelle instance désirez vous saisir ?</h3>
       <div class="committees">
-        <mat-card (click)="setCommittee('cap')" class="committee">
+        <mat-card (click)="setCommittee('cap')" class="committee" *ngxPermissionsOnly="['cap']">
           <p><mat-icon>account_balance</mat-icon></p>
           <p class="name">Commission administrative paritaire</p>
         </mat-card>
 
-        <mat-card (click)="setCommittee('ct')" class="committee">
+        <mat-card (click)="setCommittee('ct')" class="committee" *ngxPermissionsOnly="['ct']">
           <p><mat-icon>assignment_turned_in</mat-icon></p>
           <p class="name">Comité technique</p>
         </mat-card>

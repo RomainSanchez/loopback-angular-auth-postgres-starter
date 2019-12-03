@@ -16,8 +16,10 @@ module.exports = function(app) {
 
   const roles = [
     { name: 'admin', description: 'Administrateur' },
-    { name: 'backend', description: 'Accès back office' },
-    { name: 'appUser', description: 'Collectivité' }
+    { name: 'secretary', description: 'Secrétaire' },
+    { name: 'community', description: 'Collectivité' },
+    { name: 'cap', description: 'Authorisé à saisir la CAP' },
+    { name: 'ct', description: 'Authorisé à saisir le CT' }
   ];
 
   const roleMapping = [

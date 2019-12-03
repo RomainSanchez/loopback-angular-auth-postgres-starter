@@ -26,7 +26,9 @@ export class FormComponent implements OnInit {
     const referralId = this.route.snapshot.paramMap.get('referralId');
     const formId = this.route.snapshot.paramMap.get('formId');
 
-    this.referralApi.findById(referralId, {include: ['attachments', 'signedSummary']}).subscribe((referral: Referral) => {
+    this.referralApi.findById(referralId, {
+      include: ['attachments', 'signedSummary']
+    }).subscribe((referral: Referral) => {
       this.referral = referral;
 
       this.referral.formId = parseInt(formId, null);

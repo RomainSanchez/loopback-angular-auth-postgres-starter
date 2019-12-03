@@ -16,5 +16,5 @@ export class Ct01Component {
   onSubmit() {
     this.formSubmit.emit(this.data);
   }
-
 }
+

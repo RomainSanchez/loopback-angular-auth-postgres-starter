@@ -14,7 +14,7 @@
           ></app-cap01>
           <app-ct01
             (formSubmit)="formSubmit($event)"
-            [data]="referral.data"
+            [data]="referral?.data"
             *ngIf="referral?.form?.code === 'ct01'"
           ></app-ct01>
         </mat-card-content>

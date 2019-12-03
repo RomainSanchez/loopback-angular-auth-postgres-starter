@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { AppUser, RoleApi, Role, AppUserApi } from 'src/app/shared/sdk';
+import { AppUser, RoleApi, Role, AppUserApi, LoopBackAuth } from 'src/app/shared/sdk';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -18,24 +18,33 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private roleApi: RoleApi,
     private appUserApi: AppUserApi,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loopbackAuthService: LoopBackAuth,
   ) { }
 
   ngOnInit() {
     this.roleApi.find().subscribe((roles: Role[]) => {
       this.roles = roles;
+
+      this.appUser.roles = [];
+
+      const appUserId = this.route.snapshot.paramMap.get('appUserId');
+
+      if (appUserId) {
+        this.appUserApi.findById(appUserId, {include: ['roles']}).subscribe((appUser: AppUser) => {
+          this.appUser = appUser;
+          this.userRoles = Object.assign([], appUser.roles);
+
+          if (!this.currentUserIs('admin')) {
+            this.roles = this.roles.filter(role => role.name !== 'admin');
+
+            if (this.currentUserIs('secretary')) {
+              this.roles = this.roles.filter(role => role.name !== 'community');
+            }
+          }
+        });
+      }
     });
-
-    this.appUser.roles = [];
-
-    const appUserId = this.route.snapshot.paramMap.get('appUserId');
-
-    if (appUserId) {
-      this.appUserApi.findById(appUserId, {include: ['roles']}).subscribe((appUser: AppUser) => {
-        this.appUser = appUser;
-        this.userRoles = Object.assign([], appUser.roles);
-      });
-    }
   }
 
   onSubmit() {
@@ -62,6 +71,12 @@ export class ProfileComponent implements OnInit {
         }
       });
     });
+  }
+
+  currentUserIs(roleName: string): boolean {
+    const loggedInUserRoles = this.loopbackAuthService.getToken().user.roles;
+
+    return loggedInUserRoles.filter(role => role.name === roleName).length > 0;
   }
 
   hasRole(roleName: string): boolean {
