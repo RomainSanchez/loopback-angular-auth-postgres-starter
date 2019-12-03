@@ -32,17 +32,17 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCommunities();
+    this.getAppUsers();
     this.tableDataSource.filterPredicate = this.filter;
     this.tableDataSource.paginator = this.paginator;
     this.tableDataSource.sort = this.sort;
   }
 
-  getCommunities() {
+  getAppUsers() {
     this.isLoading = true;
 
-    return this.appUserApi.find({include: ['roles']}).subscribe((communities: AppUser[]) => {
-      this.tableDataSource.data = communities;
+    return this.appUserApi.find({include: ['roles']}).subscribe((appUsers: AppUser[]) => {
+      this.tableDataSource.data = appUsers;
 
       this.isLoading = false;
     });

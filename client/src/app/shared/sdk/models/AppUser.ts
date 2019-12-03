@@ -59,8 +59,8 @@ export class AppUser implements AppUserInterface {
   public static getModelDefinition() {
     return {
       name: 'AppUser',
-      plural: 'Communities',
-      path: 'Communities',
+      plural: 'AppUsers',
+      path: 'AppUsers',
       idName: 'id',
       properties: {
         "name": {

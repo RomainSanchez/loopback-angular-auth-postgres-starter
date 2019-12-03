@@ -49,7 +49,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public findByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens/:fk";
+    "/AppUsers/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -76,7 +76,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public destroyByIdAccessTokens(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens/:fk";
+    "/AppUsers/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -110,7 +110,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public updateByIdAccessTokens(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens/:fk";
+    "/AppUsers/:id/accessTokens/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -142,7 +142,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public findByIdRoles(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/:fk";
+    "/AppUsers/:id/roles/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -169,7 +169,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public destroyByIdRoles(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/:fk";
+    "/AppUsers/:id/roles/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -203,7 +203,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public updateByIdRoles(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/:fk";
+    "/AppUsers/:id/roles/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -239,7 +239,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public linkRoles(id: any, fk: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PUT";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/rel/:fk";
+    "/AppUsers/:id/roles/rel/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -268,7 +268,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public unlinkRoles(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/rel/:fk";
+    "/AppUsers/:id/roles/rel/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -298,7 +298,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public existsRoles(id: any, fk: any, customHeaders?: Function): Observable<any> {
     let _method: string = "HEAD";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/rel/:fk";
+    "/AppUsers/:id/roles/rel/:fk";
     let _routeParams: any = {
       id: id,
       fk: fk
@@ -328,7 +328,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public getAccessTokens(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens";
+    "/AppUsers/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -360,7 +360,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public createAccessTokens(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens";
+    "/AppUsers/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -386,7 +386,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public deleteAccessTokens(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens";
+    "/AppUsers/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -414,7 +414,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public countAccessTokens(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens/count";
+    "/AppUsers/:id/accessTokens/count";
     let _routeParams: any = {
       id: id
     };
@@ -444,7 +444,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public getRoles(id: any, filter: LoopBackFilter = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles";
+    "/AppUsers/:id/roles";
     let _routeParams: any = {
       id: id
     };
@@ -476,7 +476,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public createRoles(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles";
+    "/AppUsers/:id/roles";
     let _routeParams: any = {
       id: id
     };
@@ -502,7 +502,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public deleteRoles(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles";
+    "/AppUsers/:id/roles";
     let _routeParams: any = {
       id: id
     };
@@ -530,7 +530,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public countRoles(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles/count";
+    "/AppUsers/:id/roles/count";
     let _routeParams: any = {
       id: id
     };
@@ -560,7 +560,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities";
+    "/AppUsers";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -591,7 +591,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id";
+    "/AppUsers/:id";
     let _routeParams: any = {
       id: id
     };
@@ -631,7 +631,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public login(credentials: any, include: any = 'user', rememberMe: boolean = true, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/login";
+    "/AppUsers/login";
     let _routeParams: any = {};
     let _postBody: any = {
       credentials: credentials
@@ -669,7 +669,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public logout(customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/logout";
+    "/AppUsers/logout";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -697,7 +697,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public verify(id: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/verify";
+    "/AppUsers/:id/verify";
     let _routeParams: any = {
       id: id
     };
@@ -725,7 +725,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public confirm(uid: any, token: any, redirect: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/confirm";
+    "/AppUsers/confirm";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -752,7 +752,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public resetPassword(options: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/reset";
+    "/AppUsers/reset";
     let _routeParams: any = {};
     let _postBody: any = {
       options: options
@@ -780,7 +780,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public changePassword(oldPassword: any, newPassword: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/change-password";
+    "/AppUsers/change-password";
     let _routeParams: any = {};
     let _postBody: any = {
       data: {
@@ -809,7 +809,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public setPassword(newPassword: any, customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/reset-password";
+    "/AppUsers/reset-password";
     let _routeParams: any = {};
     let _postBody: any = {
       data: {
@@ -839,7 +839,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public removeRole(id: any, appUserId: any, roleId: any, customHeaders?: Function): Observable<any> {
     let _method: string = "DELETE";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/role/remove";
+    "/AppUsers/:id/role/remove";
     let _routeParams: any = {
       id: id
     };
@@ -872,7 +872,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public createManyAccessTokens(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/accessTokens";
+    "/AppUsers/:id/accessTokens";
     let _routeParams: any = {
       id: id
     };
@@ -905,7 +905,7 @@ export class AppUserApi extends BaseLoopBackApi {
   public createManyRoles(id: any, data: any[] = [], customHeaders?: Function): Observable<any> {
     let _method: string = "POST";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Communities/:id/roles";
+    "/AppUsers/:id/roles";
     let _routeParams: any = {
       id: id
     };
@@ -932,7 +932,7 @@ export class AppUserApi extends BaseLoopBackApi {
    */
   public getCurrent(filter: LoopBackFilter = {}): Observable<any> {
     let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() + "/Communities" + "/:id";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() + "/AppUsers" + "/:id";
     let id: any = this.auth.getCurrentUserId();
     if (id == null)
     id = '__anonymous__';

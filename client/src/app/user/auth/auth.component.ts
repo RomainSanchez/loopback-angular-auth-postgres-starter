@@ -31,7 +31,6 @@ export class AuthComponent {
   authenticate() {
     this.appUserApi.login(this.appUser).subscribe(
       (token: SDKToken) => {
-        console.log(token);
         // Retrieve roles
         this.appUserApi.findById(token.user.id, { include: ['roles'] }).subscribe((appUser: AppUser) => {
           token.user = appUser;

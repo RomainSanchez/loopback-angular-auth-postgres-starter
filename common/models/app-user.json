@@ -1,6 +1,6 @@
 {
   "name": "AppUser",
-  "plural": "Communities",
+  "plural": "AppUsers",
   "base": "User",
   "options": {
     "validateUpsert": true
@@ -39,6 +39,12 @@
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "secretary",
       "permission": "ALLOW"
     }
   ],
