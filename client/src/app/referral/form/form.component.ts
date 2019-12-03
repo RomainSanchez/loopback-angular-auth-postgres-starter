@@ -11,7 +11,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class FormComponent implements OnInit {
   @ViewChild('stepper') private stepper: MatStepper;
-  @ViewChild('summaryDownloadLink') private summaryDownloadLink: any;
   referral: Referral;
   summaryDownloadUrl = '';
 
@@ -41,6 +40,7 @@ export class FormComponent implements OnInit {
   formSubmit(data: any) {
     data.information = this.referral.data.information;
     this.referral.data = data;
+    this.referral.status = 'form';
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
       this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
@@ -64,6 +64,18 @@ export class FormComponent implements OnInit {
       link.click();
 
       this.stepper.next();
+
+      this.referral.status = 'downloaded';
+
+      this.referralApi.replaceOrCreate(this.referral).subscribe();
+    });
+  }
+
+  signed() {
+    this.referral.status = 'signed';
+
+    this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
+      this.snackbar.open('Saisine validée', null, {duration: 2000});
     });
   }
 }

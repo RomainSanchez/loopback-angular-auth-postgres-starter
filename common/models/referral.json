@@ -17,6 +17,11 @@
     "data": {
       "type": "object",
       "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "new"
     }
   },
   "validations": [],

@@ -9,6 +9,7 @@ declare var Object: any;
 export interface ReferralInterface {
   "approved"?: boolean;
   "data": any;
+  "status": string;
   "id"?: number;
   "formId"?: number;
   "createdAt": Date;
@@ -25,6 +26,7 @@ export interface ReferralInterface {
 export class Referral implements ReferralInterface {
   "approved": boolean;
   "data": any;
+  "status": string;
   "id": number;
   "formId": number;
   "createdAt": Date;
@@ -77,6 +79,11 @@ export class Referral implements ReferralInterface {
         "data": {
           name: 'data',
           type: 'any'
+        },
+        "status": {
+          name: 'status',
+          type: 'string',
+          default: 'new'
         },
         "id": {
           name: 'id',
