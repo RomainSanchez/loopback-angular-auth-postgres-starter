@@ -15,9 +15,9 @@ export class ListComponent implements OnInit {
   displayedColumns = [
     'committee',
     'form',
-    'appUser',
+    'community',
     'created',
-    'approved'
+    'status'
   ];
   pageSize = 10;
   pageSizeOptions = [5, 10, 20, 50, 100];
@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
           neq: null
         }
       },
-      include: ['form', 'attachments', 'createdBy', 'updatedBy'],
+      include: ['form', 'attachments', 'createdBy', 'updatedBy', 'validatedBy'],
     }).subscribe((referrals: Referral[]) => {
       this.tableDataSource.data = referrals;
       this.isLoading = false;
@@ -58,8 +58,8 @@ export class ListComponent implements OnInit {
     this.tableDataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  rowClicked(referralId: number) {
-    this.router.navigate(['/referral/edit', referralId]);
+  rowClicked(referral: Referral) {
+    this.router.navigate(['/referral/', referral.id, referral.form.id]);
   }
 
   private filter(referral: Referral, filters: string) {

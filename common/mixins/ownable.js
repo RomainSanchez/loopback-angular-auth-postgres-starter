@@ -15,13 +15,12 @@ module.exports = function(Model, options) {
   });
 
   Model.observe('before save', function event(ctx, next) {
-    const userId = ctx.options.accessToken.userId
+    const userId = ctx.options.accessToken.userId;
 
     if(ctx.instance) {
       ctx.instance.createdById = userId;
       ctx.updatedById = userId;
     } else {
-      console.log(userId);
       ctx.data.updatedById = userId;
     }
 

@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form, FormApi, Referral, ReferralApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatStepper } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-form',
@@ -18,8 +17,7 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     private formApi: FormApi,
     private referralApi: ReferralApi,
-    private snackbar: MatSnackBar,
-    sanitizer: DomSanitizer
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -27,7 +25,7 @@ export class FormComponent implements OnInit {
     const formId = this.route.snapshot.paramMap.get('formId');
 
     this.referralApi.findById(referralId, {
-      include: ['attachments', 'signedSummary']
+      include: ['attachments', 'signedSummary', 'validatedBy']
     }).subscribe((referral: Referral) => {
       this.referral = referral;
 
@@ -74,7 +72,21 @@ export class FormComponent implements OnInit {
   }
 
   signed() {
+    const attachments = this.referral.attachments;
+
     this.referral.status = 'signed';
+    delete this.referral.attachments;
+
+    this.referralApi.replaceOrCreate(this.referral).subscribe((referral) => {
+      this.referral.attachments = attachments;
+
+      this.snackbar.open('Saisine validée', null, {duration: 2000});
+    });
+  }
+
+  validate() {
+    this.referral.status = 'valid';
+    delete this.referral.attachments;
 
     this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
       this.snackbar.open('Saisine validée', null, {duration: 2000});

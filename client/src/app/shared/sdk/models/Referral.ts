@@ -16,9 +16,11 @@ export interface ReferralInterface {
   "updatedAt": Date;
   "createdById"?: number;
   "updatedById"?: number;
+  "validatedById"?: number;
   form?: Form;
   createdBy?: AppUser;
   updatedBy?: AppUser;
+  validatedBy?: AppUser;
   attachments?: Attachment[];
   signedSummary?: Attachment;
 }

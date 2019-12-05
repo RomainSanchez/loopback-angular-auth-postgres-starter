@@ -1,5 +1,17 @@
 <h3 class="mat-display-1">{{ formType?.name }}</h3>
 
+<ng-container *ngIf="referral?.status === 'signed'">
+  <button *ngxPermissionsOnly="['validator', 'admin']" mat-flat-button color="accent" (click)="validate()">
+    <mat-icon class="mat-18">check_circle</mat-icon>
+    Valider la saisine
+  </button>
+</ng-container>
+<ng-container *ngIf="referral?.status === 'valid'">
+  <h3 *ngxPermissionsOnly="['validator', 'secretary', 'admin']" class="mat-title">
+  Saisine validée par {{ referral.validatedBy.name }} le {{ referral.validatedAt }}
+  </h3>
+</ng-container>
+
 <mat-horizontal-stepper #stepper labelPosition="bottom">
   <mat-step>
     <ng-template matStepLabel>Formulaire</ng-template>
@@ -43,7 +55,7 @@
     </div>
   </mat-step>
 
-  <mat-step>
+  <mat-step *ngxPermissionsOnly="['community']">
     <ng-template matStepLabel>Signature</ng-template>
     <div class="content">
       <h3 class="mat-display-1">Téléchargement et signature de la saisine</h3>
@@ -60,7 +72,7 @@
     </div>
   </mat-step>
 
-  <mat-step>
+  <mat-step *ngxPermissionsOnly="['community']">
     <ng-template matStepLabel>Transmission</ng-template>
     <div class="content">
       <h3 class="mat-display-1">Transmission de la saisine signée</h3>

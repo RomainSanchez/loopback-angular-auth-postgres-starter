@@ -23,9 +23,9 @@
     <mat-cell *matCellDef="let referral">{{ referral.form.name }}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="appUser">
+  <ng-container matColumnDef="community">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Collectivité</mat-header-cell>
-    <mat-cell *matCellDef="let referral">{{ referral.data.appUser }}</mat-cell>
+    <mat-cell *matCellDef="let referral">{{ referral.data.information.community }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="created">
@@ -33,15 +33,15 @@
     <mat-cell *matCellDef="let referral">Le {{ referral.createdAt }} par {{ referral.createdBy.name }}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="approved">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Validé</mat-header-cell>
-      <mat-cell *matCellDef="let referral">Le {{ referral.createdAt }} par {{ referral.approvedBy?.name }}</mat-cell>
-    </ng-container>
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>statut</mat-header-cell>
+    <mat-cell *matCellDef="let referral">{{ referral.status }}</mat-cell>
+  </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
   <mat-row *matRowDef="let referral; columns: displayedColumns"
-    (click)=rowClicked(referral.id)
+    (click)=rowClicked(referral)
   ></mat-row>
 </mat-table>
 

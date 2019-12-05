@@ -17,7 +17,7 @@
 
     <button mat-raised-button color="accent" class="next"
       (click)="done.emit(true)"
-      [disabled]="referral?.attachments.length !== referral?.form?.requiredAttachments.length"
+      [disabled]="referral?.attachments?.length !== referral?.form?.requiredAttachments.length"
     >Valider</button>
   </div>
 

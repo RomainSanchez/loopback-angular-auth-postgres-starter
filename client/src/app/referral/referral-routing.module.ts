@@ -6,7 +6,7 @@ import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   { path: 'referral/:referralId/:formId', component: FormComponent, canActivate: [AuthGuardService] },
-  { path: 'referrals', component: ListComponent, canActivate: [AuthGuardService] },
+  { path: 'referrals', component: ListComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

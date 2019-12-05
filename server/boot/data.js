@@ -18,6 +18,7 @@ module.exports = function(app) {
     { name: 'admin', description: 'Administrateur' },
     { name: 'secretary', description: 'Secrétaire' },
     { name: 'community', description: 'Collectivité' },
+    { name: 'validator', description: 'Valideur' },
     { name: 'cap', description: 'Authorisé à saisir la CAP' },
     { name: 'ct', description: 'Authorisé à saisir le CT' }
   ];
