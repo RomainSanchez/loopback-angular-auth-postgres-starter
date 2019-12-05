@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Form, FormApi, Referral, ReferralApi } from 'src/app/shared/sdk';
+import { Form, FormApi, Referral, ReferralApi, Attachment } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatStepper } from '@angular/material';
 
@@ -55,20 +55,23 @@ export class FormComponent implements OnInit {
 
   downloadSummary() {
     this.referralApi.generateSummary(this.referral.id).subscribe(async res => {
-      const link = document.createElement('a');
-
-      link.href = `data:application/pdf;base64,${res.$data}`;
-      link.download = `saisine.pdf`;
-
-      document.body.appendChild(link);
-      link.click();
-
-      this.stepper.next();
+      this.downloadFile(res.$data, 'saisine.pdf');
 
       this.referral.status = 'downloaded';
-
       this.referralApi.replaceOrCreate(this.referral).subscribe();
+
+      this.stepper.next();
     });
+  }
+
+  downloadAll() {
+    this.referral.attachments.forEach((attachment: Attachment) => {
+      this.downloadFile(attachment.file, attachment.name);
+    });
+
+    console.log(this.referral.signedSummary)
+
+    this.downloadFile(this.referral.signedSummary.file, this.referral.signedSummary.name);
   }
 
   signed() {
@@ -91,5 +94,17 @@ export class FormComponent implements OnInit {
     this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
       this.snackbar.open('Saisine validée', null, {duration: 2000});
     });
+  }
+
+  private downloadFile(data, filename) {
+    const link = document.createElement('a');
+
+    link.href = `data:application/pdf;base64,${data}`;
+    link.download = filename;
+
+    document.body.appendChild(link);
+
+    link.click();
+    link.remove();
   }
 }

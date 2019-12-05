@@ -12,6 +12,11 @@
   </h3>
 </ng-container>
 
+<button *ngxPermissionsOnly="['validator', 'admin', 'secretary']" mat-flat-button color="accent" (click)="downloadAll()">
+  <mat-icon class="mat-18">check_circle</mat-icon>
+  Télécharger les documents
+</button>
+
 <mat-horizontal-stepper #stepper labelPosition="bottom">
   <mat-step>
     <ng-template matStepLabel>Formulaire</ng-template>
