@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Form, FormApi, Referral, ReferralApi, Attachment } from 'src/app/shared/sdk';
+import { Form, FormApi, Referral, ReferralApi, Attachment, AppUserApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatStepper } from '@angular/material';
 
@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     private formApi: FormApi,
     private referralApi: ReferralApi,
+    private appUserApi: AppUserApi,
     private snackbar: MatSnackBar
   ) { }
 
@@ -28,7 +29,6 @@ export class FormComponent implements OnInit {
       include: ['attachments', 'signedSummary', 'validatedBy']
     }).subscribe((referral: Referral) => {
       this.referral = referral;
-
       this.referral.formId = parseInt(formId, null);
 
       this.formApi.findById(formId).subscribe((form: Form) => {
@@ -38,13 +38,17 @@ export class FormComponent implements OnInit {
   }
 
   formSubmit(data: any) {
+    const attachments = this.referral.attachments;
+
+    delete this.referral.attachments;
     data.information = this.referral.data.information;
     this.referral.data = data;
     this.referral.status = 'form';
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
-      this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
+      this.referral.attachments = attachments;
 
+      this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
       this.stepper.next();
     });
   }
@@ -69,8 +73,6 @@ export class FormComponent implements OnInit {
       this.downloadFile(attachment.file, attachment.name);
     });
 
-    console.log(this.referral.signedSummary)
-
     this.downloadFile(this.referral.signedSummary.file, this.referral.signedSummary.name);
   }
 
@@ -82,6 +84,8 @@ export class FormComponent implements OnInit {
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral) => {
       this.referral.attachments = attachments;
+
+      this.appUserApi.notify(this.referral.id).subscribe();
 
       this.snackbar.open('Saisine validée', null, {duration: 2000});
     });

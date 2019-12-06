@@ -9,6 +9,7 @@ export interface AppUserInterface {
   "email"?: string;
   "realm"?: string;
   "username"?: string;
+  "territory"?: string;
   "emailVerified"?: boolean;
   "id"?: number;
   "createdAt": Date;
@@ -23,6 +24,7 @@ export class AppUser implements AppUserInterface {
   "email": string;
   "realm": string;
   "username": string;
+  "territory": string;
   "emailVerified": boolean;
   "id": number;
   "createdAt": Date;

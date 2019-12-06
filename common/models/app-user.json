@@ -15,6 +15,9 @@
     },
     "email": {
       "type": "string"
+    },
+    "territory": {
+      "type": "string"
     }
   },
   "validations": [],
@@ -70,6 +73,34 @@
         {
           "path": "role/remove",
           "verb": "delete"
+        }
+      ]
+    },
+    "notify": {
+      "accepts": [
+        {
+          "arg": "referralId",
+          "type": "number",
+          "required": true,
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "required": true,
+          "description": "The http response",
+          "root": true
+        }
+      ],
+      "description": "Notify users via email",
+      "http": [
+        {
+          "path": "/notify",
+          "verb": "get"
         }
       ]
     }

@@ -14,11 +14,15 @@
       </mat-form-field>
 
       <mat-form-field class="field">
-        <input matInput [(ngModel)]="appUser.email"  name="email" placeholder="Email">
+        <input matInput [(ngModel)]="appUser.email" type="email" name="email" placeholder="Email">
       </mat-form-field>
 
       <mat-form-field *ngIf="!appUser?.id" class="field">
         <input matInput type="password" [(ngModel)]="appUser.password"  name="password" placeholder="Mot de passe">
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <input matInput [(ngModel)]="appUser.territory"  name="territory" placeholder="Territoire">
       </mat-form-field>
 
       <div class="roles" *ngxPermissionsOnly="['admin', 'secretary']">
@@ -30,7 +34,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-        <button type="submit" id="submit" mat-raised-button color="accent">Enregistrer</button>
+      <button type="submit" id="submit" mat-raised-button color="accent">Enregistrer</button>
     </mat-card-actions>
   </form>
 </mat-card>

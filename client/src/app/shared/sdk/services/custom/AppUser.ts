@@ -31,6 +31,28 @@ export class AppUserApi extends BaseLoopBackApi {
   }
 
   /**
+   * Notify users via email
+   *
+   * @param {number} id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The http response
+   */
+  public notify(referralId: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/AppUsers/notify";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = { referralId: referralId };
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * Find a related item by id for accessTokens.
    *
    * @param {any} id AppUser id
