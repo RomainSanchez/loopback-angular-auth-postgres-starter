@@ -1,12 +1,6 @@
 <form #dataForm="ngForm" (ngSubmit)="onSubmit()" class="cap01-form">
-  <p class="mat-title">Détachement sur emploi fonctionnel</p>
+  <p class="mat-title">Refus de titularisation</p>
   <mat-divider></mat-divider>
-  <div class="field radio">
-    <mat-radio-group name="initial" [(ngModel)]="data.initial">
-      <mat-radio-button value="true">Première demande</mat-radio-button>
-      <mat-radio-button value="false">Renouvellement</mat-radio-button>
-    </mat-radio-group>
-  </div>
   <div class="agent">
     <mat-form-field class="field">
       <input matInput
@@ -54,49 +48,48 @@
     </mat-form-field>
 
     <mat-form-field class="field">
-      <mat-select [(ngModel)]="data.grade" name="grade" placeholder="Grade">
-        <mat-option *ngFor="let choice of gradeChoices" [value]="choice">
-          {{ choice }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="field population">
-      <mat-select [(ngModel)]="data.population" name="population" placeholder="Strate démographique de la collectivité">
-        <mat-option *ngFor="let choice of populationChoices" [value]="choice">
-          {{ choice }}
-        </mat-option>
-      </mat-select>
+      <input matInput
+        [(ngModel)]="data.grade"
+        name="grade"
+        placeholder="Grade"
+        required
+      >
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field class="field">
-      <input matInput
-        [(ngModel)]="data.date"
-        [matDatepicker]="dateDatePicker"
-        name="date"
-        placeholder="Date de détachement"
-        required
-      >
-      <mat-datepicker-toggle matSuffix [for]="dateDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #dateDatePicker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="field duration">
+    <mat-form-field class="field hours">
       <input matInput type="number" min="1" max="60"
-        [(ngModel)]="data.duration"
-        name="duration"
-        placeholder="Durée du détachement"
+        [(ngModel)]="data.hours"
+        name="hours"
+        placeholder="Temps de travail"
         required
       >
-      <span matSuffix>mois</span>
+      <span matSuffix>heures/semaine</span>
     </mat-form-field>
   </div>
 
+  <div class="field">
+    <mat-checkbox [(ngModel)]="data.prorogation" name="prorogation">Le stage a t-il été prorogé ?</mat-checkbox>
+  </div>
+
+  <mat-form-field class="field denied-from">
+    <input matInput
+      [(ngModel)]="data.deniedFrom"
+      [matDatepicker]="deniedFromDatePicker"
+      name="deniedFrom"
+      placeholder="Refus de titularisation à compter du"
+      required
+    >
+    <mat-datepicker-toggle matSuffix [for]="deniedFromDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #deniedFromDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field class="field" *ngIf="data.motivation === 'false'">
+    <textarea [(ngModel)]="data.modifications" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
+  </mat-form-field>
+
   <div class="button">
-    <p *ngIf="dataForm.pristine">Veuillez remplir tous les champs</p>
-    <p class="invalid" *ngIf="dataForm.errors">Veuillez corriger tous les champs en rouge</p>
-    <button type="submit" mat-raised-button color="accent" [disabled]="dataForm.invalid">Valider</button>
+    <button type="submit" mat-raised-button color="accent" [disabled]="dataForm.invalid">Suivant</button>
   </div>
 </form>
