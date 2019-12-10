@@ -85,8 +85,8 @@
     <mat-datepicker #deniedFromDatePicker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field class="field" *ngIf="data.motivation === 'false'">
-    <textarea [(ngModel)]="data.modifications" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
+  <mat-form-field class="field">
+    <textarea [(ngModel)]="data.motivation" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
   </mat-form-field>
 
   <div class="button">

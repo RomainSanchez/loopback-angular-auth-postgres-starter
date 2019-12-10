@@ -95,7 +95,7 @@
           [referral]="referral"
           purpose="signature"
           (fileChange)="fileChange($event)"
-          (uploadDone)="stepper.next()"
+          (done)="signed()"
         ></app-file-upload>
       </mat-card>
     </div>
