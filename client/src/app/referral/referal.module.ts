@@ -15,6 +15,7 @@ import { ListComponent } from './list/list.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { SubmissionComponent } from './form-types/submission/submission.component';
 import { Ct01Component } from './form-types/ct01/ct01.component';
+import { StatusComponent } from './status/status.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,7 +29,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListComponent,
     FileUploadComponent,
     SubmissionComponent,
-    Ct01Component
+    Ct01Component,
+    StatusComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@
   <div class="attachment-dropzone" *ngIf="purpose === 'attachment'">
     <button mat-flat-button color="accent"
       (click)="dropzone.showFileSelector()"
-      [disabled]="referral?.attachments.length === referral?.form?.requiredAttachments.length"
+      [disabled]="referral?.attachments?.length === referral?.form?.requiredAttachments.length"
     >
       <mat-icon class="mat-18">folder</mat-icon>
       Pacourir

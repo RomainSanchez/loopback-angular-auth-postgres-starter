@@ -22,7 +22,8 @@ import {
   MatSelectModule,
   MatSlideToggleModule,
   MatStepperModule,
-  MatRadioModule
+  MatRadioModule,
+  MatChipsModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -51,7 +52,8 @@ const modules = [
   MatStepperModule,
   MatDatepickerModule,
   MatMomentDateModule,
-  MatRadioModule
+  MatRadioModule,
+  MatChipsModule
 ];
 
 @NgModule({

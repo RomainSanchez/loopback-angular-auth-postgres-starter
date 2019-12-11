@@ -17,6 +17,21 @@
       <mat-icon class="mat-18">check_circle</mat-icon>
       Valider la saisine
     </button>
+    <ng-container *ngIf="!refusal">
+      <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="setRefusal(true)">
+        <mat-icon class="mat-18">close</mat-icon>
+        Refuser la saisine
+      </button>
+    </ng-container>
+    <ng-container *ngIf="refusal">
+      <mat-form-field class="field" *ngxPermissionsOnly="['validator', 'admin']">
+        <textarea [(ngModel)]="referral.data.refusalReason" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
+      </mat-form-field>
+      <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="refuse()">
+        <mat-icon class="mat-18">close</mat-icon>
+        Refuser la saisine
+      </button>
+    </ng-container>
   </ng-container>
 </div>
 

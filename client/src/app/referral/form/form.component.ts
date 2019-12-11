@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
   @ViewChild('stepper') private stepper: MatStepper;
   referral: Referral;
   summaryDownloadUrl = '';
+  refusal: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,6 +48,7 @@ export class FormComponent implements OnInit {
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
       this.referral.attachments = attachments;
+      this.appUserApi.notify(this.referral.id).subscribe();
 
       this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
       this.stepper.next();
@@ -98,6 +100,21 @@ export class FormComponent implements OnInit {
     this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
       this.snackbar.open('Saisine validée', null, {duration: 2000});
     });
+  }
+
+  refuse() {
+    this.referral.status = 'refused';
+    delete this.referral.attachments;
+
+    this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
+      this.appUserApi.notify(this.referral.id).subscribe();
+      this.setRefusal(false);
+      this.snackbar.open('Saisine mise à jour', null, {duration: 2000});
+    });
+  }
+
+  setRefusal(refusal: boolean) {
+    this.refusal = refusal;
   }
 
   private downloadFile(data, filename) {

@@ -33,9 +33,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getReferrals();
+    this.tableDataSource.sort = this.sort;
     this.tableDataSource.filterPredicate = this.filter;
     this.tableDataSource.paginator = this.paginator;
-    this.tableDataSource.sort = this.sort;
   }
 
   getReferrals() {
