@@ -13,7 +13,6 @@ import { Cap01Component } from './form-types/cap01/cap01.component';
 import { InformationComponent } from './form-types/information/information.component';
 import { ListComponent } from './list/list.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
-import { SubmissionComponent } from './form-types/submission/submission.component';
 import { Ct01Component } from './form-types/ct01/ct01.component';
 import { StatusComponent } from './status/status.component';
 
@@ -28,7 +27,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     InformationComponent,
     ListComponent,
     FileUploadComponent,
-    SubmissionComponent,
     Ct01Component,
     StatusComponent
   ],
