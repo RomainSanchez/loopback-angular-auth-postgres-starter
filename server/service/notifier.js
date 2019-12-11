@@ -1,20 +1,22 @@
 const mailer = require('./mailer');
+const twig = require('node-twig').renderFile;
+const loopbackApp = require('./../server');
 
 module.exports = {
-  newReferralNotification: (referral) => {
-    const subject = `Saisine ${referral.form.name} #${referral.id}`;
+  newReferralNotification: async (referral) => {
+    const community = await referral.createdBy.get();
 
     sendNotificationUsingTemplate(
       referral,
-      [referral.information.contact],
+      ['rsanchez@cdg29.bzh'],
       subject,
       'new-community'
     );
 
     sendNotificationUsingTemplate(
       referral,
-      ['territoie@cdg29.bzh', 'secr@cdg29.bzh'],
-      subject,
+      [await getTerritoryEmail(community.territory), 'secr@cdg29.bzh'],
+      `[Nouvelle] Saisine #${referral.id}`,
       'new'
     );
   },
@@ -23,15 +25,24 @@ module.exports = {
     sendNotificationUsingTemplate(
       referral,
       [referral.information.contact],
-      `Saisine ${referral.form.name} #${referral.id}`,
+      `Saisine #${referral.id}`,
       'validation-community'
     );
 
     sendNotificationUsingTemplate(
       referral,
       ['secr@cdg29.bzh'],
-      `[VALIDATION] Saisine ${referral.form.name} #${referral.id}`,
+      `[VALIDATION] Saisine #${referral.id}`,
       'validation'
+    );
+  },
+
+  refusalNotification: () => {
+    sendNotificationUsingTemplate(
+      referral,
+      [referral.information.contact],
+      `Saisine #${referral.id}`,
+      'refusal-community'
     );
   },
 
@@ -39,7 +50,7 @@ module.exports = {
     sendNotificationUsingTemplate(
       referral,
       ['territoire@cdg29.bzh'],
-      `[RELANCE] Saisine ${referral.form.name} #${referral.id}`,
+      `[RELANCE] Saisine #${referral.id}`,
       'escalation'
     );
   }
@@ -49,10 +60,15 @@ module.exports = {
 const sendNotificationUsingTemplate = (referral, recipients, subject, templateName) => {
   twig(`../../../server/assets/views/notification/${templateName}.twig`, {context: referral} , function (error, html) {
     console.log(error);
-    mailer.send(recipients, subject, html);
+    console.log(html);
+    //mailer.send(recipients, subject, html);
   });
 };
 
-const getTerritoryEmail = () => {
+const getTerritoryEmail = async (territoryCode) => {
+  const territory = await loopbackApp.models.Territory.findOne({where: {
+    code: territoryCode
+  }})
 
+  return territory.email;
 }

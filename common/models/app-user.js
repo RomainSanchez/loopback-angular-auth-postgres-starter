@@ -30,23 +30,41 @@ module.exports = function(AppUser) {
    */
   AppUser.notify = async (referralId, callback) => {
     return new Promise((resolve, reject) => {
-      AppUser.app.models.Referral.findById(referralId, { include: ['createdBy', 'updatedBy'] }).then(referral => {
+      AppUser.app.models.Referral.findById(referralId, { include: ['createdBy', 'updatedBy', 'form'] }).then(referral => {
         notifier.newReferralNotification(referral);
+
+        resolve();
 
         if(!referral.updatedBy) {
           notifier.newReferralNotification(referral);
 
+          resolve();
           return;
         }
 
         if(referral.status === 'valid') {
           notifier.validationNotification(referral);
 
+          resolve();
           return;
         }
 
-        if(referral.status == 'signed' && signedForMoreThanFiveDays(referral)) {
-          notifier.escalationNotification(referral);
+        if(referral.status === 'refused') {
+          notifier.refusalNotification(referral);
+          resolve();
+
+          return;
+        }
+
+        if(referral.status == 'signed') {
+          if(signedForMoreThanFiveDays(referral)) {
+            notifier.escalationNotification(referral);
+
+            resolve();
+            return;
+          }
+
+          // notifier.completeNotification(referral);
         }
       });
     });
