@@ -56,5 +56,9 @@
   "Attachment": {
     "dataSource": "postgres",
     "public": true
+  },
+  "Territory": {
+    "dataSource": "postgres",
+    "public": true
   }
 }

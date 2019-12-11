@@ -5,6 +5,7 @@ import { AppUser } from '../../models/AppUser';
 import { Form } from '../../models/Form';
 import { Referral } from '../../models/Referral';
 import { Attachment } from '../../models/Attachment';
+import { Territory } from '../../models/Territory';
 
 export interface Models { [name: string]: any }
 
@@ -17,7 +18,8 @@ export class SDKModels {
     Form: Form,
     Referral: Referral,
     Attachment: Attachment,
-
+    Territory: Territory,
+    
   };
 
   public get(modelName: string): any {

@@ -16,7 +16,7 @@
 * ============================================================================
 * import { NgModule }       from '@angular/core';
 * import { BrowserModule }  from '@angular/platform-browser';
-* // App Root
+* // App Root 
 * import { AppComponent }   from './app.component';
 * // Feature Modules
 * import { SDK[Browser|Node|Native]Module } from './shared/sdk/sdk.module';
@@ -53,6 +53,7 @@ import { AppUserApi } from './services/custom/AppUser';
 import { FormApi } from './services/custom/Form';
 import { ReferralApi } from './services/custom/Referral';
 import { AttachmentApi } from './services/custom/Attachment';
+import { TerritoryApi } from './services/custom/Territory';
 /**
 * @module SDKBrowserModule
 * @description
@@ -88,6 +89,7 @@ export class SDKBrowserModule {
         FormApi,
         ReferralApi,
         AttachmentApi,
+        TerritoryApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

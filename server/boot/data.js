@@ -32,6 +32,12 @@ module.exports = function(app) {
     { principalType: 'USER', principalId: 1, roleId: 6 }
   ];
 
+  const territories = [
+    { name: 'Territoire de Brest', code: 1, 'email': 'cdg.contact1@cdg29.bzh'},
+    { name: 'Territoire de Cornouaille', code: 2, 'email': 'cdg.contact2@cdg29.bzh'},
+    { name: 'Territoire de Morlaix', code: 3, 'email': 'cdg.contact3@cdg29.bzh'}
+  ];
+
   const forms = [
     { name: 'Refus de titularisation', committee: 'cap', code: 'cap01' , requiredAttachments: [
       'Entretien de suivi stagiaire',
@@ -101,4 +107,5 @@ module.exports = function(app) {
   // app.models.Role.create(roles);
   // app.models.RoleMapping.create(roleMapping);
   // app.models.Form.create(forms);
+  // app.models.Territory.create(territories);
 };
