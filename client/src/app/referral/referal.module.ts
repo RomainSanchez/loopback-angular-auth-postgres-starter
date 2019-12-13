@@ -15,6 +15,8 @@ import { ListComponent } from './list/list.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 import { Ct01Component } from './form-types/ct01/ct01.component';
 import { StatusComponent } from './status/status.component';
+import { ValidationDialogComponent } from './dialog/validation-dialog/validation-dialog.component';
+import { RefusalDialogComponent } from './dialog/refusal-dialog/refusal-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,7 +30,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListComponent,
     FileUploadComponent,
     Ct01Component,
-    StatusComponent
+    StatusComponent,
+    ValidationDialogComponent,
+    RefusalDialogComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   exports: [
     InformationComponent
+  ],
+  entryComponents: [
+    ValidationDialogComponent,
+    RefusalDialogComponent
   ]
 })
 export class ReferralModule { }

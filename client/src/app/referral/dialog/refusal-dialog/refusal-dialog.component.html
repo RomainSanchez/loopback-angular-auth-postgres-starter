@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Refus</h2>
+<mat-dialog-content>
+  <p>Veuillez saisir le motif du refus</p>
+  <mat-form-field class="field" *ngxPermissionsOnly="['validator', 'admin']">
+    <textarea [(ngModel)]="data.reason" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Motif"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button *ngxPermissionsOnly="['validator', 'admin']" [mat-dialog-close]="data" click="confirm()" mat-button color="accent">
+    <mat-icon class="mat-18">check</mat-icon>
+    Refuser
+  </button>
+  <button *ngxPermissionsOnly="['validator', 'admin']" mat-button mat-dialog-close>
+    <mat-icon class="mat-18">close</mat-icon>
+    Annuler
+  </button>
+</mat-dialog-actions>

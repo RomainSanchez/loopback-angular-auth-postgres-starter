@@ -9,7 +9,7 @@ module.exports = {
     sendNotificationUsingTemplate(
       referral,
       ['rsanchez@cdg29.bzh'],
-      subject,
+      `Saisine #${referral.id}`,
       'new-community'
     );
 

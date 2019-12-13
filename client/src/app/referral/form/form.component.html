@@ -3,7 +3,7 @@
 <div class="admin">
   <ng-container *ngIf="referral?.status === 'valid'">
     <h3 *ngxPermissionsOnly="['validator', 'secretary', 'admin']" class="mat-title">
-    Saisine validée par {{ referral.validatedBy.name }} le {{ referral.validatedAt }}
+    Saisine validée par {{ referral.validatedBy.name }} le {{ referral.validatedAt| date: 'dd/LL/yy' }}
     </h3>
   </ng-container>
 
@@ -14,24 +14,13 @@
 
   <ng-container *ngIf="referral?.status === 'signed'">
     <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="validate()">
-      <mat-icon class="mat-18">check_circle</mat-icon>
+      <mat-icon class="mat-18">check</mat-icon>
       Valider la saisine
     </button>
-    <ng-container *ngIf="!refusal">
-      <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="setRefusal(true)">
-        <mat-icon class="mat-18">close</mat-icon>
-        Refuser la saisine
-      </button>
-    </ng-container>
-    <ng-container *ngIf="refusal">
-      <mat-form-field class="field" *ngxPermissionsOnly="['validator', 'admin']">
-        <textarea [(ngModel)]="referral.data.refusalReason" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
-      </mat-form-field>
-      <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="refuse()">
-        <mat-icon class="mat-18">close</mat-icon>
-        Refuser la saisine
-      </button>
-    </ng-container>
+    <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="refuse()">
+      <mat-icon class="mat-18">close</mat-icon>
+      Refuser la saisine
+    </button>
   </ng-container>
 </div>
 

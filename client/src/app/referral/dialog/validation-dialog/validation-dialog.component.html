@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>validation</h2>
+<mat-dialog-content>Voulez vous vraiment valider l'inscription de cette saisine ?</mat-dialog-content>
+<mat-dialog-actions>
+  <button *ngxPermissionsOnly="['validator', 'admin']" [mat-dialog-close]="true" mat-button color="accent">
+    <mat-icon class="mat-18">check</mat-icon>
+    Valider
+  </button>
+  <button *ngxPermissionsOnly="['validator', 'admin']" mat-button mat-dialog-close>
+    <mat-icon class="mat-18">close</mat-icon>
+    Annuler
+  </button>
+</mat-dialog-actions>

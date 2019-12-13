@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form, FormApi, Referral, ReferralApi, Attachment, AppUserApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar, MatStepper } from '@angular/material';
+import { MatSnackBar, MatStepper, MatDialog } from '@angular/material';
+import { ValidationDialogComponent } from '../dialog/validation-dialog/validation-dialog.component';
+import { RefusalDialogComponent } from '../dialog/refusal-dialog/refusal-dialog.component';
 
 @Component({
   selector: 'app-form',
@@ -12,14 +14,14 @@ export class FormComponent implements OnInit {
   @ViewChild('stepper') private stepper: MatStepper;
   referral: Referral;
   summaryDownloadUrl = '';
-  refusal: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private formApi: FormApi,
     private referralApi: ReferralApi,
     private appUserApi: AppUserApi,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -94,27 +96,43 @@ export class FormComponent implements OnInit {
   }
 
   validate() {
-    this.referral.status = 'valid';
-    delete this.referral.attachments;
+    const dialogRef = this.dialog.open(ValidationDialogComponent, {
+      width: '60%',
+      autoFocus: true
+    });
 
-    this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
-      this.snackbar.open('Saisine validée', null, {duration: 2000});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.referral.status = 'valid';
+        delete this.referral.attachments;
+
+        this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
+          this.appUserApi.notify(this.referral.id).subscribe();
+          this.snackbar.open('Saisine inscrite à l\'ordre du jour', null, {duration: 2000});
+        });
+      }
     });
   }
 
   refuse() {
-    this.referral.status = 'refused';
-    delete this.referral.attachments;
-
-    this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
-      this.appUserApi.notify(this.referral.id).subscribe();
-      this.setRefusal(false);
-      this.snackbar.open('Saisine mise à jour', null, {duration: 2000});
+    const dialogRef = this.dialog.open(RefusalDialogComponent, {
+      width: '60%',
+      autoFocus: true,
+      data: {confirmed: false, reason: ''}
     });
-  }
 
-  setRefusal(refusal: boolean) {
-    this.refusal = refusal;
+    dialogRef.afterClosed().subscribe(reason => {
+      if (reason) {
+        this.referral.status = 'refused';
+        this.referral.data.refusalReason = reason;
+        delete this.referral.attachments;
+
+        this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
+          this.appUserApi.notify(this.referral.id).subscribe();
+          this.snackbar.open('Saisine mise à jour', null, {duration: 2000});
+        });
+      }
+    });
   }
 
   private downloadFile(data, filename) {
