@@ -12,7 +12,7 @@
   <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtrer">
 </mat-form-field>
 
-<mat-table *ngxPermissionsOnly="['admin', 'secretary', 'validator']" class="communities-table mat-elevation-z4" matSort [dataSource]="tableDataSource">
+<mat-table  class="communities-table mat-elevation-z4" matSort [dataSource]="tableDataSource">
   <ng-container matColumnDef="committee">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Commission</mat-header-cell>
       <mat-cell *matCellDef="let referral">{{ referral.form.committee }}</mat-cell>
