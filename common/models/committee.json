@@ -1,0 +1,42 @@
+{
+  "name": "Committee",
+  "plural": "Committees",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
+  "properties": {
+    "session": {
+      "type": "date",
+      "required": true
+    },
+    "limit": {
+      "type": "date",
+      "required": true
+    },
+    "notification": {
+      "type": "date"
+    },
+    "examination": {
+      "type": "date"
+    },
+    "recap": {
+      "type": "date"
+    },
+    "location": {
+      "type": "string",
+      "default": "CDG29"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

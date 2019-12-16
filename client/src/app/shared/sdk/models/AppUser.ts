@@ -7,9 +7,9 @@ declare var Object: any;
 export interface AppUserInterface {
   "name": string;
   "email"?: string;
+  "territory"?: string;
   "realm"?: string;
   "username"?: string;
-  "territory"?: string;
   "emailVerified"?: boolean;
   "id"?: number;
   "createdAt": Date;
@@ -22,9 +22,9 @@ export interface AppUserInterface {
 export class AppUser implements AppUserInterface {
   "name": string;
   "email": string;
+  "territory": string;
   "realm": string;
   "username": string;
-  "territory": string;
   "emailVerified": boolean;
   "id": number;
   "createdAt": Date;
@@ -71,6 +71,10 @@ export class AppUser implements AppUserInterface {
         },
         "email": {
           name: 'email',
+          type: 'string'
+        },
+        "territory": {
+          name: 'territory',
           type: 'string'
         },
         "realm": {

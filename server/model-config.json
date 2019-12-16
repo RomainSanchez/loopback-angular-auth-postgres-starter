@@ -60,5 +60,9 @@
   "Territory": {
     "dataSource": "postgres",
     "public": true
+  },
+  "Committee": {
+    "dataSource": "postgres",
+    "public": true
   }
 }

@@ -54,6 +54,7 @@ import { FormApi } from './services/custom/Form';
 import { ReferralApi } from './services/custom/Referral';
 import { AttachmentApi } from './services/custom/Attachment';
 import { TerritoryApi } from './services/custom/Territory';
+import { CommitteeApi } from './services/custom/Committee';
 /**
 * @module SDKBrowserModule
 * @description
@@ -90,6 +91,7 @@ export class SDKBrowserModule {
         ReferralApi,
         AttachmentApi,
         TerritoryApi,
+        CommitteeApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

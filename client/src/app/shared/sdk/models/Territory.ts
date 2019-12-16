@@ -54,6 +54,10 @@ export class Territory implements TerritoryInterface {
           name: 'code',
           type: 'number'
         },
+        "email": {
+          name: 'email',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'

@@ -17,6 +17,7 @@ export interface ReferralInterface {
   "createdById"?: number;
   "updatedById"?: number;
   "validatedById"?: number;
+  "validatedAt"?: Date;
   form?: Form;
   createdBy?: AppUser;
   updatedBy?: AppUser;
@@ -35,9 +36,12 @@ export class Referral implements ReferralInterface {
   "updatedAt": Date;
   "createdById": number;
   "updatedById": number;
+  "validatedById": number;
+  "validatedAt": Date;
   form: Form;
   createdBy: AppUser;
   updatedBy: AppUser;
+  validatedBy: AppUser;
   attachments: Attachment[];
   signedSummary: Attachment;
   constructor(data?: ReferralInterface) {
@@ -111,6 +115,14 @@ export class Referral implements ReferralInterface {
           name: 'updatedById',
           type: 'number'
         },
+        "validatedById": {
+          name: 'validatedById',
+          type: 'number'
+        },
+        "validatedAt": {
+          name: 'validatedAt',
+          type: 'Date'
+        },
       },
       relations: {
         form: {
@@ -135,6 +147,14 @@ export class Referral implements ReferralInterface {
           model: 'AppUser',
           relationType: 'belongsTo',
                   keyFrom: 'updatedById',
+          keyTo: 'id'
+        },
+        validatedBy: {
+          name: 'validatedBy',
+          type: 'AppUser',
+          model: 'AppUser',
+          relationType: 'belongsTo',
+                  keyFrom: 'validatedById',
           keyTo: 'id'
         },
         attachments: {
