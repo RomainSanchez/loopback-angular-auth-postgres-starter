@@ -15,6 +15,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { UserModule } from './user/user.module';
 import { ReferralModule } from './referral/referal.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { CommitteeModule } from './committee/committee.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxPermissionsModule.forRoot(),
     UserModule,
     ReferralModule,
+    CommitteeModule,
     NgxDropzoneModule
   ],
   providers: [

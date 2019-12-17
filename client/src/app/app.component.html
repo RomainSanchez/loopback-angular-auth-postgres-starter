@@ -4,6 +4,7 @@
       <a routerLink="/"><img id="logo" src="assets/img/logo_cdg29.png" alt="Logo CDG29">{{ title }}</a>
     </span>
     <span *ngxPermissionsOnly="['admin', 'secretary']"><a routerLink="/users">Utilisateurs</a></span>
+    <span *ngxPermissionsOnly="['admin', 'secretary']"><a routerLink="/committees">Séances</a></span>
     <span *ngxPermissionsOnly="['admin', 'secretary']"><a routerLink="/referrals">Saisines</a></span>
     <span id="current-user" *ngIf="authService.getAccessTokenId()">
       <mat-icon>account_circle</mat-icon>

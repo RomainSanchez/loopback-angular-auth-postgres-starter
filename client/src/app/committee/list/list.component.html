@@ -1,3 +1,65 @@
-<p>
-  list works!
-</p>
+<h2 class="mat-display-1">Séances</h2>
+
+<div *ngIf="isLoading" class="spinner-wrapper">
+  <mat-progress-spinner class="spinner"
+    color="primary"
+    mode="indeterminate"
+    diameter="150"
+  ></mat-progress-spinner>
+</div>
+
+<mat-form-field *ngxPermissionsOnly="['admin', 'secretary']">
+  <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtrer">
+</mat-form-field>
+
+<a *ngxPermissionsOnly="['admin', 'secretary']" routerLink="/committee/new">
+  <button mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</a>
+
+<mat-table class="committees-table mat-elevation-z4" matSort [dataSource]="tableDataSource">
+  <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+      <mat-cell *matCellDef="let committee">{{ committee.type }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="session">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+    <mat-cell *matCellDef="let committee">{{ committee.session| date: 'dd/LL/yy' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="limit">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Fin de réception des dossiers</mat-header-cell>
+    <mat-cell *matCellDef="let committee">{{ committee.limit| date: 'dd/LL/yy' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="location">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Lieu</mat-header-cell>
+    <mat-cell *matCellDef="let committee">{{ committee.location }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer</mat-header-cell>
+    <mat-cell class="delete-cell" *matCellDef="let committee" (click)="$event.stopPropagation()">
+      <button
+        (click)="openConfirmationDialog(committee.id)"
+        mat-mini-fab
+        color="primary"
+        matTooltip="Supprimer"
+        matTooltipPosition="right"
+      >
+        <mat-icon class="mat-18">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let committee; columns: displayedColumns"
+    (click)=rowClicked(committee.id)
+  ></mat-row>
+</mat-table>
+
+<mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+

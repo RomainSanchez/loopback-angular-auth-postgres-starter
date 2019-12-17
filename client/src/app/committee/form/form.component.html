@@ -1,3 +1,94 @@
-<p>
-  form works!
-</p>
+<mat-card>
+    <mat-card-title></mat-card-title>
+    <form #committeeForm="ngForm" class="committee-form">
+      <mat-card-content>
+        <div class="field radio">
+          <mat-radio-group required name="creation" [(ngModel)]="committee.type">
+            <mat-radio-button value="CAP">CAP</mat-radio-button>
+            <mat-radio-button value="CT">CT</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div>
+          <mat-form-field class="field">
+            <input matInput
+              [(ngModel)]="committee.session"
+              [matDatepicker]="sessionDatePicker"
+              name="session"
+              placeholder="Date de séance"
+              required
+            >
+            <mat-datepicker-toggle matSuffix [for]="sessionDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #sessionDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="field">
+            <input matInput
+              [(ngModel)]="committee.limit"
+              [matDatepicker]="limitDatePicker"
+              name="limit"
+              placeholder="Date de fin de réception des dossiers"
+              required
+            >
+            <mat-datepicker-toggle matSuffix [for]="limitDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #limitDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <div>
+            <mat-form-field class="field">
+              <input matInput
+                [(ngModel)]="committee.notification"
+                [matDatepicker]="notificationDatePicker"
+                name="notification"
+                placeholder="Date d'envoi des convocations"
+              >
+              <mat-datepicker-toggle matSuffix [for]="notificationDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #notificationDatePicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="field">
+              <input matInput
+                [(ngModel)]="committee.examination"
+                [matDatepicker]="examinationDatePicker"
+                name="examination"
+                placeholder="Date de consultation des dossiers"
+              >
+              <mat-datepicker-toggle matSuffix [for]="examinationDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #examinationDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="field">
+              <input matInput
+                [(ngModel)]="committee.recap"
+                [matDatepicker]="recapDatePicker"
+                name="recap"
+                placeholder="Date d'envoi du compte rendu"
+              >
+              <mat-datepicker-toggle matSuffix [for]="recapDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #recapDatePicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="field">
+              <input matInput
+                [(ngModel)]="committee.location"
+                name="location"
+                placeholder="Lieu"
+              >
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="submit()" mat-raised-button color="accent" [disabled]="committeeForm.invalid">
+          <mat-icon>check</mat-icon>
+          Enregistrer
+        </button>
+
+        <button (click)="submit(true)" mat-raised-button color="accent" [disabled]="committeeForm.invalid">
+          <mat-icon>add</mat-icon>
+          Enregistrer et nouveau
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>

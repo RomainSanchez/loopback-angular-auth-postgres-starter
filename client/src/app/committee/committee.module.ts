@@ -9,6 +9,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -17,7 +18,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     FormComponent,
-    ListComponent
+    ListComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     NgxPermissionsModule.forChild(),
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ]
 })
 export class CommitteeModule { }
