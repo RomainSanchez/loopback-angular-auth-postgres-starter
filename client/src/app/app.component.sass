@@ -1,9 +1,15 @@
+div.content
+  margin-top: 75px
+
 mat-toolbar
   position: fixed
   top: 0
-  display: flex
+  left: 0
+  right: 0
   z-index: 999
-  margin-bottom: 1%
+
+  .toolbar-links
+    margin-left: 50px
 
   span
     margin: 5px
@@ -27,15 +33,32 @@ mat-toolbar
         vertical-align: middle
         line-height: inherit
 
-
-div.content
-  padding: 15px
-  margin-top: 80px
-  display: flex
-  flex-direction: column
-  justify-content: center
-
 #logo
-  margin-top: 12px
-  width: 32%
+  height: 60px
+  margin-top: 10px
+
+
+mat-sidenav-container
+  background: initial
+
+mat-sidenav
+  width: 200px
+  background: #607D8B
+  padding-top: 16px
+
+  span
+    margin: 5px
+    color: #fff
+
+    a
+      text-decoration: none
+      font-size: 1.3em
+
+  div
+    a
+      color: #fff
+
+  #current-user
+    margin-top: -25px
+
 

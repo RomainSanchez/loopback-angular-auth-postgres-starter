@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Committee } from 'src/app/shared/sdk/models/Committee';
@@ -12,8 +16,8 @@ import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirm
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   displayedColumns = [
     'type',
@@ -61,7 +65,8 @@ export class ListComponent implements OnInit {
     this.router.navigate(['/committee/form', committeeId]);
   }
 
-  openConfirmationDialog(committeeId: Committee): void {
+  openConfirmationDialog(committeeId: number): void {
+    console.log(committeeId)
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: 'Voulez vous vraiment supprimer cette séance ?'

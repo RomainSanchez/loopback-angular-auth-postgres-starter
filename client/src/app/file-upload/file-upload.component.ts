@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { AttachmentApi } from '../shared/sdk/services/index';
 import { Attachment, Referral } from '../shared/sdk';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-file-upload',

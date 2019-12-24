@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ReferralApi, Referral } from 'src/app/shared/sdk';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-information',

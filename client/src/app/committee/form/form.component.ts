@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Committee } from 'src/app/shared/sdk/models/Committee';
 import { CommitteeApi } from 'src/app/shared/sdk/services/custom/Committee';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form',

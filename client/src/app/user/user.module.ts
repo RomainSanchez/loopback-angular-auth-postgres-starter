@@ -12,6 +12,7 @@ import { RolesPipe } from './roles.pipe';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ProfileComponent } from './profile/profile.component';
 import { RouterModule } from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,6 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProfileComponent
   ],
   imports: [
+    FlexLayoutModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

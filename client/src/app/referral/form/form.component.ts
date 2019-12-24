@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Form, FormApi, Referral, ReferralApi, Attachment, AppUserApi } from 'src/app/shared/sdk';
 import { ActivatedRoute } from '@angular/router';
-import { MatSnackBar, MatStepper, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatStepper } from '@angular/material/stepper';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ValidationDialogComponent } from '../dialog/validation-dialog/validation-dialog.component';
 import { RefusalDialogComponent } from '../dialog/refusal-dialog/refusal-dialog.component';
 
@@ -11,9 +14,10 @@ import { RefusalDialogComponent } from '../dialog/refusal-dialog/refusal-dialog.
   styleUrls: ['./form.component.sass']
 })
 export class FormComponent implements OnInit {
-  @ViewChild('stepper') private stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) private stepper: MatStepper;
   referral: Referral;
   summaryDownloadUrl = '';
+  smallScreen: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,10 +25,18 @@ export class FormComponent implements OnInit {
     private referralApi: ReferralApi,
     private appUserApi: AppUserApi,
     private snackbar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
   ngOnInit() {
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small
+    ]).subscribe(result => {
+      this.smallScreen = result.matches;
+    });
+
     const referralId = this.route.snapshot.paramMap.get('referralId');
     const formId = this.route.snapshot.paramMap.get('formId');
 

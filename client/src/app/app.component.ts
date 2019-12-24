@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LoopBackConfig, LoopBackAuth } from './shared/sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPermissionsService } from 'ngx-permissions';
-import { DateAdapter } from '@angular/material';
+import { DateAdapter } from '@angular/material/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,13 @@ import { DateAdapter } from '@angular/material';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'Saisine d\'instances';
+  @ViewChild('sidenav', {static: false}) sidenav: MatSidenav;
+  smallScreen = false;
+  adminLinks: any[] = [
+    {name: 'Utilisateurs', url:'/users'},
+    {name: 'Séances', url:'/committees'},
+    {name: 'Saisines', url:'/referrals'}
+  ];
 
   constructor(
     private authService: LoopBackAuth,

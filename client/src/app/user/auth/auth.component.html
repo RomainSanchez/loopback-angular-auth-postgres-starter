@@ -1,18 +1,13 @@
-<mat-card class="login-card">
+<mat-card class="login-card" fxLayout="column" fxLayoutAlign="center" fxFlex="80">
   <mat-card-title>Authentification</mat-card-title>
   <mat-card-content>
-    <form (ngSubmit)="authenticate()" class="login-form">
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Utilisateur" [(ngModel)]="appUser.username" name="username" required>
-        </mat-form-field>
-      </p>
-
-      <p>
-        <mat-form-field>
-            <input matInput placeholder="Mot de passe" [(ngModel)]="appUser.password" type="password" name="password" required>
-        </mat-form-field>
-      </p>
+    <form (ngSubmit)="authenticate()" class="login-form" fxFlex="20" fxFlex.lt-md="80" fxLayout="column">
+      <mat-form-field>
+        <input type="text" matInput placeholder="Utilisateur" [(ngModel)]="appUser.username" name="username" required>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Mot de passe" [(ngModel)]="appUser.password" type="password" name="password" required>
+      </mat-form-field>
 
       <p *ngIf="error" class="error">
         {{ 'auth.error.' + error | translate }}

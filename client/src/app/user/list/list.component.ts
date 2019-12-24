@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { AppUser } from 'src/app/shared/sdk/models/AppUser';
 import { Router } from '@angular/router';
 import { AppUserApi } from 'src/app/shared/sdk/services/custom/AppUser';
@@ -10,8 +12,8 @@ import { AppUserApi } from 'src/app/shared/sdk/services/custom/AppUser';
   styleUrls: ['./list.component.sass']
 })
 export class ListComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   displayedColumns = [
     'username',

@@ -1,3 +1,77 @@
+<ng-template #stepOne>
+  <div class="step-content" fxLayout="column">
+    <h3 fxFlexAlign="center" class="mat-display-1">Veuillez renseigner le formulaire de saisine</h3>
+    <mat-card fxFlex="80">
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+        <app-cap01
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap01'"
+        ></app-cap01>
+        <app-ct01
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct01'"
+        ></app-ct01>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
+<ng-template #stepTwo>
+  <div class="step-content" fxLayout="column" fxLayoutAlign="center center">
+    <h3 class="mat-display-1">Veuillez fournir {{ referral?.form?.requiredAttachments.length > 1 ?
+      'les justificatifs suivants':
+      'le justificatif suivant' }}
+    </h3>
+    <p *ngFor="let attachment of referral?.form?.requiredAttachments" class="mat-title">
+      {{ attachment }}
+    </p>
+    <mat-card>
+      <app-file-upload
+        [referral]="referral"
+        purpose="attachment"
+        (fileChange)="fileChange($event)"
+        (done)="stepper.next()"
+      ></app-file-upload>
+    </mat-card>
+  </div>
+</ng-template>
+<ng-template #stepThree>
+  <div class="step-content" fxLayout="column" fxLayoutAlign="center center">
+    <h3 class="mat-display-1">Téléchargement et signature de la saisine</h3>
+
+    <mat-card>
+      <p class="mat-title">Veuillez télécharger la saisine et la signer</p>
+      <p>Vous pourrez la transmettre à la prochaine étape</p>
+
+      <button mat-flat-button color="accent" (click)="downloadSummary()">
+        <mat-icon class="mat-18">arrow_downward</mat-icon>
+        Télécharger la saisine
+      </button>
+    </mat-card>
+  </div>
+</ng-template>
+
+<ng-template #stepFour>
+  <div class="step-content" fxLayout="column" fxLayoutAlign="center center">
+    <h3 class="mat-display-1">Transmission de la saisine signée</h3>
+    <mat-card>
+      <div class="instructions">
+        <p>Déposez un scan de la saisine signée directement ou plus tard en revenant sur votre espace</p>
+        <p>Vous pouvez également la transmettre par mail à l'addresse
+          <a href="mailto:?to=instances@cdg29.bzh">instances@cdg29.bzh</a>
+        </p>
+      </div>
+      <app-file-upload
+        [referral]="referral"
+        purpose="signature"
+        (fileChange)="fileChange($event)"
+        (done)="signed()"
+      ></app-file-upload>
+    </mat-card>
+  </div>
+</ng-template>
+
 <h3 class="mat-display-1">{{ formType?.name }}</h3>
 
 <div class="admin">
@@ -24,89 +98,51 @@
   </ng-container>
 </div>
 
-<mat-horizontal-stepper #stepper labelPosition="bottom">
-  <mat-step>
-    <ng-template matStepLabel>Formulaire</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Veuillez renseigner le formulaire de saisine</h3>
-      <mat-card>
-        <mat-card-content>
-          <app-cap01
-            (formSubmit)="formSubmit($event)"
-            [data]="referral.data"
-            *ngIf="referral?.form?.code === 'cap01'"
-          ></app-cap01>
-          <app-ct01
-            (formSubmit)="formSubmit($event)"
-            [data]="referral?.data"
-            *ngIf="referral?.form?.code === 'ct01'"
-          ></app-ct01>
-        </mat-card-content>
-      </mat-card>
-    </div>
+<mat-vertical-stepper
+  linear
+  editable="false"
+  completed="false"
+  *ngIf="smallScreen"
+  #stepper
+>
+  <mat-step label="Formulaire">
+    <ng-container *ngTemplateOutlet="stepOne"></ng-container>
   </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Justificatifs</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Veuillez fournir {{ referral?.form?.requiredAttachments.length > 1 ?
-        'les justificatifs suivants':
-        'le justificatif suivant' }}
-      </h3>
-      <p *ngFor="let attachment of referral?.form?.requiredAttachments" class="mat-title">
-        {{ attachment }}
-      </p>
-      <mat-card>
-        <app-file-upload
-          [referral]="referral"
-          purpose="attachment"
-          (fileChange)="fileChange($event)"
-          (done)="stepper.next()"
-        ></app-file-upload>
-      </mat-card>
-    </div>
+  <mat-step  label="Justificatifs">
+    <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
   </mat-step>
-
-  <mat-step *ngxPermissionsOnly="['community']">
-    <ng-template matStepLabel>Signature</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Téléchargement et signature de la saisine</h3>
-
-      <mat-card>
-        <p class="mat-title">Veuillez télécharger la saisine et la signer</p>
-        <p>Vous pourrez la transmettre à la prochaine étape</p>
-
-        <button mat-flat-button color="accent" (click)="downloadSummary()">
-          <mat-icon class="mat-18">arrow_downward</mat-icon>
-          Télécharger la saisine
-        </button>
-      </mat-card>
-    </div>
+  <mat-step label="Signature">
+    <ng-container *ngTemplateOutlet="stepThree"></ng-container>
   </mat-step>
-
-  <mat-step *ngxPermissionsOnly="['community']">
-    <ng-template matStepLabel>Transmission</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Transmission de la saisine signée</h3>
-      <mat-card>
-        <div class="instructions">
-          <p>Déposez un scan de la saisine signée directement ou plus tard en revenant sur votre espace</p>
-          <p>Vous pouvez également la transmettre par mail à l'addresse
-            <a href="mailto:?to=instances@cdg29.bzh">instances@cdg29.bzh</a>
-          </p>
-        </div>
-        <app-file-upload
-          [referral]="referral"
-          purpose="signature"
-          (fileChange)="fileChange($event)"
-          (done)="signed()"
-        ></app-file-upload>
-      </mat-card>
-    </div>
+  <mat-step label="Transmission">
+    <ng-container *ngTemplateOutlet="stepFour"></ng-container>
   </mat-step>
-
   <ng-template matStepperIcon="edit">
     <mat-icon>done</mat-icon>
   </ng-template>
+</mat-vertical-stepper>
 
+<mat-horizontal-stepper
+  linear
+  labelPosition="bottom"
+  editable="false"
+  completed="false"
+  *ngIf="!smallScreen"
+  #stepper
+>
+  <mat-step label="Formulaire">
+    <ng-container *ngTemplateOutlet="stepOne"></ng-container>
+  </mat-step>
+  <mat-step  label="Justificatifs">
+    <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
+  </mat-step>
+  <mat-step label="Signature">
+    <ng-container *ngTemplateOutlet="stepThree"></ng-container>
+  </mat-step>
+  <mat-step label="Transmission">
+    <ng-container *ngTemplateOutlet="stepFour"></ng-container>
+  </mat-step>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template>
 </mat-horizontal-stepper>

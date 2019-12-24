@@ -1,50 +1,105 @@
+<ng-template #stepOne>
+  <div class="step-content" fxLayout="column">
+    <h3 fxLayoutAlign="center" class="mat-display-1">Veuillez renseigner les champs suivants</h3>
+    <app-information (afterSubmit)="informationSubmitted($event)"></app-information>
+  </div>
+</ng-template>
+<ng-template #stepTwo>
+  <div class="step-content" fxLayout="column" fxLayoutAlign="center center">
+    <h3 class="mat-display-1">Quelle instance désirez vous saisir ?</h3>
+    <div class="committees"
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutGap="50px"
+      fxLayoutAlign="center"
+      fxFlexFill
+    >
+      <mat-card (click)="setCommittee('cap')" class="committee" *ngxPermissionsOnly="['cap']"
+        fxFlex.gt-md="30"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
+        <p><mat-icon>account_balance</mat-icon></p>
+        <p class="name">Commission administrative paritaire</p>
+      </mat-card>
 
-<mat-horizontal-stepper #stepper labelPosition="bottom">
-  <mat-step>
-    <ng-template matStepLabel>Renseignements</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Veuillez renseigner les champs suivants</h3>
-      <app-information (afterSubmit)="informationSubmitted($event)"></app-information>
+      <mat-card (click)="setCommittee('ct')" class="committee" *ngxPermissionsOnly="['ct']"
+        fxFlex.gt-md="30"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
+        <p><mat-icon>assignment_turned_in</mat-icon></p>
+        <p class="name">Comité technique</p>
+      </mat-card>
     </div>
+  </div>
+</ng-template>
+<ng-template #stepThree>
+  <div class="step-content" fxLayout="column" fxLayoutAlign="center center">
+    <h3 class="mat-display-1">Pour quel motif voulez vous saisir {{ committee === 'cap' ? 'la CAP' : 'le CT'}} ?</h3>
+    <div *ngIf="committee === 'cap'" id="cap" class="form-types"
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+
+      fxLayoutGap="30px"
+    >
+      <mat-card *ngFor="let type of capFormTypes"
+        (click)="form(type.id)"
+        fxFlex.lt-md="25"
+
+      >
+        <p class="form-type">{{ type.name }}</p>
+      </mat-card>
+    </div>
+
+    <div *ngIf="committee === 'ct'" id="ct" class="form-types">
+      <mat-card *ngFor="let type of ctFormTypes" (click)="form(type.id)">
+        <p class="form-type">{{ type.name }}</p>
+      </mat-card>
+    </div>
+  </div>
+</ng-template>
+
+<mat-vertical-stepper
+  *ngIf="smallScreen"
+  linear
+  #stepper
+  editable="false"
+  completed="false"
+>
+  <mat-step label="Renseignements">
+    <ng-container *ngTemplateOutlet="stepOne"></ng-container>
   </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Choix de l'instance</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Quelle instance désirez vous saisir ?</h3>
-      <div class="committees">
-        <mat-card (click)="setCommittee('cap')" class="committee" *ngxPermissionsOnly="['cap']">
-          <p><mat-icon>account_balance</mat-icon></p>
-          <p class="name">Commission administrative paritaire</p>
-        </mat-card>
-
-        <mat-card (click)="setCommittee('ct')" class="committee" *ngxPermissionsOnly="['ct']">
-          <p><mat-icon>assignment_turned_in</mat-icon></p>
-          <p class="name">Comité technique</p>
-        </mat-card>
-      </div>
-    </div>
+  <mat-step  label="Choix de l'instance">
+    <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
   </mat-step>
-
-  <mat-step>
-    <ng-template matStepLabel>Choix du motif</ng-template>
-    <div class="content">
-      <h3 class="mat-display-1">Pour quel motif voulez vous saisir {{ committee === 'cap' ? 'la CAP' : 'le CT'}} ?</h3>
-      <div *ngIf="committee === 'cap'" id="cap" class="form-types">
-        <mat-card *ngFor="let type of capFormTypes"  (click)="form(type.id)">
-          <p class="form-type">{{ type.name }}</p>
-        </mat-card>
-      </div>
-
-      <div *ngIf="committee === 'ct'" id="ct" class="form-types">
-        <mat-card *ngFor="let type of ctFormTypes" (click)="form(type.id)">
-          <p class="form-type">{{ type.name }}</p>
-        </mat-card>
-      </div>
-    </div>
+  <mat-step label="Choix du motif">
+    <ng-container *ngTemplateOutlet="stepThree"></ng-container>
   </mat-step>
   <ng-template matStepperIcon="edit">
     <mat-icon>done</mat-icon>
   </ng-template>
+</mat-vertical-stepper>
 
+<mat-horizontal-stepper
+  linear
+  labelPosition="bottom"
+  editable="false"
+  completed="false"
+  *ngIf="!smallScreen"
+  #stepper
+>
+  <mat-step label="Renseignements">
+    <ng-container *ngTemplateOutlet="stepOne"></ng-container>
+  </mat-step>
+  <mat-step  label="Choix de l'instance">
+    <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
+  </mat-step>
+  <mat-step label="Choix du motif">
+    <ng-container *ngTemplateOutlet="stepThree"></ng-container>
+  </mat-step>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>done</mat-icon>
+  </ng-template>
 </mat-horizontal-stepper>
+

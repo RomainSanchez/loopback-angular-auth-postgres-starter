@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,7 @@ import { UserModule } from './user/user.module';
 import { ReferralModule } from './referral/referal.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CommitteeModule } from './committee/committee.module';
+import { LayoutModule } from '@angular/cdk/layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,6 +29,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent
   ],
   imports: [
+    FlexLayoutModule,
+    LayoutModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

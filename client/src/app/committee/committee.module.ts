@@ -10,6 +10,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +23,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ConfirmationDialogComponent
   ],
   imports: [
+    FlexLayoutModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

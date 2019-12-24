@@ -17,6 +17,7 @@ import { Ct01Component } from './form-types/ct01/ct01.component';
 import { StatusComponent } from './status/status.component';
 import { ValidationDialogComponent } from './dialog/validation-dialog/validation-dialog.component';
 import { RefusalDialogComponent } from './dialog/refusal-dialog/refusal-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RefusalDialogComponent
   ],
   imports: [
+    FlexLayoutModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

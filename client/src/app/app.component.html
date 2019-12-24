@@ -1,24 +1,62 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
-  <mat-toolbar-row>
-    <span>
-      <a routerLink="/"><img id="logo" src="assets/img/logo_cdg29.png" alt="Logo CDG29">{{ title }}</a>
-    </span>
-    <span *ngxPermissionsOnly="['admin', 'secretary']"><a routerLink="/users">Utilisateurs</a></span>
-    <span *ngxPermissionsOnly="['admin', 'secretary']"><a routerLink="/committees">Séances</a></span>
-    <span *ngxPermissionsOnly="['admin', 'secretary']"><a routerLink="/referrals">Saisines</a></span>
-    <span id="current-user" *ngIf="authService.getAccessTokenId()">
-      <mat-icon>account_circle</mat-icon>
-      <span>{{ authService.getToken().user?.name }}</span>
-    </span>
-    <span
-      id="logout"
-      *ngIf="authService.getAccessTokenId()"
-    >
-      <a mat-raised-button color="accent" routerLink="/logout">Se déconnecter</a>
-    </span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<mat-sidenav-container fxFlexFill>
+  <mat-sidenav #sidenav mode="side" opened="false" fxLayout="column">
+    <div fxFlexFill fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+      <span>
+        <a routerLink="/"><img id="logo" src="assets/img/logo_cdg29.png" alt="Logo CDG29"></a>
+      </span>
+      <span id="current-user" *ngIf="authService.getAccessTokenId()">
+        <mat-icon>account_circle</mat-icon>
+        <span>{{ authService.getToken().user?.name }}</span>
+      </span>
+      <ng-container *ngFor="let link of adminLinks">
+        <span
+          *ngxPermissionsOnly="['admin', 'secretary']"
+          (click)="sidenav.close()"
+        >
+          <a [routerLink]="link.url">{{ link.name }}</a>
+        </span>
+      </ng-container>
+      <span *ngxPermissionsOnly="['community']" routerLink="/referrals/user">Mes saisines</span>
+      <div
+        id="logout"
+        *ngIf="authService.getAccessTokenId()"
+      >
+        <a mat-raised-button color="accent" routerLink="/logout">Se déconnecter</a>
+      </div>
+    </div>
+  </mat-sidenav>
 
-<div class="content">
-  <router-outlet></router-outlet>
-</div>
+  <mat-sidenav-content fxFlexFill>
+    <mat-toolbar color="primary" class="mat-elevation-z8">
+      <mat-toolbar-row>
+        <span>
+          <a routerLink="/"><img id="logo" src="assets/img/logo_cdg29.png" alt="Logo CDG29"></a>
+        </span>
+        <div fxShow="true" fxHide.gt-sm="true">
+          <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        </div>
+        <div fxShow="true" fxHide.lt-md="true" fxFlexFill class="toolbar-links">
+          <ng-container *ngFor="let link of adminLinks">
+            <span *ngxPermissionsOnly="['admin', 'secretary']">
+              <a [routerLink]="link.url">{{ link.name }}</a>
+            </span>
+          </ng-container>
+          <span *ngxPermissionsOnly="['community']" routerLink="/referrals/user">Mes saisines</span>
+          <span id="current-user" *ngIf="authService.getAccessTokenId()">
+            <mat-icon>account_circle</mat-icon>
+            <span>{{ authService.getToken().user?.name }}</span>
+          </span>
+          <span
+            id="logout"
+            *ngIf="authService.getAccessTokenId()"
+          >
+            <a mat-raised-button color="accent" routerLink="/logout">Se déconnecter</a>
+          </span>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
