@@ -1,4 +1,5 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
+import { BaseFormComponent } from '../base-form/base-form.component';
 
 @Component({
   selector: 'app-ct01',
@@ -7,14 +8,5 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
 })
 
 // Formulaire CT Règlement intérieur
-export class Ct01Component {
-  @Input() data: any = {};
-  @Output() formSubmit: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor() {}
-
-  onSubmit() {
-    this.formSubmit.emit(this.data);
-  }
-}
+export class Ct01Component extends BaseFormComponent{}
 

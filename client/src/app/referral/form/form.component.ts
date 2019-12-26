@@ -67,6 +67,8 @@ export class FormComponent implements OnInit {
       this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
       this.stepper.next();
     });
+
+
   }
 
   fileChange(referral: Referral) {

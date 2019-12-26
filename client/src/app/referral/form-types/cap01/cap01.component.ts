@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { BaseFormComponent } from '../base-form/base-form.component';
 
 @Component({
   selector: 'app-cap01',
@@ -6,20 +7,5 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
   styleUrls: ['./cap01.component.sass']
 })
 // Formulaire CAP Détachement sur emploi fonctionnel
-export class Cap01Component {
-  @Input() data: any = {};
-  @Output() formSubmit: EventEmitter<any> = new EventEmitter<any>();
-  gradeChoices: any[] = [
-    'Attaché',
-    'Attaché principal',
-    'Attaché hors classe',
-    'Directeur'
-  ];
-
-  constructor() {}
-
-  onSubmit() {
-    this.formSubmit.emit(this.data);
-  }
-
+export class Cap01Component extends BaseFormComponent {
 }
