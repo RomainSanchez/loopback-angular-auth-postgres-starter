@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title></mat-card-title>
     <form #committeeForm="ngForm" class="committee-form">
-      <mat-card-content>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
         <div class="field radio">
           <mat-radio-group required name="creation" [(ngModel)]="committee.type">
             <mat-radio-button value="CAP">CAP</mat-radio-button>

@@ -81,21 +81,23 @@
     </h3>
   </ng-container>
 
-  <button *ngxPermissionsOnly="['validator', 'admin', 'secretary']" mat-raised-button color="accent" (click)="downloadAll()">
-    <mat-icon class="mat-18">arrow_downward</mat-icon>
-    Télécharger les documents
-  </button>
+  <div fxLayout.lt-md="column" fxLayoutAlign.lt-md="center center">
+    <button *ngxPermissionsOnly="['validator', 'admin', 'secretary']" mat-raised-button color="accent" (click)="downloadAll()">
+      <mat-icon class="mat-18">arrow_downward</mat-icon>
+      Télécharger les documents
+    </button>
 
-  <ng-container *ngIf="referral?.status === 'signed'">
-    <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="validate()">
-      <mat-icon class="mat-18">check</mat-icon>
-      Valider la saisine
-    </button>
-    <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="refuse()">
-      <mat-icon class="mat-18">close</mat-icon>
-      Refuser la saisine
-    </button>
-  </ng-container>
+    <ng-container *ngIf="referral?.status === 'signed'">
+      <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="validate()">
+        <mat-icon class="mat-18">check</mat-icon>
+        Valider la saisine
+      </button>
+      <button *ngxPermissionsOnly="['validator', 'admin']" mat-raised-button color="accent" (click)="refuse()">
+        <mat-icon class="mat-18">close</mat-icon>
+        Refuser la saisine
+      </button>
+    </ng-container>
+  </div>
 </div>
 
 <mat-vertical-stepper

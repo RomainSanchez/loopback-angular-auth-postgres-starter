@@ -15,9 +15,7 @@
     <mat-checkbox [(ngModel)]="data.staffConsulted" name="staff-consulted">Le personnel a-t-il été consulté ?</mat-checkbox>
   </div>
   <div class="button">
-    <p *ngIf="dataForm.pristine">Veuillez remplir tous les champs</p>
-    <p class="invalid" *ngIf="dataForm.errors">Veuillez corriger tous les champs en rouge</p>
-    <button type="submit" mat-raised-button color="accent" [disabled]="dataForm.invalid">Suivant</button>
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
   </div>
 </form>
 
