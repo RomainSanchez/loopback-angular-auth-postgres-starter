@@ -4,6 +4,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { Form, FormApi } from '../shared/sdk';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { OpeningService } from '../service/opening.service';
 
 @Component({
   selector: 'app-home',
@@ -22,21 +23,14 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private formApi: FormApi,
     private snackBar: MatSnackBar,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    public openingService: OpeningService,
   ) {}
 
   ngOnInit() {
-    this.breakpointObserver.observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small
-    ]).subscribe(result => {
-      this.smallScreen = result.matches;
-    });
+    this.observeScreenSize();
 
-    this.formApi.find().subscribe((forms: Form[]) => {
-      this.capFormTypes = forms.filter(form => form.committee === 'cap').sort(this.sortFormTypes);
-      this.ctFormTypes = forms.filter(form => form.committee === 'ct').sort(this.sortFormTypes);
-    });
+    this.getFormTypes();
   }
 
   setCommittee(committee: string) {
@@ -61,6 +55,22 @@ export class HomeComponent implements OnInit {
     this.referralId = referralId;
 
     this.stepper.next();
+  }
+
+  private observeScreenSize() {
+    this.breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small
+    ]).subscribe(result => {
+      this.smallScreen = result.matches;
+    });
+  }
+
+  private getFormTypes() {
+    this.formApi.find().subscribe((forms: Form[]) => {
+      this.capFormTypes = forms.filter(form => form.committee === 'cap').sort(this.sortFormTypes);
+      this.ctFormTypes = forms.filter(form => form.committee === 'ct').sort(this.sortFormTypes);
+    });
   }
 
   private sortFormTypes(a: Form, b: Form) {

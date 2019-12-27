@@ -14,23 +14,27 @@
       fxLayoutAlign="center"
       fxFlexFill
     >
-      <mat-card (click)="setCommittee('cap')" class="committee" *ngxPermissionsOnly="['cap']"
-        fxFlex.gt-md="30"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-      >
-        <p><mat-icon>account_balance</mat-icon></p>
-        <p class="name">Commission administrative paritaire</p>
-      </mat-card>
+      <ng-container *ngIf="openingService.isCapOpen()">
+        <mat-card (click)="setCommittee('cap')" class="committee" *ngxPermissionsOnly="['cap']"
+          fxFlex.gt-md="30"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <p><mat-icon>account_balance</mat-icon></p>
+          <p class="name">Commission administrative paritaire</p>
+        </mat-card>
+      </ng-container>
 
-      <mat-card (click)="setCommittee('ct')" class="committee" *ngxPermissionsOnly="['ct']"
-        fxFlex.gt-md="30"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-      >
-        <p><mat-icon>assignment_turned_in</mat-icon></p>
-        <p class="name">Comité technique</p>
-      </mat-card>
+      <ng-container *ngIf="openingService.isCtOpen()">
+        <mat-card (click)="setCommittee('ct')" class="committee" *ngxPermissionsOnly="['ct']"
+          fxFlex.gt-md="30"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <p><mat-icon>assignment_turned_in</mat-icon></p>
+          <p class="name">Comité technique</p>
+        </mat-card>
+      </ng-container>
     </div>
   </div>
 </ng-template>
@@ -40,7 +44,6 @@
     <div *ngIf="committee === 'cap'" id="cap" class="form-types"
       fxLayout="row wrap"
       fxLayoutAlign="center center"
-
       fxLayoutGap="30px"
     >
       <mat-card *ngFor="let type of capFormTypes"
@@ -52,7 +55,11 @@
       </mat-card>
     </div>
 
-    <div *ngIf="committee === 'ct'" id="ct" class="form-types">
+    <div *ngIf="committee === 'ct'" id="ct" class="form-types"
+      fxLayout="row wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="30px"
+    >
       <mat-card *ngFor="let type of ctFormTypes" (click)="form(type.id)">
         <p class="form-type">{{ type.name }}</p>
       </mat-card>
@@ -60,46 +67,51 @@
   </div>
 </ng-template>
 
-<mat-vertical-stepper
-  *ngIf="smallScreen"
-  linear
-  #stepper
-  editable="false"
-  completed="false"
->
-  <mat-step label="Renseignements">
-    <ng-container *ngTemplateOutlet="stepOne"></ng-container>
-  </mat-step>
-  <mat-step  label="Choix de l'instance">
-    <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
-  </mat-step>
-  <mat-step label="Choix du motif">
-    <ng-container *ngTemplateOutlet="stepThree"></ng-container>
-  </mat-step>
-  <ng-template matStepperIcon="edit">
-    <mat-icon>done</mat-icon>
-  </ng-template>
-</mat-vertical-stepper>
+<ng-container *ngxPermissionsOnly="['community']">
+  <mat-vertical-stepper
+    *ngIf="smallScreen && openingService.isOpen()"
+    linear
+    #stepper
+    editable="false"
+    completed="false"
+  >
+    <mat-step label="Renseignements">
+      <ng-container *ngTemplateOutlet="stepOne"></ng-container>
+    </mat-step>
+    <mat-step  label="Choix de l'instance">
+      <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
+    </mat-step>
+    <mat-step label="Choix du motif">
+      <ng-container *ngTemplateOutlet="stepThree"></ng-container>
+    </mat-step>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+  </mat-vertical-stepper>
 
-<mat-horizontal-stepper
-  linear
-  labelPosition="bottom"
-  editable="false"
-  completed="false"
-  *ngIf="!smallScreen"
-  #stepper
->
-  <mat-step label="Renseignements">
-    <ng-container *ngTemplateOutlet="stepOne"></ng-container>
-  </mat-step>
-  <mat-step  label="Choix de l'instance">
-    <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
-  </mat-step>
-  <mat-step label="Choix du motif">
-    <ng-container *ngTemplateOutlet="stepThree"></ng-container>
-  </mat-step>
-  <ng-template matStepperIcon="edit">
-    <mat-icon>done</mat-icon>
-  </ng-template>
-</mat-horizontal-stepper>
+  <mat-horizontal-stepper
+    linear
+    labelPosition="bottom"
+    editable="false"
+    completed="false"
+    *ngIf="!smallScreen && openingService.isOpen()"
+    #stepper
+  >
+    <mat-step label="Renseignements">
+      <ng-container *ngTemplateOutlet="stepOne"></ng-container>
+    </mat-step>
+    <mat-step  label="Choix de l'instance">
+      <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
+    </mat-step>
+    <mat-step label="Choix du motif">
+      <ng-container *ngTemplateOutlet="stepThree"></ng-container>
+    </mat-step>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done</mat-icon>
+    </ng-template>
+  </mat-horizontal-stepper>
+</ng-container>
 
+<mat-card id="closed" *ngIf="!openingService.isOpen()" fxLayoutAlign="center center">
+  <mat-card-title>La saisine d'instances est momentanément fermée</mat-card-title>
+</mat-card>
