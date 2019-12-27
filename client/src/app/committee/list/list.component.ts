@@ -42,6 +42,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getCommittees();
+  }
+
+  ngAfterViewInit() {
     this.tableDataSource.filterPredicate = this.filter;
     this.tableDataSource.paginator = this.paginator;
     this.tableDataSource.sort = this.sort;
@@ -66,7 +69,6 @@ export class ListComponent implements OnInit {
   }
 
   openConfirmationDialog(committeeId: number): void {
-    console.log(committeeId)
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: 'Voulez vous vraiment supprimer cette séance ?'
