@@ -2,7 +2,8 @@
 import {
   Form,
   AppUser,
-  Attachment
+  Attachment,
+  Committee
 } from '../index';
 
 declare var Object: any;
@@ -18,12 +19,14 @@ export interface ReferralInterface {
   "updatedById"?: number;
   "validatedById"?: number;
   "validatedAt"?: Date;
+  "committeeId"?: number;
   form?: Form;
   createdBy?: AppUser;
   updatedBy?: AppUser;
   validatedBy?: AppUser;
   attachments?: Attachment[];
   signedSummary?: Attachment;
+  committee?: Committee;
 }
 
 export class Referral implements ReferralInterface {
@@ -38,12 +41,14 @@ export class Referral implements ReferralInterface {
   "updatedById": number;
   "validatedById": number;
   "validatedAt": Date;
+  "committeeId": number;
   form: Form;
   createdBy: AppUser;
   updatedBy: AppUser;
   validatedBy: AppUser;
   attachments: Attachment[];
   signedSummary: Attachment;
+  committee: Committee;
   constructor(data?: ReferralInterface) {
     Object.assign(this, data);
   }
@@ -123,6 +128,14 @@ export class Referral implements ReferralInterface {
           name: 'validatedAt',
           type: 'Date'
         },
+        "committeeId": {
+          name: 'committeeId',
+          type: 'number'
+        },
+        "commiteeId": {
+          name: 'commiteeId',
+          type: 'number'
+        },
       },
       relations: {
         form: {
@@ -173,6 +186,14 @@ export class Referral implements ReferralInterface {
                   keyFrom: 'id',
           keyTo: 'signedSummaryOfId'
         },
+        committee: {
+          name: 'committee',
+          type: 'Committee',
+          model: 'Committee',
+          relationType: 'belongsTo',
+                  keyFrom: 'commiteeId',
+          keyTo: 'id'
+        }
       }
     }
   }

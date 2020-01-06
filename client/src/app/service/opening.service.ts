@@ -5,46 +5,37 @@ import { CommitteeApi, Committee } from '../shared/sdk';
   providedIn: 'root',
 })
 export class OpeningService {
-  private ctOpen: boolean;
-  private capOpen: boolean;
+  private currentCap: Committee;
+  private currentCt: Committee;
 
   constructor(private committeeApi: CommitteeApi) {
-    this.getCurrentCap().then(r => console.log(r))
-    this.committeeApi.find({
-      where: {
-        limit: {
-          gt: new Date()
-        }
-      }
-    }).subscribe((committees: Committee[]) => {
-      this.capOpen = committees.filter(committee => committee.type === 'cap').length > 0;
-      this.ctOpen = committees.filter(committee => committee.type === 'ct').length > 0;
-    })
+    this.getCurrentSession('cap').then(currentCap => this.currentCap = currentCap);
+    this.getCurrentSession('ct').then(currentCt => this.currentCt = currentCt);
   }
 
   isOpen(): boolean {
-    return this.capOpen || this.ctOpen;
+    return this.isCapOpen() || this.isCtOpen();
   }
 
   isCapOpen(): boolean {
-    return this.capOpen;
+    return !!this.currentCap;
   }
 
   isCtOpen(): boolean {
-    return this.ctOpen;
+    return !!this.currentCt;
   }
 
-  getCurrentCap(): Promise<Committee> {
-    return this.getCurrentSession('cap');
+  getCurrentCap(): Committee {
+    return this.currentCap;
   }
 
-  getCurrentCt(): Promise<Committee> {
-    return this.getCurrentSession('ct');
+  getCurrentCt(): Committee {
+    return this.currentCt;
   }
 
   private getCurrentSession(type: string): Promise<Committee> {
     return new Promise((resolve, reject) => {
-      this.committeeApi.find({
+      this.committeeApi.findOne({
         where: {
           type: type,
           limit: {
@@ -55,8 +46,8 @@ export class OpeningService {
           'session ASC',
           'limit ASC'
         ]
-      }).subscribe((committees: Committee[]) => {
-        resolve(committees[0]);
+      }).subscribe((committee: Committee) => {
+        resolve(committee);
       });
     });
   }

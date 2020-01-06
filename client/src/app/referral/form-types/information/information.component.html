@@ -1,114 +1,114 @@
 <form #informationForm="ngForm" (ngSubmit)="submit()" fxLayout="column" class="information-form">
   <mat-card fxLayout="column" fxLayoutAlign="center center" >
-      <label class="mat-title">Collectivité</label>
-      <div class="community"
-       fxLayout="row wrap"
-       fxLayout.lt-md="column"
-       fxLayoutGap="30px"
-       fxLayoutAlign="center"
+    <label class="mat-title">Collectivité</label>
+    <div class="community"
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+    >
+      <mat-form-field class="field community"
+
       >
-        <mat-form-field class="field community"
-
-        >
-          <input type="text" matInput
-            placeholder="Nom de l'établissement"
-            [(ngModel)]="information.community"
-            name="community"
-            required
-          >
-        </mat-form-field>
-
-        <mat-form-field class="field">
-          <input matInput type="number" min="0"
-            [(ngModel)]="information.inhabitants"
-            name="inhabitants"
-            placeholder="Nombre d'habitants"
-            required
-          >
-        </mat-form-field>
-
-        <mat-form-field class="field contact">
-          <input matInput type="email"
-            [(ngModel)]="information.contact"
-            name="contact"
-            placeholder="Email du référent"
-            required
-          >
-        </mat-form-field>
-      </div>
-
-      <label class="mat-title">Nombre de fonctionnaires</label>
-      <div class="officials"
-        fxLayout="row wrap"
-        fxLayout.lt-md="column"
-        fxLayoutGap="30px"
-        fxLayoutAlign="center"
-      >
-        <mat-form-field class="field">
-          <input matInput type="number" min="0"
-          [(ngModel)]="information.holders"
-          name="holders"
-          placeholder="Titulaires"
+        <input type="text" matInput
+          placeholder="Nom de l'établissement"
+          [(ngModel)]="information.community"
+          name="community"
           required
         >
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <input matInput type="number" min="0"
+          [(ngModel)]="information.inhabitants"
+          name="inhabitants"
+          placeholder="Nombre d'habitants"
+          required
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field contact">
+        <input matInput type="email"
+          [(ngModel)]="information.contact"
+          name="contact"
+          placeholder="Email du référent"
+          required
+        >
+      </mat-form-field>
+    </div>
+
+    <label class="mat-title">Nombre de fonctionnaires</label>
+    <div class="officials"
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+    >
+      <mat-form-field class="field">
+        <input matInput type="number" min="0"
+        [(ngModel)]="information.holders"
+        name="holders"
+        placeholder="Titulaires"
+        required
+      >
+      </mat-form-field>
+
+      <mat-form-field class="field">
+        <input matInput type="number" min="0"
+          [(ngModel)]="information.interns"
+          name="interns"
+          placeholder="Stagiaires"
+          required
+        >
+      </mat-form-field>
+    </div>
+
+    <label class="mat-title">Nombre de contractuels</label>
+    <div class="contractuals"
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+    >
+        <mat-form-field class="field">
+          <input matInput type="number" min="0"
+            [(ngModel)]="information.permanents"
+            name="permanents"
+            placeholder="CDI"
+            required
+          >
         </mat-form-field>
 
         <mat-form-field class="field">
           <input matInput type="number" min="0"
-            [(ngModel)]="information.interns"
-            name="interns"
-            placeholder="Stagiaires"
+            [(ngModel)]="information.temporaries"
+            name="temporaries"
+            placeholder="CDD de plus de 6 mois"
             required
           >
         </mat-form-field>
-      </div>
 
-      <label class="mat-title">Nombre de contractuels</label>
-      <div class="contractuals"
-        fxLayout="row wrap"
-        fxLayout.lt-md="column"
-        fxLayoutGap="30px"
-        fxLayoutAlign="center"
-      >
-          <mat-form-field class="field">
-            <input matInput type="number" min="0"
-              [(ngModel)]="information.permanents"
-              name="permanents"
-              placeholder="CDI"
-              required
-            >
-          </mat-form-field>
+        <mat-form-field class="field">
+          <input matInput type="number" min="0"
+            [(ngModel)]="information.supported"
+            name="supported"
+            placeholder="Contrats aidés"
+            required
+          >
+        </mat-form-field>
 
-          <mat-form-field class="field">
-            <input matInput type="number" min="0"
-              [(ngModel)]="information.temporaries"
-              name="temporaries"
-              placeholder="CDD de plus de 6 mois"
-              required
-            >
-          </mat-form-field>
+        <mat-form-field class="field">
+          <input matInput type="number" min="0"
+            [(ngModel)]="information.apprentices"
+            name="apprentices"
+            placeholder="Apprentis"
+            required
+          >
+        </mat-form-field>
+    </div>
 
-          <mat-form-field class="field">
-            <input matInput type="number" min="0"
-              [(ngModel)]="information.supported"
-              name="supported"
-              placeholder="Contrats aidés"
-              required
-            >
-          </mat-form-field>
-
-          <mat-form-field class="field">
-            <input matInput type="number" min="0"
-              [(ngModel)]="information.apprentices"
-              name="apprentices"
-              placeholder="Apprentis"
-              required
-            >
-          </mat-form-field>
-      </div>
-
-      <div class="button" fxLayout="row" fxLayoutAlign="center">
-        <button fxFlexAlign="center" type="submit" mat-raised-button color="accent" [disabled]="informationForm.invalid">Valider</button>
-      </div>
+    <div class="button" fxLayout="row" fxLayoutAlign="center">
+      <button fxFlexAlign="center" type="submit" mat-raised-button color="accent" [disabled]="informationForm.invalid">Valider</button>
+    </div>
   </mat-card>
 </form>

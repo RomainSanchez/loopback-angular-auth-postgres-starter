@@ -21,7 +21,7 @@ export class InformationComponent implements OnInit {
   ngOnInit() {
     const savedInformation = JSON.parse(localStorage.getItem('information'));
 
-    if(savedInformation && Object.keys(this.information).length === 0) {
+    if (savedInformation && Object.keys(this.information).length === 0) {
       this.information = savedInformation;
     }
 

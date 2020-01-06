@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  Referral
+} from '../index';
 
 declare var Object: any;
 export interface CommitteeInterface {
@@ -12,6 +15,7 @@ export interface CommitteeInterface {
   "id"?: number;
   "createdAt": Date;
   "updatedAt": Date;
+  referrals?: Referral[];
 }
 
 export class Committee implements CommitteeInterface {
@@ -25,6 +29,7 @@ export class Committee implements CommitteeInterface {
   "id": number;
   "createdAt": Date;
   "updatedAt": Date;
+  referrals: Referral[];
   constructor(data?: CommitteeInterface) {
     Object.assign(this, data);
   }
@@ -101,6 +106,14 @@ export class Committee implements CommitteeInterface {
         },
       },
       relations: {
+        referrals: {
+          name: 'referrals',
+          type: 'Referral[]',
+          model: 'Referral',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'committeeId'
+        },
       }
     }
   }

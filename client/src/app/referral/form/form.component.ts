@@ -7,6 +7,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ValidationDialogComponent } from '../dialog/validation-dialog/validation-dialog.component';
 import { RefusalDialogComponent } from '../dialog/refusal-dialog/refusal-dialog.component';
+import { OpeningService } from 'src/app/service/opening.service';
 
 @Component({
   selector: 'app-form',
@@ -26,7 +27,8 @@ export class FormComponent implements OnInit {
     private appUserApi: AppUserApi,
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private openingService: OpeningService
   ) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class FormComponent implements OnInit {
     const formId = this.route.snapshot.paramMap.get('formId');
 
     this.referralApi.findById(referralId, {
-      include: ['attachments', 'signedSummary', 'validatedBy']
+      include: ['attachments', 'signedSummary', 'validatedBy', 'committee']
     }).subscribe((referral: Referral) => {
       this.referral = referral;
       this.referral.formId = parseInt(formId, null);
@@ -55,6 +57,11 @@ export class FormComponent implements OnInit {
   formSubmit(data: any) {
     const attachments = this.referral.attachments;
 
+    this.referral.committeeId = this.referral.form.committee === 'cap' ?
+      this.openingService.getCurrentCap().id :
+      this.openingService.getCurrentCt().id
+    ;
+
     delete this.referral.attachments;
     data.information = this.referral.data.information;
     this.referral.data = data;
@@ -67,8 +74,6 @@ export class FormComponent implements OnInit {
       this.snackbar.open('Formulaire enregistré', null, {duration: 2000});
       this.stepper.next();
     });
-
-
   }
 
   fileChange(referral: Referral) {

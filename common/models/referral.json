@@ -35,6 +35,14 @@
         "nestRemoting": true
       }
     },
+    "committee": {
+      "type": "belongsTo",
+      "model": "Committee",
+      "foreignKey": "committeeId",
+      "options": {
+        "nestRemoting": true
+      }
+    },
     "attachments": {
       "type": "hasMany",
       "model": "Attachment",

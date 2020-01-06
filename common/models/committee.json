@@ -36,7 +36,15 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "referrals": {
+      "type": "hasMany",
+      "model": "Referral",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
   "acls": [],
   "methods": {}
 }
