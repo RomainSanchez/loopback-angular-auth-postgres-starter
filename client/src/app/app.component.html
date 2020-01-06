@@ -16,7 +16,9 @@
           <a [routerLink]="link.url">{{ link.name }}</a>
         </span>
       </ng-container>
-      <span *ngxPermissionsOnly="['community']" routerLink="/referrals/user">Mes saisines</span>
+      <span *ngxPermissionsOnly="['community']">
+        <a routerLink="/referrals/user">Mes saisines</a>
+      </span>
       <div
         id="logout"
         *ngIf="authService.getAccessTokenId()"

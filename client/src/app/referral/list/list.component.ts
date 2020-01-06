@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Referral, ReferralApi } from 'src/app/shared/sdk';
-import { Router } from '@angular/router';
+import { Referral, ReferralApi, LoopBackAuth } from 'src/app/shared/sdk';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -28,6 +28,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
+    private authService: LoopBackAuth,
     private referralApi: ReferralApi
   ) {
     this.tableDataSource = new MatTableDataSource<Referral>();
@@ -47,11 +49,7 @@ export class ListComponent implements OnInit {
     this.isLoading = true;
 
     return this.referralApi.find({
-      where: {
-        formId: {
-          neq: null
-        }
-      },
+      where: this.getWhereClauses(),
       include: ['form', 'attachments', 'createdBy', 'updatedBy', 'validatedBy'],
     }).subscribe((referrals: Referral[]) => {
       this.tableDataSource.data = referrals;
@@ -85,5 +83,22 @@ export class ListComponent implements OnInit {
     });
 
     return matchFilter.every(Boolean);
+  }
+
+  private getWhereClauses(): any {
+    if (this.route.snapshot.url.join().indexOf('user') > -1) {
+      return {
+        formId: {
+          neq: null
+        },
+        createdById: this.authService.getCurrentUserId()
+      };
+    }
+
+    return {
+      formId: {
+        neq: null
+      }
+    };
   }
 }
