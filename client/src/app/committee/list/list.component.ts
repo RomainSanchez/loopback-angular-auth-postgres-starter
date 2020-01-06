@@ -24,6 +24,7 @@ export class ListComponent implements OnInit {
     'session',
     'limit',
     'location',
+    'referrals',
     'delete'
   ];
   pageSize = 10;
@@ -53,7 +54,7 @@ export class ListComponent implements OnInit {
   getCommittees() {
     this.isLoading = true;
 
-    return this.committeeApi.find().subscribe((committees: Committee[]) => {
+    return this.committeeApi.find({include: ['referrals']}).subscribe((committees: Committee[]) => {
       this.tableDataSource.data = committees;
 
       this.isLoading = false;
@@ -82,6 +83,10 @@ export class ListComponent implements OnInit {
         });
       }
     });
+  }
+
+  showReferrals(committeeId: number) {
+    this.router.navigate(['/referrals/committee', committeeId]);
   }
 
   private filter(committee: Committee, filters: string) {

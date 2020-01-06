@@ -17,6 +17,9 @@
         </span>
       </ng-container>
       <span *ngxPermissionsOnly="['community']">
+        <a routerLink="/">Nouvelle saisine</a>
+      </span>
+      <span *ngxPermissionsOnly="['community']">
         <a routerLink="/referrals/user">Mes saisines</a>
       </span>
       <div
@@ -43,7 +46,12 @@
               <a [routerLink]="link.url">{{ link.name }}</a>
             </span>
           </ng-container>
-          <span *ngxPermissionsOnly="['community']" routerLink="/referrals/user">Mes saisines</span>
+          <span *ngxPermissionsOnly="['community']">
+            <a routerLink="/">Nouvelle saisine</a>
+          </span>
+          <span *ngxPermissionsOnly="['community']">
+            <a routerLink="/referrals/user">Mes saisines</a>
+          </span>
           <span id="current-user" *ngIf="authService.getAccessTokenId()">
             <mat-icon>account_circle</mat-icon>
             <span>{{ authService.getToken().user?.name }}</span>

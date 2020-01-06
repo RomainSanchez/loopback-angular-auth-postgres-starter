@@ -39,6 +39,26 @@
     <mat-cell *matCellDef="let committee">{{ committee.location }}</mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="referrals">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Saisines</mat-header-cell>
+    <mat-cell class="referrals-cell" *matCellDef="let committee" (click)="$event.stopPropagation()">
+      <button
+        (click)="showReferrals(committee.id)"
+        mat-mini-fab
+        color="primary"
+        matTooltip="Liste des saisines"
+        matTooltipPosition="right"
+        [disabled]="committee.referrals.length < 1"
+      >
+        <mat-icon class="mat-18"
+          [matBadge]="committee.referrals?.length"
+          [matBadgeHidden]="committee.referrals?.length < 1"
+          matBadgeColor="accent"
+        >list</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Supprimer</mat-header-cell>
     <mat-cell class="delete-cell" *matCellDef="let committee" (click)="$event.stopPropagation()">

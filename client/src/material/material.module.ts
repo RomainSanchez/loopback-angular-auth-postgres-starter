@@ -25,6 +25,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatBadgeModule } from '@angular/material';
 
 const modules = [
   MatButtonModule,
@@ -53,7 +54,8 @@ const modules = [
   MatMomentDateModule,
   MatRadioModule,
   MatChipsModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatBadgeModule
 ];
 
 @NgModule({

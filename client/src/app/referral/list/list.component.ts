@@ -86,6 +86,12 @@ export class ListComponent implements OnInit {
   }
 
   private getWhereClauses(): any {
+    const committeeId = this.route.snapshot.paramMap.get('committeeId');
+
+    if (committeeId) {
+      return { committeeId };
+    }
+
     if (this.route.snapshot.url.join().indexOf('user') > -1) {
       return {
         formId: {
