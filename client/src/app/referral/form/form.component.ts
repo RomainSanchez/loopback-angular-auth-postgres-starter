@@ -56,6 +56,8 @@ export class FormComponent implements OnInit {
   }
 
   formSubmit(data: any) {
+    if (!this.isEditable(this.referral)) { return; }
+
     const attachments = this.referral.attachments;
 
     this.referral.committeeId = this.referral.form.committee === 'cap' ?
@@ -78,6 +80,8 @@ export class FormComponent implements OnInit {
   }
 
   fileChange(referral: Referral) {
+    if (!this.isEditable(this.referral)) { return; }
+
     this.referral = referral;
   }
 
@@ -101,6 +105,8 @@ export class FormComponent implements OnInit {
   }
 
   signed() {
+    if (!this.isEditable(this.referral)) { return; }
+
     const attachments = this.referral.attachments;
 
     this.referral.status = 'signed';
@@ -183,5 +189,9 @@ export class FormComponent implements OnInit {
 
     link.click();
     link.remove();
+  }
+
+  private isEditable(referral: Referral): boolean {
+    return ['valid', 'signed', 'accepted', 'declined', 'postponed'].indexOf(referral.status) === -1;
   }
 }

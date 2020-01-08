@@ -15,8 +15,7 @@ export class BaseFormComponent implements OnInit {
   ngOnInit() {
     const savedData = JSON.parse(localStorage.getItem('referralData'));
 
-    if(savedData && Object.keys(this.data).length < 2) {
-      console.log(savedData);
+    if (savedData && Object.keys(this.data).length < 2) {
       this.data = savedData;
     }
 
