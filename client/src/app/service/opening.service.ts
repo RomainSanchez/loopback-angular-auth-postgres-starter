@@ -37,7 +37,7 @@ export class OpeningService {
     return new Promise((resolve, reject) => {
       this.committeeApi.findOne({
         where: {
-          type: type,
+          type,
           limit: {
             gt: new Date()
           }

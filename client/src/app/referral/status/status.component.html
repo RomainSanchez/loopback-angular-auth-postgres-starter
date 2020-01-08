@@ -4,4 +4,7 @@
   <mat-chip class="chip signed" *ngIf="status === 'signed'">En attente de validation</mat-chip>
   <mat-chip class="chip valid" *ngIf="status === 'valid'">Validée</mat-chip>
   <mat-chip class="chip refused" *ngIf="status === 'refused'">Refusée</mat-chip>
+  <mat-chip class="chip accepted" *ngIf="status === 'accepted'">Avis favorable</mat-chip>
+  <mat-chip class="chip denied" *ngIf="status === 'denied'">Défavorable</mat-chip>
+  <mat-chip class="chip postponed" *ngIf="status === 'postponed'">Nouvelle consultation</mat-chip>
 </mat-chip-list>

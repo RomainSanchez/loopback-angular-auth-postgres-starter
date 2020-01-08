@@ -97,6 +97,12 @@
         Refuser la saisine
       </button>
     </ng-container>
+    <ng-container *ngIf="referral?.status === 'valid'">
+      <button *ngxPermissionsOnly="['validator', 'admin', 'secretary']" mat-raised-button color="accent" (click)="decision()">
+        <mat-icon class="mat-18">done_outline</mat-icon>
+        Décision
+      </button>
+    </ng-container>
   </div>
 </div>
 

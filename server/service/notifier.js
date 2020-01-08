@@ -53,6 +53,15 @@ module.exports = {
       `[RELANCE] Saisine #${referral.id}`,
       'escalation'
     );
+  },
+
+  decisionNotification: () => {
+    sendNotificationUsingTemplate(
+      referral,
+      ['community@cdg29.bzh'],
+      `Saisine #${referral.id}`,
+      'decision'
+    );
   }
 
 }

@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Décision</h2>
+<mat-dialog-content>
+  <p>Veuillez renseigner la décision de la commission</p>
+</mat-dialog-content>
+<mat-dialog-actions *ngxPermissionsOnly="['validator', 'admin']">
+  <button  [mat-dialog-close]="'accepted'" mat-button color="accent">
+    <mat-icon class="mat-18">check</mat-icon>
+    Favorable
+  </button>
+  <button mat-button mat-dialog-close="denied">
+    <mat-icon class="mat-18">close</mat-icon>
+    Défavorable
+  </button>
+  <button *ngIf="data.committee === 'ct'" mat-button mat-dialog-close="postponed">
+    <mat-icon class="mat-18">replay</mat-icon>
+    Nouvelle consultation
+  </button>
+</mat-dialog-actions>

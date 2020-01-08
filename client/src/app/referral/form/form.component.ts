@@ -7,6 +7,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ValidationDialogComponent } from '../dialog/validation-dialog/validation-dialog.component';
 import { RefusalDialogComponent } from '../dialog/refusal-dialog/refusal-dialog.component';
+import { DecisionDialogComponent } from '../dialog/decision-dialog/decision-dialog.component';
 import { OpeningService } from 'src/app/service/opening.service';
 
 @Component({
@@ -151,6 +152,24 @@ export class FormComponent implements OnInit {
           this.snackbar.open('Saisine mise à jour', null, {duration: 2000});
         });
       }
+    });
+  }
+
+  decision() {
+    const dialogRef = this.dialog.open(DecisionDialogComponent, {
+      width: '60%',
+      autoFocus: true,
+      data: this.referral.form
+    });
+
+    dialogRef.afterClosed().subscribe(reason => {
+      this.referral.status = reason;
+      delete this.referral.attachments;
+
+      this.referralApi.replaceOrCreate(this.referral).subscribe(() => {
+        this.appUserApi.notify(this.referral.id).subscribe();
+        this.snackbar.open('Saisine mise à jour', null, {duration: 2000});
+      });
     });
   }
 

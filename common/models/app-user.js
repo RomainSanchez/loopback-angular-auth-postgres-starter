@@ -66,6 +66,10 @@ module.exports = function(AppUser) {
 
           // notifier.completeNotification(referral);
         }
+
+        if( ['accepted', 'denied', 'postponed'].indexOf(referral.status) !== -1 ) {
+          notifier.decisionNotification(referral);
+        }
       });
     });
   }

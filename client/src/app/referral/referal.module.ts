@@ -17,6 +17,7 @@ import { Ct01Component } from './form-types/ct01/ct01.component';
 import { StatusComponent } from './status/status.component';
 import { ValidationDialogComponent } from './dialog/validation-dialog/validation-dialog.component';
 import { RefusalDialogComponent } from './dialog/refusal-dialog/refusal-dialog.component';
+import { DecisionDialogComponent } from './dialog/decision-dialog/decision-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -33,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     Ct01Component,
     StatusComponent,
     ValidationDialogComponent,
-    RefusalDialogComponent
+    RefusalDialogComponent,
+    DecisionDialogComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -57,7 +59,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   entryComponents: [
     ValidationDialogComponent,
-    RefusalDialogComponent
+    RefusalDialogComponent,
+    DecisionDialogComponent
   ]
 })
 export class ReferralModule { }
