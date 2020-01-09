@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +15,7 @@ import { ConfirmationDialogComponent } from 'src/app/confirmation-dialog/confirm
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.sass']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
