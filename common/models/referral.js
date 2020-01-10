@@ -8,7 +8,7 @@ module.exports = function(Referral) {
     return new Promise((resolve, reject) => {
       Referral.findById(id, {include: ['form']}).then(referral => {
         referral.form.get().then(form => {
-          twig(`../../../server/assets/views/form/${form.code}.twig`,{context: referral} , function (error, template) {
+          twig(`../../../server/assets/views/form/${form.code}.twig`, {context: referral} , function (error, template) {
             console.log(error);
           //  console.log(template);
 

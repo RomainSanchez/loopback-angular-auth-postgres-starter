@@ -46,5 +46,34 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "generateAgenda": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "number",
+          "required": true,
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "response",
+          "type": "object",
+          "required": true,
+          "description": "The http response",
+          "root": true
+        }
+      ],
+      "description": "Generate committee agenda",
+      "http": [
+        {
+          "path": "/agenda",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

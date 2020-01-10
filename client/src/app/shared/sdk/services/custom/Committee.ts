@@ -128,7 +128,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} id Committee id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -223,7 +223,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countReferrals(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
@@ -302,13 +302,35 @@ export class CommitteeApi extends BaseLoopBackApi {
   }
 
   /**
+   * Generate committee agenda
+   *
+   * @param {number} id
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The http response
+   */
+  public generateAgenda(id: any, customHeaders?: Function): Observable<any> {
+    let _method: string = "GET";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/Committees/agenda";
+    let _routeParams: any = {};
+    let _postBody: any = {};
+    let _urlParams: any = {id: id};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
+    return result;
+  }
+
+  /**
    * Fetches belongsTo relation form.
    *
    * @param {any} id Committee id
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -341,7 +363,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -374,7 +396,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -407,7 +429,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -542,7 +564,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -674,7 +696,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -707,7 +729,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * @param {any} nk Foreign key for referrals.
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -811,7 +833,7 @@ export class CommitteeApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countReferralsAttachments(id: any, nk: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";

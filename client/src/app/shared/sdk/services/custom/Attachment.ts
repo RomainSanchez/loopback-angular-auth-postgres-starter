@@ -35,7 +35,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -140,7 +140,7 @@ export class AttachmentApi extends BaseLoopBackApi {
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Attachments/upload";
     let _routeParams: any = {};
-    let _postBody: any = {};
+    let _postBody: any = {data: data};
     let _urlParams: any = {};
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
@@ -164,7 +164,7 @@ export class AttachmentApi extends BaseLoopBackApi {
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
     "/Attachments/upload-signed";
     let _routeParams: any = {};
-    let _postBody: any = {};
+    let _postBody: any = {data: data};
     let _urlParams: any = {};
     let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
     return result;
@@ -175,7 +175,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -205,7 +205,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -235,7 +235,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -265,7 +265,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -388,7 +388,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {boolean} refresh 
+   * @param {boolean} refresh
    *
    * @returns {object} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -508,7 +508,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * @param {any} id Attachment id
    *
-   * @param {object} filter 
+   * @param {object} filter
    *
    * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -603,7 +603,7 @@ export class AttachmentApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public countReferralAttachments(id: any, where: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";

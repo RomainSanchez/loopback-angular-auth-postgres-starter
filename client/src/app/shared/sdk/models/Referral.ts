@@ -132,10 +132,6 @@ export class Referral implements ReferralInterface {
           name: 'committeeId',
           type: 'number'
         },
-        "commiteeId": {
-          name: 'commiteeId',
-          type: 'number'
-        },
       },
       relations: {
         form: {
@@ -191,9 +187,9 @@ export class Referral implements ReferralInterface {
           type: 'Committee',
           model: 'Committee',
           relationType: 'belongsTo',
-                  keyFrom: 'commiteeId',
+                  keyFrom: 'committeeId',
           keyTo: 'id'
-        }
+        },
       }
     }
   }

@@ -23,7 +23,7 @@ export class FormComponent implements OnInit {
     const committeeId = this.route.snapshot.paramMap.get('committeeId');
 
     if (committeeId) {
-      this.committeeApi.findById(committeeId).subscribe((committee: Committee) => {
+      this.committeeApi.findById(committeeId, {include: ['referrals']}).subscribe((committee: Committee) => {
         this.committee = committee;
       });
     }
@@ -40,6 +40,20 @@ export class FormComponent implements OnInit {
       }
 
       this.router.navigate(['/committees']);
+    });
+  }
+
+  downloadAgenda() {
+    this.committeeApi.generateAgenda(this.committee.id).subscribe(async res => {
+      const link = document.createElement('a');
+
+      link.href = `data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,${res}`;
+      link.download = 'odj.docx';
+
+      document.body.appendChild(link);
+
+      link.click();
+      link.remove();
     });
   }
 }
