@@ -22,6 +22,10 @@ import { Cap01Component } from './form-types/cap01/cap01.component';
 import { Cap02Component } from './form-types/cap02/cap02.component';
 import { Cap03Component } from './form-types/cap03/cap03.component';
 import { Cap04Component } from './form-types/cap04/cap04.component';
+import { Cap05Component } from './form-types/cap05/cap05.component';
+import { Cap06Component } from './form-types/cap06/cap06.component';
+import { Cap07Component } from './form-types/cap07/cap07.component';
+import { Cap08Component } from './form-types/cap08/cap08.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -41,6 +45,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     Cap02Component,
     Cap03Component,
     Cap04Component,
+    Cap05Component,
+    Cap06Component,
+    Cap07Component,
+    Cap08Component,
     Ct01Component,
   ],
   imports: [

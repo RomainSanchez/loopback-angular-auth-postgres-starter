@@ -65,7 +65,7 @@ module.exports = function(app) {
       'Compte rendu d\'entretien',
       'Curriculum vitae'
     ]},
-    { name: 'Refus de disponibilité ou de réintégration après disponibilité', committee: 'cap', code: 'cap06' , requiredAttachments: []},
+    { name: 'Refus de disponibilité ou de réintégration après disponibilité', committee: 'cap', code: 'cap06' , requiredAttachments: ['Demande de l\'agent']},
     { name: 'Licenciement en cours de stage', committee: 'cap', code: 'cap07' , requiredAttachments:[
       'Entretien de suivi stagiaire',
       'Fiche de poste',

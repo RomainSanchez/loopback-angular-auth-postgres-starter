@@ -1,0 +1,111 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="cap08-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Proposition d'avancement à l'échelon spécial</p>
+  <mat-divider></mat-divider>
+  <div class="fields"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.firstname"
+        name="firstName"
+        placeholder="Prénom"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.lastname"
+        name="lastName"
+        placeholder="Nom"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.birthdate"
+        [matDatepicker]="birthDatePicker"
+        name="birthdate"
+        placeholder="Date de naissance"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.grade"
+        name="grade"
+        placeholder="Grade actuel"
+        required
+      >
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.echelon"
+        name="echelon"
+        placeholder="Echelon actuel"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field percentage" fxFlex.lt-md="70">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.percentage"
+        name="percentage"
+        placeholder="Pourcentage appliqué pour le grade concerné"
+        required
+      >
+      <span matSuffix>%</span>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field deliberation" fxFlex.gt-md="150">
+      <input matInput
+        [(ngModel)]="data.deliberation"
+        [matDatepicker]="deliberationDatePicker"
+        name="deliberation"
+        placeholder="Date de délibération des ratios promus/promouvables"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="deliberationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #deliberationDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field advance-from">
+      <input matInput
+        [(ngModel)]="data.advanceFrom"
+        [matDatepicker]="advanceFromDatePicker"
+        name="advanceFrom"
+        placeholder="Avancement à compter du"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="advanceFromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #advanceFromDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>

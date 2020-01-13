@@ -1,8 +1,8 @@
-<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="cap03-form"
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="cap06-form"
   fxLayout="column"
   fxLayoutAlign="center center"
 >
-  <p class="mat-title">Demande de licenciement pour inaptitude physique d'un agent CNRACL (28h ou plus)</p>
+  <p class="mat-title">Refus de disponibilité ou de réintégration après disponibilité</p>
   <mat-divider></mat-divider>
   <div class="fields"
     fxLayout="row wrap"
@@ -10,6 +10,21 @@
     fxLayoutGap="30px"
     fxLayoutAlign="center"
   >
+    <div class="field in-or-out" fxFlex="100">
+      <mat-radio-group
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        [(ngModel)]="data.inOrOut"
+        name="in-or-out"
+        required
+      >
+        <mat-radio-button value="true">Refus de disponibilité</mat-radio-button>
+        <mat-radio-button value="false">Refus de réintégration</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
     <mat-form-field class="field">
       <input matInput
         [(ngModel)]="data.firstname"
@@ -75,7 +90,7 @@
     fxLayoutGap="30px"
     fxLayoutAlign="center"
   >
-    <mat-form-field class="field hours" fxFlex.gt-md="40">
+    <mat-form-field class="field hours" fxFlex.lt-md="100">
       <input matInput type="number" min="1" max="99"
         [(ngModel)]="data.hours"
         name="hours"
@@ -83,15 +98,6 @@
         required
       >
       <span matSuffix>h/semaine</span>
-    </mat-form-field>
-
-    <mat-form-field class="field position" fxFlex.lt-md="100">
-      <input matInput
-        [(ngModel)]="data.position"
-        name="position"
-        placeholder="Position statutaire actuelle"
-        required
-      >
     </mat-form-field>
   </div>
 
@@ -101,28 +107,35 @@
     fxLayoutGap="30px"
     fxLayoutAlign="center"
   >
-    <mat-form-field class="field medical" fxFlex.gt-md="100">
-      <input matInput
-        [(ngModel)]="data.medical"
-        [matDatepicker]="medicalDatePicker"
-        name="medical"
-        placeholder="Date du comité médical de l'avis d'inaptitude"
+    <mat-form-field class="field duration" fxFlex.lt-md="70">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.duration"
+        name="duration"
+        placeholder="Durée de la disponibilité"
         required
       >
-      <mat-datepicker-toggle matSuffix [for]="medicalDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #medicalDatePicker></mat-datepicker>
+      <span matSuffix>mois</span>
     </mat-form-field>
 
-    <mat-form-field class="field termination" fxFlex.lt-md="80">
+    <mat-form-field class="field motive" fxFlex.lt-md="100">
       <input matInput
-        [(ngModel)]="data.termination"
-        [matDatepicker]="terminationDatePicker"
-        name="termination"
-        placeholder="Licenciement à comter du"
+        [(ngModel)]="data.motive"
+        name="motive"
+        placeholder="Motif de la disponibilité"
         required
       >
-      <mat-datepicker-toggle matSuffix [for]="terminationDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #terminationDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field reason" fxFlexFill fxFlex.lt-md="100">
+      <textarea fxFlexFill
+        [(ngModel)]="data.reason"
+        matInput
+        cdkTextareaAutosize
+        name="reason"
+        id="reason"
+        placeholder="Motif de refus"
+        required
+      ></textarea>
     </mat-form-field>
   </div>
 

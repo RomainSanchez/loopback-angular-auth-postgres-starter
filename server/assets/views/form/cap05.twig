@@ -1,0 +1,65 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+    L'agent est soumis à une période probatoire au cours de laquelle il devra faire l'objet d'un suivi particulier et d'un encadrement approprié.
+
+    Le stage peut être prorogé pour une période définie si le stagiaire ne montre pas d’aptitudes professionnelles suffisantes. La décision de l’autorité territoriale doit être motivée.
+
+    La CAP doit donner un avis sur le refus de titularisation au regard de l’aptitude professionnelle du stagiaire.
+  </p>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <p class="label">Nom et prénom de l'agent:</p>
+  <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Date de naissance:</p>
+  <p id="birthdate" class="value">{{ data.birthdate|date('d/m/Y') }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Date de nomination dans la fonction publique:</p>
+  <p id="nomination" class="value">{{ data.nomination|date('d/m/Y') }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Collectivité ou établissement:</p>
+  <p id="community" class="value">{{ data.information.community }}</p>
+</div>
+
+<div class="row">
+<p class="label">Grade:</p>
+  <p id="grade" class="value">{{ data.grade }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Temps de travail:</p>
+  <p id="hours" class="value">{{ data.hours }} heures/semaine</p>
+</div>
+
+<div class="row">
+  <p class="label">Stage prorogé:</p>
+  <p id="prorogation" class="value">{{ data.prorogation ? 'Oui': 'Non' }}</p>
+</div>
+
+{% if data.prorogation %}
+<div class="row">
+  <p class="label">Durée de prorogation:</p>
+  <p id="prorogation-duration" class="value">{{ data.prorogationDuration }} mois</p>
+</div>
+{% endif %}
+
+<div class="row">
+  <p class="label">Prorogation à compter du:</p>
+  <p id="deniedFrom" class="value">{{ data.prorogationFrom|date('d/m/Y') }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Rapport motivé:</p>
+  <p id="motivation" class="value">{{ data.motivation }}</p>
+</div>
+{% endblock %}

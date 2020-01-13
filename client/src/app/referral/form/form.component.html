@@ -1,7 +1,7 @@
 <ng-template #stepOne>
   <div class="step-content" fxLayout="column">
     <h3 fxFlexAlign="center" class="mat-display-1">Veuillez renseigner le formulaire de saisine</h3>
-    <mat-card fxFlex="80">
+    <mat-card fxFlex="80" fxFlex.lt-md="95">
       <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
         <app-cap01
           (formSubmit)="formSubmit($event)"
@@ -23,6 +23,26 @@
           [data]="referral.data"
           *ngIf="referral?.form?.code === 'cap04'"
         ></app-cap04>
+        <app-cap05
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap05'"
+        ></app-cap05>
+        <app-cap06
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap06'"
+        ></app-cap06>
+        <app-cap07
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap07'"
+        ></app-cap07>
+        <app-cap08
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap08'"
+        ></app-cap08>
         <app-ct01
           (formSubmit)="formSubmit($event)"
           [data]="referral?.data"

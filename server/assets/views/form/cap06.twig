@@ -1,0 +1,57 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <p id="in-or-out" class="value">{{ data.inOrOut ? 'Refus de disponibilité': 'Refus de réintégration' }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Nom et prénom de l'agent:</p>
+  <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Date de naissance:</p>
+  <p id="birthdate" class="value">{{ data.birthdate|date('d/m/Y') }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Date de nomination dans la fonction publique:</p>
+  <p id="nomination" class="value">{{ data.nomination|date('d/m/Y') }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Collectivité ou établissement:</p>
+  <p id="community" class="value">{{ data.information.community }}</p>
+</div>
+
+<div class="row">
+<p class="label">Grade:</p>
+  <p id="grade" class="value">{{ data.grade }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Temps de travail:</p>
+  <p id="hours" class="value">{{ data.hours }} heures/semaine</p>
+</div>
+
+<div class="row">
+  <p class="label">Durée de la disponibilité:</p>
+  <p id="prorogation" class="value">{{ data.duration }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Motif de la disponibilité:</p>
+  <p id="deniedFrom" class="value">{{ data.motive }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Motif de refus:</p>
+  <p id="motivation" class="value">{{ data.reason }}</p>
+</div>
+{% endblock %}

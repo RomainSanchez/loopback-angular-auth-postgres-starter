@@ -19,6 +19,7 @@
         [(ngModel)]="data.initial"
         name="initial"
         aria-label="Première demande ou renouvellement"
+        required
       >
         <mat-radio-button value="true">Première demande</mat-radio-button>
         <mat-radio-button value="false">Renouvellement</mat-radio-button>
@@ -99,7 +100,7 @@
       <span matSuffix>h/semaine</span>
     </mat-form-field>
 
-    <mat-form-field class="field new-community" fxFlex.lt-md="100">
+    <mat-form-field class="field new-community" fxFlex.gt-md="50">
       <input matInput
         [(ngModel)]="data.newCommunity"
         name="new-community"
@@ -115,16 +116,16 @@
     fxLayoutGap="30px"
     fxLayoutAlign="center"
   >
-    <mat-form-field class="field proportion" fxFlex.lt-md="100">
+    <mat-form-field class="field proportion" fxFlex.gt-md="40">
       <input matInput
         [(ngModel)]="data.proportion"
-        name="hours"
+        name="proportion"
         placeholder="Quotité de la mise à disposition"
         required
       >
     </mat-form-field>
 
-    <mat-form-field class="field effective" fxFlex.lt-md="100">
+    <mat-form-field class="field effective" fxFlex.gt-md="40">
       <input matInput
         [(ngModel)]="data.effective"
         [matDatepicker]="effectiveDatePicker"
@@ -139,7 +140,7 @@
     <mat-form-field class="field duration" fxFlex.lt-md="100">
       <input matInput type="number" min="1" max="99"
         [(ngModel)]="data.duration"
-        name="hours"
+        name="duration"
         placeholder="Durée de la mise à disposition"
         required
       >
