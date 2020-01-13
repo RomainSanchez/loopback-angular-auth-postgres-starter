@@ -1,0 +1,68 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>Le fonctionnaire demeure dans son corps d’origine et est réputé occuper son emploi. Il continue à percevoir la rémunération correspondante mais effectue son service dans une autre administration que la sienne.
+    Les fonctionnaires territoriaux peuvent être mis à disposition notamment : des établissements relevant de la Fonction Publique Hospitalière, d’une collectivité territoriale ou d’un établissement public en relevant, d’un organisme d’intérêt général (association, organisme à but non lucratif), de l’Etat et de ses établissements publics.
+  </p>
+  <p>
+    Parallèlement peuvent être mis à disposition, notamment, des collectivités territoriales et de leurs établissements publics : les fonctionnaires hospitaliers, les fonctionnaires de l’Etat.
+    L’accord du fonctionnaire ainsi que la signature d'une convention entre l'administration d'origine et l'organisme d'accueil sont obligatoires.
+    La mise à disposition peut être prononcée pour une période maximale de 3 ans. Elle peut être renouvelée par période n’excédant pas 3 années après avis de la CAP.
+    Les stagiaires sont exclus de ce dispositif !
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p id="initial" class="value">{{ data.initial ? 'Première demande': 'Renouvellement' }}</p>
+  </div>
+  <div class="row">
+    <p class="label">Nom et prénom de l'agent:</p>
+    <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date de naissance:</p>
+    <p id="birthdate" class="value">{{ data.birthdate|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date de nomination dans la fonction publique:</p>
+    <p id="nomination" class="value">{{ data.nomination|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Collectivité ou établissement d'origine:</p>
+    <p id="community" class="value">{{ data.information.community }}</p>
+  </div>
+
+  <div class="row">
+  <p class="label">Grade:</p>
+    <p id="grade" class="value">{{ data.grade }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Temps de travail:</p>
+    <p id="hours" class="value">{{ data.hours }} heures/semaine</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Collectivité ou établissement d'accueil:</p>
+    <p id="new-community" class="value">{{ data.newCommunity }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Quotité de la mise à disposition:</p>
+    <p id="proportion" class="value">{{ data.proportion }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date d'effet de la mise à disposition:</p>
+    <p id="effective" class="value">{{ data.effective|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Durée de la mise à disposition:</p>
+    <p id="duration" class="value">{{ data.duration }} mois</p>
+  </div>
+{% endblock %}

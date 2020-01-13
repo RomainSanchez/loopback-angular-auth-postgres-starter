@@ -8,6 +8,21 @@
           [data]="referral.data"
           *ngIf="referral?.form?.code === 'cap01'"
         ></app-cap01>
+        <app-cap02
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap02'"
+        ></app-cap02>
+        <app-cap03
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap03'"
+        ></app-cap03>
+        <app-cap04
+          (formSubmit)="formSubmit($event)"
+          [data]="referral.data"
+          *ngIf="referral?.form?.code === 'cap04'"
+        ></app-cap04>
         <app-ct01
           (formSubmit)="formSubmit($event)"
           [data]="referral?.data"

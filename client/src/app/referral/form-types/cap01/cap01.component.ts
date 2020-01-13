@@ -6,6 +6,6 @@ import { BaseFormComponent } from '../base-form/base-form.component';
   templateUrl: './cap01.component.html',
   styleUrls: ['./cap01.component.sass']
 })
-// Formulaire CAP Détachement sur emploi fonctionnel
+// Formulaire CAP Refus de titularisation
 export class Cap01Component extends BaseFormComponent {
 }

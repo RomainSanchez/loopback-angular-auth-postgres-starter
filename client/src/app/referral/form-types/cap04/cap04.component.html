@@ -1,10 +1,10 @@
-<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="cap01-form"
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="cap03-form"
   fxLayout="column"
   fxLayoutAlign="center center"
 >
-  <p class="mat-title">Refus de titularisation</p>
+  <p class="mat-title">Demande de licenciement pour inaptitude physique d'un agent IRCANTEC (moins de 28h)</p>
   <mat-divider></mat-divider>
-  <div class="agent"
+  <div class="fields"
     fxLayout="row wrap"
     fxLayout.lt-md="column"
     fxLayoutGap="30px"
@@ -71,10 +71,11 @@
 
   <div
     fxLayout="row wrap"
+    fxLayout.lt-md="column"
     fxLayoutGap="30px"
     fxLayoutAlign="center"
   >
-    <mat-form-field class="field hours" fxFlex.lt-md="70">
+    <mat-form-field class="field hours" fxFlex.lt-md="100">
       <input matInput type="number" min="1" max="99"
         [(ngModel)]="data.hours"
         name="hours"
@@ -83,44 +84,47 @@
       >
       <span matSuffix>h/semaine</span>
     </mat-form-field>
-  </div>
 
-  <div class="field" fxFlex="60">
-    <mat-checkbox [(ngModel)]="data.prorogation" name="prorogation">Le stage a t-il été prorogé ?</mat-checkbox>
+    <mat-form-field class="field position" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.position"
+        name="position"
+        placeholder="Position statutaire actuelle"
+        required
+      >
+    </mat-form-field>
   </div>
 
   <div
     fxLayout="row wrap"
+    fxLayout.lt-md="column"
     fxLayoutGap="30px"
     fxLayoutAlign="center"
-    *ngIf="data.prorogation"
   >
-    <mat-form-field class="field prorogation-duration" fxFlex.lt-md="70">
-      <input matInput type="number" min="1" max="99"
-        [(ngModel)]="data.prorogationDuration"
-        name="hours"
-        placeholder="Durée de prorogation"
+    <mat-form-field class="field medical" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.medical"
+        [matDatepicker]="medicalDatePicker"
+        name="medical"
+        placeholder="Date du comité médical de l'avis d'inaptitude"
         required
       >
-      <span matSuffix>mois</span>
+      <mat-datepicker-toggle matSuffix [for]="medicalDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #medicalDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field termination" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.termination"
+        [matDatepicker]="terminationDatePicker"
+        name="termination"
+        placeholder="Licenciement à comter du"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="terminationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #terminationDatePicker></mat-datepicker>
     </mat-form-field>
   </div>
-
-  <mat-form-field class="field denied-from">
-    <input matInput
-      [(ngModel)]="data.deniedFrom"
-      [matDatepicker]="deniedFromDatePicker"
-      name="deniedFrom"
-      placeholder="Refus de titularisation à compter du"
-      required
-    >
-    <mat-datepicker-toggle matSuffix [for]="deniedFromDatePicker"></mat-datepicker-toggle>
-    <mat-datepicker #deniedFromDatePicker></mat-datepicker>
-  </mat-form-field>
-
-  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
-    <textarea fxFlexFill [(ngModel)]="data.motivation" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
-  </mat-form-field>
 
   <div class="button">
     <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>

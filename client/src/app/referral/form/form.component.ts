@@ -88,7 +88,7 @@ export class FormComponent implements OnInit {
   downloadSummary() {
     this.referralApi.generateSummary(this.referral.id).subscribe(async res => {
       this.downloadFile(res.$data, 'saisine.pdf');
-
+      delete this.referral.attachments;
       this.referral.status = 'downloaded';
       this.referralApi.replaceOrCreate(this.referral).subscribe();
 

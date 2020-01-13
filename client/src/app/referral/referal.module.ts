@@ -9,7 +9,6 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { HttpClient } from '@angular/common/http';
 import { FormComponent } from './form/form.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { Cap01Component } from './form-types/cap01/cap01.component';
 import { InformationComponent } from './form-types/information/information.component';
 import { ListComponent } from './list/list.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
@@ -19,6 +18,10 @@ import { ValidationDialogComponent } from './dialog/validation-dialog/validation
 import { RefusalDialogComponent } from './dialog/refusal-dialog/refusal-dialog.component';
 import { DecisionDialogComponent } from './dialog/decision-dialog/decision-dialog.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Cap01Component } from './form-types/cap01/cap01.component';
+import { Cap02Component } from './form-types/cap02/cap02.component';
+import { Cap03Component } from './form-types/cap03/cap03.component';
+import { Cap04Component } from './form-types/cap04/cap04.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,15 +30,18 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     FormComponent,
-    Cap01Component,
     InformationComponent,
     ListComponent,
     FileUploadComponent,
-    Ct01Component,
     StatusComponent,
     ValidationDialogComponent,
     RefusalDialogComponent,
-    DecisionDialogComponent
+    DecisionDialogComponent,
+    Cap01Component,
+    Cap02Component,
+    Cap03Component,
+    Cap04Component,
+    Ct01Component,
   ],
   imports: [
     FlexLayoutModule,
