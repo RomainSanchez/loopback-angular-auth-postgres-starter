@@ -1,0 +1,104 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="cap12-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Refus de congé de formation syndicale ou professionnelle</p>
+  <mat-divider></mat-divider>
+  <div class="fields"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <div class="field syndicate" fxFlex="100">
+      <mat-radio-group
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        [(ngModel)]="data.syndicate"
+        name="syndicate"
+        aria-label="Première demande ou renouvellement"
+        required
+      >
+        <mat-radio-button value="true">Congé de formation syndicale</mat-radio-button>
+        <mat-radio-button value="false">Congé de formation professionnelle</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.firstname"
+        name="firstName"
+        placeholder="Prénom"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.lastname"
+        name="lastName"
+        placeholder="Nom"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.birthdate"
+        [matDatepicker]="birthDatePicker"
+        name="birthdate"
+        placeholder="Date de naissance"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #birthDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.grade"
+        name="grade"
+        placeholder="Grade"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field date">
+      <input matInput
+        [(ngModel)]="data.date"
+        [matDatepicker]="dateDatePicker"
+        name="date"
+        placeholder="Date du congé"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="dateDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="80">
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.motive"
+      matInput
+      cdkTextareaAutosize
+      name="motive"
+      id="motive"
+      placeholder="Motif du refus"
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>

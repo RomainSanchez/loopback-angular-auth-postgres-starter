@@ -73,7 +73,7 @@ module.exports = function(app) {
       'Curriculum vitae'
     ]},
     { name: 'Proposition d\'avancement à l\'échelon spécial', committee: 'cap', code: 'cap08' , requiredAttachments: []},
-    { name: 'Proposition d\'avancement de grade', committee: 'cap', code: 'cap09' , requiredAttachments: ['Demande de l\'agent']},
+    { name: 'Proposition d\'avancement de grade', committee: 'cap', code: 'cap09' , requiredAttachments: []},
     { name: 'Demande de révision de l\'entretien professionnel', committee: 'cap', code: 'cap10' , requiredAttachments: ['Compte rendu d\'entretien']},
     { name: 'Promotion interne', committee: 'cap', code: 'cap11' , requiredAttachments: []},
     { name: 'Refus de congé de formation syndicale ou professionnelle', committee: 'cap', code: 'cap12' , requiredAttachments: []},
@@ -83,6 +83,7 @@ module.exports = function(app) {
       'Compte rendu d\'entretien',
       'Curriculum vitae'
     ]},
+    { name: 'Supression d\'emploi', committee: 'cap', code: 'cap15' , requiredAttachments: []},
     { name: 'Règlement intérieur', committee: 'ct' , code: 'ct01', requiredAttachments: ['Projet de règlement intérieur']},
     { name: 'Mise en place du temps partiel sur autorisation', committee: 'ct' , code: 'ct02', requiredAttachments: []},
     { name: 'Formation', committee: 'ct' , code: 'ct03', requiredAttachments: [

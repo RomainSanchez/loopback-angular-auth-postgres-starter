@@ -1,0 +1,28 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <p class="label">Nom et prénom de l'agent:</p>
+  <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Date de naissance:</p>
+  <p id="birthdate" class="value">{{ data.birthdate|date('d/m/Y') }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Collectivité ou établissement:</p>
+  <p id="community" class="value">{{ data.information.community }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Grade actuel:</p>
+  <p id="grade" class="value">{{ data.grade }}</p>
+</div>
+{% endblock %}

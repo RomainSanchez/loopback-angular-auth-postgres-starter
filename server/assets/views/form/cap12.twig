@@ -7,6 +7,10 @@
 
 {% block content %}
 <div class="row">
+  <p id="syndicate" class="value">{{ data.syndicate ? 'Congé de formation syndicale': 'Congé de formation professionnelle' }}</p>
+</div>
+
+<div class="row">
   <p class="label">Nom et prénom de l'agent:</p>
   <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
 </div>
@@ -22,27 +26,17 @@
 </div>
 
 <div class="row">
-<p class="label">Grade actuel:</p>
+<p class="label">Grade:</p>
   <p id="grade" class="value">{{ data.grade }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Echelon actuel:</p>
-  <p id="echelon" class="value">{{ data.echelon }} heures/semaine</p>
+  <p class="label">Date du congé:</p>
+  <p id="echelon" class="value">{{ data.date|date('d/m/Y') }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Date de délibération des ratios promus promouvables:</p>
-  <p id="deliberation" class="value">{{ data.deliberation }}</p>
-</div>
-
-<div class="row">
-  <p class="label">Avancement à compter du:</p>
-  <p id="advance-from" class="value">{{ data.advanceFrom|date('d/m/Y') }}</p>
-</div>
-
-<div class="row">
-  <p class="label">Pourcentage appliqué pour le grade concerné:</p>
-  <p id="percentage" class="value">{{ data.percentage }} %</p>
+  <p class="label">Motif de refus:</p>
+  <p id="motive" class="value">{{ data.motive }} %</p>
 </div>
 {% endblock %}

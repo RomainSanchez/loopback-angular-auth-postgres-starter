@@ -45,4 +45,20 @@
   <p class="label">Pourcentage appliqué pour le grade concerné:</p>
   <p id="percentage" class="value">{{ data.percentage }} %</p>
 </div>
+
+{% if data.several %}
+<div class="row">
+  <p class="label">Ordre de priorité:</p>
+  <p id="priority" class="value">{{ data.priority }}</p>
+</div>
+{% endif %}
+
+{% if data.exam %}
+<div class="row">
+  <p class="label">Date d'obtention de l'examen professionnel:</p>
+  <p id="exam-date" class="value">{{ data.examDate|date('d/m/Y') }}</p>
+</div>
+{% endif %}
+
+
 {% endblock %}
