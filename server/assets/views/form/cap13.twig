@@ -7,17 +7,7 @@
 
 {% block content %}
 <div class="row">
-  {% if data.type === 'a' %}
-  <p id="syndicate" class="value">Refus de télétravail</p>
-  {% endif %}
-
-  {% if data.type === 'b' %}
-  <p id="syndicate" class="value">Refus de CET</p>
-  {% endif %}
-
-  {% if data.type === 'c' %}
-  <p id="syndicate" class="value">Refus de temps partiel</p>
-  {% endif %}
+  <p id="type" class="label value">{{ data.type }}</p>
 </div>
 
 <div class="row">

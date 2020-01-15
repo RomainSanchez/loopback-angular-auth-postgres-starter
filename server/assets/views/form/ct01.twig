@@ -7,7 +7,18 @@
 
 {% block content %}
   <div class="row">
-    <p class="label">Nom et prénom de l'agent:</p>
-    <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
+    <p id="creation" class="label value">{{ data.creation ? 'Création' : 'Modification' }}</p>
   </div>
+
+  <div class="row">
+    <p class="label">Personnel consulté:</p>
+    <p id="staff-consulted" class="value">{{ data.staffConsulted ? 'Oui': 'Non' }}</p>
+  </div>
+
+  {% if data.modifications %}
+  <div class="row">
+    <p class="label">Modifications apportées:</p>
+    <p id="modifications" class="value">{{ data.modifications }}</p>
+  </div>
+  {% endif %}
 {% endblock %}

@@ -87,8 +87,7 @@ module.exports = function(app) {
     { name: 'Règlement intérieur', committee: 'ct' , code: 'ct01', requiredAttachments: ['Projet de règlement intérieur']},
     { name: 'Mise en place du temps partiel sur autorisation', committee: 'ct' , code: 'ct02', requiredAttachments: []},
     { name: 'Formation', committee: 'ct' , code: 'ct03', requiredAttachments: [
-      'Projet de règlement de formation',
-      'Plan de formation'
+      'Projet de règlement de formation ou plan de formation ou documents sur le CPF',
     ]},
     { name: 'Ratios promus-promouvables', committee: 'ct' , code: 'ct04', requiredAttachments: []},
     { name: 'Protection sociale complémentaire', committee: 'ct' , code: 'ct05', requiredAttachments: []},

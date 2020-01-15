@@ -1,0 +1,74 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct02-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Mise en place du temps partiel sur autorisation</p>
+  <mat-divider></mat-divider>
+
+  <div class="field proportions">
+    <p class="mat-subheading-1">Quotités de temps partiel</p>
+    <mat-selection-list #list [(ngModel)]="data.proportions" name="proportions" required>
+      <mat-list-option value="50%">50%</mat-list-option>
+      <mat-list-option value="60%">60%</mat-list-option>
+      <mat-list-option value="70%">70%</mat-list-option>
+      <mat-list-option value="80%">80%</mat-list-option>
+      <mat-list-option value="90%">90%</mat-list-option>
+    </mat-selection-list>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field duration" fxFlex.lt-md="100">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.duration"
+        name="duration"
+        placeholder="Durée des autorisations"
+        required
+      >
+      <span matSuffix>mois</span>
+    </mat-form-field>
+
+    <mat-form-field class="field delay" fxFlex.lt-md="100" fxFlex="40">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.delay"
+        name="delay"
+        placeholder="Délai de réponse de l'employeur"
+        required
+      >
+      <span matSuffix>mois</span>
+    </mat-form-field>
+
+    <mat-form-field class="field" fxFlex="40" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.limit"
+        [matDatepicker]="limitDatePicker"
+        name="limit"
+        placeholder="Date limite de dépôt des demandes"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="limitDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #limitDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.motive"
+      matInput
+      cdkTextareaAutosize
+      name="motive"
+      id="motive"
+      placeholder="Motif de refus de l'employeur"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>
+

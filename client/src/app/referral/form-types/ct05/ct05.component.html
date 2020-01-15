@@ -1,0 +1,115 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct05-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Protection sociale complémentaires</p>
+  <mat-divider></mat-divider>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <div class="field type" fxFlex="100">
+      <mat-radio-group
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        [(ngModel)]="data.type"
+        name="type"
+        required
+      >
+        <mat-radio-button value="Instauration de la PSC">Instauration de la PSC</mat-radio-button>
+        <mat-radio-button value="Modification de la PSC">Modification de la PSC</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field class="field" fxFlex="80" fxFlex.lt-md="100">
+      <mat-label>Sur quel risque la collectivité a-t-elle choisi de participer ?</mat-label>
+      <mat-select [(ngModel)]="data.risk" name="risk">
+        <mat-option value="Santé">Santé</mat-option>
+        <mat-option value="Prévoyance">Prévoyance</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field" fxFlex="100" fxFlex.lt-md="100">
+      <mat-label>Pour quelle procédure ?</mat-label>
+      <mat-select [(ngModel)]="data.procedure" name="procedure">
+        <mat-option value="Labellisation">Labellisation</mat-option>
+        <mat-option value="Convention de participation locale">Convention de participation locale</mat-option>
+        <mat-option value="Convention de participation CDG29">Convention de participation CDG29</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field amount" fxFlex.lt-md="100" fxFlex="70">
+      <input matInput type="number" min="1"
+        [(ngModel)]="data.amount"
+        name="amount"
+        placeholder="Montant de la participation (brut)"
+        required
+      >
+      <span matSuffix>€</span>
+    </mat-form-field>
+
+    <mat-form-field class="field old-amount" fxFlex.lt-md="100" fxFlex="80">
+      <input matInput type="number" min="1"
+        [(ngModel)]="data.oldAmount"
+        name="old-amount"
+        placeholder="Ancien montant versé si participation antérieure (brut)"
+      >
+      <span matSuffix>€</span>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field modulation">
+      <input matInput
+        [(ngModel)]="data.modulation"
+        name="modulation"
+        placeholder="Modulation éventuelle de la participation"
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field" fxFlex="40" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.application"
+        [matDatepicker]="applicationDatePicker"
+        name="application"
+        placeholder="Date d'entrée en vigueur"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="applicationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #applicationDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="field staff-consulted" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.staffConsulted" name="staff-consulted">Le personnel a-t-il été consulté ?</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>
+

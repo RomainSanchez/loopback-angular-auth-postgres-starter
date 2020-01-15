@@ -12,7 +12,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { InformationComponent } from './form-types/information/information.component';
 import { ListComponent } from './list/list.component';
 import { FileUploadComponent } from '../file-upload/file-upload.component';
-import { Ct01Component } from './form-types/ct01/ct01.component';
 import { StatusComponent } from './status/status.component';
 import { ValidationDialogComponent } from './dialog/validation-dialog/validation-dialog.component';
 import { RefusalDialogComponent } from './dialog/refusal-dialog/refusal-dialog.component';
@@ -33,6 +32,11 @@ import { Cap12Component } from './form-types/cap12/cap12.component';
 import { Cap13Component } from './form-types/cap13/cap13.component';
 import { Cap14Component } from './form-types/cap14/cap14.component';
 import { Cap15Component } from './form-types/cap15/cap15.component';
+import { Ct01Component } from './form-types/ct01/ct01.component';
+import { Ct02Component } from './form-types/ct02/ct02.component';
+import { Ct03Component } from './form-types/ct03/ct03.component';
+import { Ct04Component } from './form-types/ct04/ct04.component';
+import { Ct05Component } from './form-types/ct05/ct05.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -64,6 +68,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     Cap14Component,
     Cap15Component,
     Ct01Component,
+    Ct02Component,
+    Ct03Component,
+    Ct04Component,
+    Ct05Component,
   ],
   imports: [
     FlexLayoutModule,

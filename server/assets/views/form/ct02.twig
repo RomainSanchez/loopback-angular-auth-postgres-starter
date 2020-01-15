@@ -1,0 +1,34 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="label">Quotités de temps partiel: </p>
+    <p id="proportions" class="value">{{ data.proportions|join(', ') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Modifications apportées:</p>
+    <p id="modifications" class="value">{{ data.modifications }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Durée des autorisations:</p>
+    <p id="modifications" class="value">{{ data.duration }} mois</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Délai de réponse de l'employeur:</p>
+    <p id="modifications" class="value">{{ data.delay }} mois</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date limite de dépôt des demandes:</p>
+    <p id="modifications" class="value">{{ data.limit|date('d/m/Y') }}</p>
+  </div>
+
+{% endblock %}

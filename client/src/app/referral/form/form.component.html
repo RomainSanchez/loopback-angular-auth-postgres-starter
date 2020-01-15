@@ -83,6 +83,26 @@
           [data]="referral?.data"
           *ngIf="referral?.form?.code === 'ct01'"
         ></app-ct01>
+        <app-ct02
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct02'"
+        ></app-ct02>
+        <app-ct03
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct03'"
+        ></app-ct03>
+        <app-ct04
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct04'"
+        ></app-ct04>
+        <app-ct05
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct05'"
+        ></app-ct05>
       </mat-card-content>
     </mat-card>
   </div>
@@ -186,7 +206,7 @@
   <mat-step label="Formulaire">
     <ng-container *ngTemplateOutlet="stepOne"></ng-container>
   </mat-step>
-  <mat-step  label="Justificatifs">
+  <mat-step  label="Justificatifs" *ngIf="referral?.form?.requiredAttachments.length > 0">
     <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
   </mat-step>
   <mat-step label="Signature">
@@ -211,7 +231,7 @@
   <mat-step label="Formulaire">
     <ng-container *ngTemplateOutlet="stepOne"></ng-container>
   </mat-step>
-  <mat-step  label="Justificatifs">
+  <mat-step  label="Justificatifs" *ngIf="referral?.form?.requiredAttachments.length > 0">
     <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
   </mat-step>
   <mat-step label="Signature">

@@ -1,0 +1,97 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct04-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Ratios promus-promouvables</p>
+  <mat-divider></mat-divider>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <mat-form-field class="field" fxFlex="40" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.application"
+        [matDatepicker]="applicationDatePicker"
+        name="application"
+        placeholder="Date d'entrée en vigueur"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="applicationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #applicationDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="field submitted" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.submitted" name="submitted">
+        Les tableaux d'avancement de grade ont-ils été soumis à la CAP ?
+      </mat-checkbox>
+    </div>
+
+    <div class="field submitted" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.uniform" name="uniform">
+        Le taux est-il uniforme pour tous les grades ?
+      </mat-checkbox>
+    </div>
+  </div>
+
+  <div *ngIf="!data.uniform"
+    fxLayout="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center center"
+  >
+    <p>Les ratios sont fixés comme suit:</p>
+
+    <mat-form-field class="field grade">
+      <input matInput
+        [(ngModel)]="data.grade"
+        name="grade"
+        placeholder="Grade d'origine"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field access-grade">
+      <input matInput
+        [(ngModel)]="data.accessGrade"
+        name="access-grade"
+        placeholder="Grade d'accès"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field ratios" fxFlex.lt-md="100" fxFlex="40">
+      <input matInput type="number" min="1" max="100"
+        [(ngModel)]="data.ratios"
+        name="ratios"
+        placeholder="Ratios"
+        required
+      >
+      <span matSuffix>%</span>
+    </mat-form-field>
+
+    <mat-form-field class="field promotable" fxFlex.lt-md="100" fxFlex="40">
+      <input matInput type="number" min="1" max="1000"
+        [(ngModel)]="data.promotable"
+        name="promotable"
+        placeholder="Nombre d'agents promouvables"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field promoted" fxFlex.lt-md="100" fxFlex="40">
+      <input matInput type="number" min="1" max="1000"
+        [(ngModel)]="data.promoted"
+        name="promoted"
+        placeholder="Nombre d'agents promus"
+        required
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>
+

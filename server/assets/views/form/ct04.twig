@@ -1,0 +1,51 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Tableaux d'avancement de grade soumis à la CAP :</p>
+    <p id="submitted" class="value">{{ data.submitted ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Taux uniforme pour tous les grades :</p>
+    <p id="uniform" class="value">{{ data.uniform ? 'Oui': 'Non' }}</p>
+  </div>
+
+  {% if not data.uniform %}
+    <div class="row">
+      <p class="label">Grade d'origine :</p>
+      <p id="grade" class="value">{{ data.grade }}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Grade d'accès :</p>
+      <p id="access-grade" class="value">{{ data.accessGrade }}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Ratios :</p>
+      <p id="modifications" class="value">{{ data.ratios }} %</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Nombre d'agents promouvables :</p>
+      <p id="promotable" class="value">{{ data.promotable }}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">nombre d'agents promus:</p>
+      <p id="promoted" class="value">{{ data.promoted }}</p>
+    </div>
+  {% endif %}
+
+{% endblock %}

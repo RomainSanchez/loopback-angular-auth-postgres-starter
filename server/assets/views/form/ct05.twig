@@ -1,0 +1,52 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p id="type" class="label value">{{ data.type }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Sur quel risque la collectivité à-t-elle choisi de participer ? :</p>
+    <p id="risk" class="value">{{ data.risk }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Par quelle procédure ? :</p>
+    <p id="procedure" class="value">{{ data.procedure }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Montant de la participation :</p>
+    <p id="amount" class="value">{{ data.amount }} €</p>
+  </div>
+
+  {% if data.oldAmount is not null %}
+  <div class="row">
+    <p class="label">Ancien montant versé :</p>
+    <p id="old-amount" class="value">{{ data.oldAmount }} €</p>
+  </div>
+  {% endif %}
+
+  {% if data.modulation is not null %}
+  <div class="row">
+    <p class="label">Modulation de la participation :</p>
+    <p id="amount" class="value">{{ data.modulation }}</p>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Personnel consulté :</p>
+    <p id="staff-consulted" class="value">{{ data.staffConsulted ? 'Oui': 'Non' }}</p>
+  </div>
+
+{% endblock %}
