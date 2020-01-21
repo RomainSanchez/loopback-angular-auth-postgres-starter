@@ -1,0 +1,212 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Objectifs :</p>
+    <p id="objectives" class="value">{{ data.objectives }}</p>
+  </div>
+
+  <div class="row">
+      <p class="title">{{ data.ifse }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Critères retenus :</p>
+    <p id="criteria" class="value">{{ data.criteria }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Bénéficiaires :</p>
+    <p id="beneficiaries" class="value">{{ data.beneficiaries|join(', ') }}</p>
+  </div>
+
+  {% if 'Contractuels' in data.beneficiaries %}
+  <div class="row">
+    <p class="label">Ancienneté des contractuels :</p>
+    <p id="seniority" class="value">{{ data.seniority }}</p>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <p class="label">Périodicité de versement :</p>
+    <p id="periodicity" class="value">{{ data.periodicity }}</p>
+  </div>
+
+{% if data.ci %}
+  <div class="row">
+    <p class="title">Instauration du CI</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Critères retenus :</p>
+    <p id="criteria" class="value">{{ data.ciCriteria }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Bénéficiaires :</p>
+    <p id="beneficiaries" class="value">{{ data.ciBeneficiaries|join(', ') }}</p>
+  </div>
+
+  {% if 'Contractuels' in data.ciBeneficiaries %}
+  <div class="row">
+    <p class="label">Ancienneté des contractuels :</p>
+    <p id="seniority" class="value">{{ data.ciSeniority }}</p>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <p class="label">Périodicité de versement :</p>
+    <p id="periodicity" class="value">{{ data.ciPeriodicity }}</p>
+  </div>
+{% else %}
+  <div class="row">
+    <p class="label">Instauration du CI :</p>
+    <p id="ci" class="value">Non</p>
+  </div>
+{% endif %}
+
+<div class="row">
+  <p class="title">Conditions de réexamen du montant :</p>
+</div>
+
+<div class="row">
+  <p class="label">A minima tous les :</p>
+  <p id="minimum" class="value">{{ data.minimum }} an(s)</p>
+</div>
+
+<div class="row">
+  <p class="label">En fonction de :</p>
+  <p id="condition" class="value">{{ data.condition }}</p>
+</div>
+
+<div class="row">
+  <p class="title">Sort des primes en cas d'absence</p>
+</div>
+
+<div class="row">
+  <p class="subtitle">CMO</p>
+</div>
+
+<div class="row">
+  <p id="cmo-fate" class="label value">{{ data.cmoFate }}</p>
+</div>
+
+{% if data.cmoFate == 'Autre solution' %}
+<div class="row">
+  <p class="label">Details de la solution :</p>
+  <p id="cmo-condition" class="value">{{ data.cmoFateDetails }}</p>
+</div>
+{% endif %}
+
+<div class="row">
+  <p class="subtitle">AT/MP</p>
+</div>
+
+<div class="row">
+  <p id="atmp-fate" class="label value">{{ data.atmpFate }}</p>
+</div>
+
+{% if data.atmpFate == 'Autre solution' %}
+<div class="row">
+  <p class="label">Details de la solution :</p>
+  <p id="atmp-condition" class="value">{{ data.atmpFateDetails }}</p>
+</div>
+{% endif %}
+
+<div class="row">
+  <p class="subtitle">CLM</p>
+</div>
+
+<div class="row">
+  <p id="clm-fate" class="label value">{{ data.clmFate }}</p>
+</div>
+
+{% if data.clmFate == 'Autre solution' %}
+<div class="row">
+  <p class="label">Details de la solution :</p>
+  <p id="clm-condition" class="value">{{ data.clmFateDetails }}</p>
+</div>
+{% endif %}
+
+<div class="row">
+  <p class="subtitle">CLD</p>
+</div>
+
+<div class="row">
+  <p id="cld-fate" class="label value">{{ data.cldFate }}</p>
+</div>
+
+{% if data.cldFate == 'Autre solution' %}
+<div class="row">
+  <p class="label">Details de la solution :</p>
+  <p id="cld-condition" class="value">{{ data.cldFateDetails }}</p>
+</div>
+{% endif %}
+
+<div class="row">
+  <p class="subtitle">Grave maladie</p>
+</div>
+
+<div class="row">
+  <p id="illness-fate" class="label value">{{ data.illnessFate }}</p>
+</div>
+
+{% if data.illnessFate == 'Autre solution' %}
+<div class="row">
+  <p class="label">Details de la solution :</p>
+  <p id="illness-condition" class="value">{{ data.illnessFateDetails }}</p>
+</div>
+{% endif %}
+
+<div class="row">
+  <p class="subtitle">Maternité/Paternité</p>
+</div>
+
+<div class="row">
+  <p id="maternity-fate" class="label value">{{ data.maternityFate }}</p>
+</div>
+
+{% if data.maternityFate == 'Autre solution' %}
+<div class="row">
+  <p class="label">Details de la solution :</p>
+  <p id="maternity-condition" class="value">{{ data.maternityFateDetails }}</p>
+</div>
+{% endif %}
+
+
+<div class="row">
+  <p class="label">Garantie des sommes allouées antérieurement :</p>
+  <p id="anterior" class="value">{{ data.anterior ? 'Oui': 'Non' }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Participation à la protection sociale complémentaire mise en place :</p>
+  <p id="participation" class="value">{{ data.participation ? 'Oui': 'Non' }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Participation à la protection sociale complémentaire mise en place :</p>
+  <p id="participation" class="value">{{ data.participation ? 'Oui': 'Non' }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Consultation du personnel :</p>
+  <p id="staff-consulted" class="value">{{ data.staffConsulted ? 'Oui': 'Non' }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Modalités de la démarche :</p>
+  <p id="terms" class="value">{{ data.terms }}</p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,272 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct06-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Contrat d'apprentissage</p>
+  <mat-divider></mat-divider>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <mat-form-field  class="field service" fxFlex="25" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.service"
+        name="service"
+        placeholder="Service"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field diploma" fxFlex="35" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.diploma"
+        name="diploma"
+        placeholder="Diplôme à préparer"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field" fxFlex="50" fxFlex.lt-md="70">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.content"
+        matInput
+        cdkTextareaAutosize
+        name="content"
+        id="content"
+        placeholder="Contenu de la formation"
+        required
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <mat-form-field class="field age" fxFlex="20" fxFlex.lt-md="100">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.age"
+        name="age"
+        placeholder="Age de l'apprenti"
+      >
+      <span matSuffix>ans</span>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="data.age < 18" class="field" fxFlex="35" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.deliberation"
+        [matDatepicker]="deliberationDatePicker"
+        name="deliberation"
+        placeholder="Date de délibération ou dérogation (apprenti mineur)"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="deliberationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #deliberationDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field  class="field" fxFlex="25" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.contract"
+        [matDatepicker]="contractDatePicker"
+        name="contract"
+        placeholder="Date du contrat d'apprentissage"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="contractDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #contractDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="field duration" fxFlex="20" fxFlex.lt-md="100">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.duration"
+        name="duration"
+        placeholder="Durée de l'apprentissage"
+        required
+      >
+      <span matSuffix>mois</span>
+    </mat-form-field>
+
+    <mat-form-field class="field periods" fxFlex="30" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.periods"
+        name="periods"
+        placeholder="Périodes de formation en école"
+        required
+      >
+    </mat-form-field>
+
+    <mat-form-field class="field hours" fxFlex="50" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.hours"
+        name="hours"
+        placeholder="Horaires de travail"
+        required
+      >
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <mat-form-field class="field qualification" fxFlex="50" fxFlex.lt-md="300">
+      <input matInput
+        [(ngModel)]="data.qualification"
+        name="qualification"
+        placeholder="Formation et diplôme du maître d'apprentissage"
+        required
+      >
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <mat-form-field class="field fonction" fxFlex="35" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.fonction"
+        name="fonction"
+        placeholder="Fonction du maître d'apprentissage"
+        required
+      >
+    </mat-form-field>
+    <mat-form-field  class="field" fxFlex="25" fxFlex.lt-md="100">
+      <input matInput
+        [(ngModel)]="data.since"
+        [matDatepicker]="sinceDatePicker"
+        name="since"
+        placeholder="Date d'entrée dans cette fonction"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="sinceDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #sinceDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <mat-form-field class="field" fxFlex="50" fxFlex.lt-md="70">
+      <textarea
+        required
+        fxFlexFill
+        [(ngModel)]="data.means"
+        matInput
+        cdkTextareaAutosize
+        name="means"
+        id="means"
+        placeholder="Moyens mis à disposition du maître d'apprentissage"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <div class="field nbi" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.nbi" name="nbi">Le maître d'apprentissage perçoit la NBI de 20 points ?</mat-checkbox>
+    </div>
+
+    <div class="field sanitation" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.sanitation" name="sanitation">Installations sanitaires à disposition de l'apprenti ?</mat-checkbox>
+    </div>
+
+    <div class="field medkit" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.medkit" name="medkit">Trousse de premiers secours</mat-checkbox>
+    </div>
+
+    <div class="field medic" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.medic" name="medic">Personne formée au premiers secours</mat-checkbox>
+    </div>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+
+    <mat-form-field class="field" fxFlex="50" fxFlex.lt-md="70">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.tools"
+        matInput
+        cdkTextareaAutosize
+        name="tools"
+        id="tools"
+        placeholder="Liste des matériels, engins et produits utilisés"
+        required
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div
+    fxLayout="column"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <div class="field maintained" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.maintained" name="maintained">Matériel et engins entretenus conformément à la notice de sécurité</mat-checkbox>
+    </div>
+
+    <div class="field handicap" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.handicap" name="handicap">L'apprenti bénéficie d'une RQTH</mat-checkbox>
+    </div>
+
+    <div class="field safety" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.safety" name="safety">Accueil sécurité au poste de travail</mat-checkbox>
+    </div>
+
+    <div class="field du" fxFlex="70" fxLayoutAlign="flex-start center">
+      <mat-checkbox [(ngModel)]="data.du" name="du">La collectivité a un DU</mat-checkbox>
+    </div>
+  </div>
+
+  <div
+    fxLayout="row"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+  >
+    <div class="field proportions">
+      <p class="mat-subheading-1">Liste des EPIs</p>
+      <mat-selection-list #list [(ngModel)]="data.epis" name="epis" required>
+        <mat-list-option value="Lunettes">Lunettes</mat-list-option>
+        <mat-list-option value="Masque">Masque</mat-list-option>
+        <mat-list-option value="Gants">Gants</mat-list-option>
+        <mat-list-option value="Chaussures">Chaussures</mat-list-option>
+        <mat-list-option value="Casque de protection">Casque de protection</mat-list-option>
+        <mat-list-option value="Bouchons d'oreilles/Casque">Bouchons d'oreilles/Casque</mat-list-option>
+        <mat-list-option value="Vêtements de travail">Vêtements de travail</mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>
+

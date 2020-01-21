@@ -1,0 +1,247 @@
+<form [formGroup]="form" class="ct11-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Tableau des emplois</p>
+  <mat-divider></mat-divider>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <div class="field type" fxFlex="100">
+      <mat-radio-group
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        formControlName="type"
+        name="type"
+        required
+      >
+        <mat-radio-button value="Modification de temps de travail">Modification de temps de travail</mat-radio-button>
+        <mat-radio-button value="Réorganisation des services">Réorganisation des services</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <ng-container *ngIf="form.value.type === 'Modification de temps de travail'">
+    <mat-divider></mat-divider>
+
+    <p class="section">Emplois</p>
+
+    <button mat-raised-button class="add-job" color="accent" (click)="addJob()">
+      <mat-icon>add</mat-icon>Ajouter un emploi
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <ng-container *ngFor="let jobFormGroup of form.controls.jobs.controls; let i = index">
+      <p class="section">Emploi {{ i + 1 }}</p>
+      <div [formGroup]="jobFormGroup">
+        <div
+          fxLayout="row wrap"
+          fxLayout.lt-md="column"
+          fxLayoutGap="30px"
+          fxLayoutAlign="center"
+          fxFlexFill
+        >
+          <mat-form-field class="field" fxFlex="60" fxFlex.lt-md="80">
+            <textarea
+              fxFlexFill
+              formControlName="jobDescription"
+              matInput
+              cdkTextareaAutosize
+              name="job-description"
+              id="job-description{{ i }}"
+              placeholder="Description de l'emploi à supprimer"
+              required
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayout.lt-md="column"
+          fxLayoutGap="30px"
+          fxLayoutAlign="center"
+          fxFlexFill
+        >
+          <mat-form-field class="field grade" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="grade"
+              name="grade"
+              placeholder="Grade"
+              required
+            >
+          </mat-form-field>
+
+          <mat-form-field class="field hours" fxFlex.lt-md="100" fxFlex="30">
+            <input matInput type="number" min="1" max="99"
+              formControlName="hours"
+              name="hours"
+              placeholder="Durée hebdomadaire de travail"
+              required
+            >
+            <span matSuffix>heures</span>
+          </mat-form-field>
+
+          <mat-form-field class="field" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="suppression"
+              [matDatepicker]="suppressionDatePicker"
+              name="suppression"
+              placeholder="Date de la suppression"
+              required
+            >
+            <mat-datepicker-toggle matSuffix [for]="suppressionDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #suppressionDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayout.lt-md="column"
+          fxLayoutGap="30px"
+          fxLayoutAlign="center"
+          fxFlexFill
+        >
+          <mat-form-field class="field" fxFlex="60" fxFlex.lt-md="80">
+            <textarea
+              fxFlexFill
+              formControlName="newDescription"
+              matInput
+              cdkTextareaAutosize
+              name="new-description"
+              id="new-description"
+              placeholder="Description de l'emploi à créer"
+              required
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayout.lt-md="column"
+          fxLayoutGap="30px"
+          fxLayoutAlign="center"
+          fxFlexFill
+        >
+          <mat-form-field class="field grade" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="newGrade"
+              name="new-grade"
+              placeholder="Grade"
+              required
+            >
+          </mat-form-field>
+
+          <mat-form-field class="field new-hours" fxFlex.lt-md="100" fxFlex="30">
+            <input matInput type="number" min="1" max="99"
+              formControlName="newHours"
+              name="new-hours"
+              placeholder="Durée hebdomadaire de travail"
+              required
+            >
+            <span matSuffix>heures</span>
+          </mat-form-field>
+
+          <mat-form-field class="field" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="creation"
+              [matDatepicker]="creationDatePicker"
+              name="creation"
+              placeholder="Date de la création"
+              required
+            >
+            <mat-datepicker-toggle matSuffix [for]="creationDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #creationDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-button class="remove-job" color="accent" (click)="removeJob(i)">
+        <mat-icon>delete</mat-icon>
+        Supprimer
+      </button>
+
+      <mat-divider></mat-divider>
+    </ng-container>
+  </ng-container>
+
+  <div *ngIf="form.value.type === 'Réorganisation des services'">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+      fxFlexFill
+    >
+      <mat-form-field class="field" fxFlex="15" fxFlex.lt-md="100">
+        <input matInput
+          formControlName="application"
+          [matDatepicker]="applicationDatePicker"
+          name="application"
+          placeholder="Date d'entrée en vigueur"
+          required
+        >
+        <mat-datepicker-toggle matSuffix [for]="applicationDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #applicationDatePicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="field service" fxFlex="30" fxFlex.lt-md="100">
+        <input matInput
+          formControlName="service"
+          name="service"
+          placeholder="Service concerné"
+          required
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field" fxFlex="50" fxFlex.lt-md="70">
+        <textarea
+          fxFlexFill
+          formControlName="description"
+          matInput
+          cdkTextareaAutosize
+          name="description"
+          id="description"
+          placeholder="Description de la réorganisation"
+          required
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="field" fxFlex="50" fxFlex.lt-md="70">
+        <textarea
+          fxFlexFill
+          formControlName="impact"
+          matInput
+          cdkTextareaAutosize
+          name="impact"
+          id="impact"
+          placeholder="Impact sur le personnel"
+          required
+        ></textarea>
+      </mat-form-field>
+
+      <div class="field artt" fxFlex="70" fxLayoutAlign="center center">
+        <mat-checkbox formControlName="artt" name="artt">Modification du protocole ARTT</mat-checkbox>
+      </div>
+
+      <div class="field rules" fxFlex="70" fxLayoutAlign="center center">
+        <mat-checkbox formControlName="rules" name="rules">Modification du règlement intérieur</mat-checkbox>
+      </div>
+
+      <div class="field staff-consulted" fxFlex="70" fxLayoutAlign="center center">
+        <mat-checkbox formControName="staffConsulted" name="staff-consulted">Consultation du personnel</mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <div class="button">
+    <button (click)="submit()" [disabled]="form.invalid" mat-raised-button color="accent">Suivant</button>
+  </div>
+</form>
+

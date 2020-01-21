@@ -1,0 +1,80 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="title">{{ data.type }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="title">Emplois</p>
+  </div>
+
+  {% for job in data.jobs %}
+    <p class="title">Emploi {{ loop.index }}</p>
+
+    <div class="row">
+      <p class="label">Description de l'emploi à supprimer :</p>
+      <p id="description" class="value">{{ job.description }}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Grade :</p>
+      <p id="grade" class="value">{{ job.grade }}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Durée hebdomadaire de travail :</p>
+      <p id="hours" class="value">{{ job.hours }} heures</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Date de la suppression :</p>
+      <p id="suppression" class="value">{{ job.suppression|date('d/m/Y') }}</p>
+    </div>
+
+    <div class="row">
+      <p class="label">Motif de la suppression :</p>
+      <p id="motive" class="value">{{ job.motive }}</p>
+    </div>
+
+    {% if job.new %}
+      <div class="row">
+        <p class="subtitle">Suppression d'emploi suivie d'une création</p>
+      </div>
+
+      <div class="row">
+        <p class="label">Description de l'emploi à créer :</p>
+        <p id="new-description" class="value">{{ job.newDescription }}</p>
+      </div>
+
+      <div class="row">
+        <p class="label">Grade :</p>
+        <p id="new-grade" class="value">{{ job.newGrade }}</p>
+      </div>
+
+      <div class="row">
+        <p class="label">Durée hebdomadaire de travail :</p>
+        <p id="new-hours" class="value">{{ job.newHours }} heures</p>
+      </div>
+
+      <div class="row">
+        <p class="label">Date de la création :</p>
+        <p id="creation" class="value">{{ job.creation|date('d/m/Y') }}</p>
+      </div>
+    {% else %}
+      <div class="row">
+        <p class="subtitle">Suppression d'emploi sans suite</p>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

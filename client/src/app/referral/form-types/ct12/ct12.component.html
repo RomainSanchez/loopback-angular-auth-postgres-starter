@@ -1,0 +1,59 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct12-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Projet de conception ou aménagement de locaux</p>
+  <mat-divider></mat-divider>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.description"
+        matInput
+        cdkTextareaAutosize
+        name="description"
+        id="description"
+        placeholder="Descriptif général du projet"
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.impact"
+        matInput
+        cdkTextareaAutosize
+        name="impact"
+        id="impact"
+        placeholder="Impact sur l'organisation des services"
+        required
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="field grade" fxFlex.lt-md="100" fxFlex="30">
+      <input matInput
+        [(ngModel)]="data.delay"
+        name="delay"
+        placeholder="Délai de réalisation"
+        required
+      >
+    </mat-form-field>
+
+    <div class="field staff-consulted" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.staffConsulted" name="staff-consulted">Consultation du personnel</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>
+

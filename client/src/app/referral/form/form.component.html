@@ -103,18 +103,68 @@
           [data]="referral?.data"
           *ngIf="referral?.form?.code === 'ct05'"
         ></app-ct05>
+        <app-ct06
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct06'"
+        ></app-ct06>
+        <app-ct07
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct07'"
+        ></app-ct07>
+        <app-ct08
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct08'"
+        ></app-ct08>
+        <app-ct09
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct09'"
+        ></app-ct09>
+        <app-ct10
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct10'"
+        ></app-ct10>
+        <app-ct11
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct11'"
+        ></app-ct11>
+        <app-ct12
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct12'"
+        ></app-ct12>
+        <app-ct13
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct13'"
+        ></app-ct13>
+        <app-ct14
+          (formSubmit)="formSubmit($event)"
+          [data]="referral?.data"
+          *ngIf="referral?.form?.code === 'ct14'"
+        ></app-ct14>
       </mat-card-content>
     </mat-card>
   </div>
 </ng-template>
 <ng-template #stepTwo>
   <div class="step-content" fxLayout="column" fxLayoutAlign="center center">
-    <h3 class="mat-display-1">Veuillez fournir {{ referral?.form?.requiredAttachments.length > 1 ?
+    <h3 *ngIf="referral?.form?.requiredAttachments.length > 0" class="mat-display-1">Veuillez fournir {{ referral?.form?.requiredAttachments.length > 1 ?
       'les justificatifs suivants':
       'le justificatif suivant' }}
     </h3>
     <p *ngFor="let attachment of referral?.form?.requiredAttachments" class="mat-title">
       {{ attachment }}
+    </p>
+
+    <h3 *ngIf="referral?.form?.optionalAttachments.length > 0" class="mat-display-1">Justificatifs non obligatoires</h3>
+    <p *ngFor="let optionalAttachment of referral?.form?.optionalAttachments" class="mat-title">
+      {{ optionalAttachment }}
     </p>
     <mat-card>
       <app-file-upload
@@ -148,9 +198,6 @@
     <mat-card>
       <div class="instructions">
         <p>Déposez un scan de la saisine signée directement ou plus tard en revenant sur votre espace</p>
-        <p>Vous pouvez également la transmettre par mail à l'addresse
-          <a href="mailto:?to=instances@cdg29.bzh">instances@cdg29.bzh</a>
-        </p>
       </div>
       <app-file-upload
         [referral]="referral"
@@ -206,7 +253,7 @@
   <mat-step label="Formulaire">
     <ng-container *ngTemplateOutlet="stepOne"></ng-container>
   </mat-step>
-  <mat-step  label="Justificatifs" *ngIf="referral?.form?.requiredAttachments.length > 0">
+  <mat-step  label="Justificatifs" *ngIf="referral?.form?.requiredAttachments.length > 0 || referral?.form?.optionalAttachments.length > 0">
     <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
   </mat-step>
   <mat-step label="Signature">
@@ -231,7 +278,7 @@
   <mat-step label="Formulaire">
     <ng-container *ngTemplateOutlet="stepOne"></ng-container>
   </mat-step>
-  <mat-step  label="Justificatifs" *ngIf="referral?.form?.requiredAttachments.length > 0">
+  <mat-step  label="Justificatifs" *ngIf="referral?.form?.requiredAttachments.length > 0 || referral?.form?.optionalAttachments.length > 0">
     <ng-container *ngTemplateOutlet="stepTwo"></ng-container>
   </mat-step>
   <mat-step label="Signature">

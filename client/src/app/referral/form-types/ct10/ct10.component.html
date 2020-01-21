@@ -1,0 +1,207 @@
+<form [formGroup]="form" class="ct10-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Tableau des emplois</p>
+  <mat-divider></mat-divider>
+
+  <div
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center"
+    fxFlexFill
+  >
+    <div class="field type" fxFlex="100">
+      <mat-radio-group
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        formControlName="type"
+        name="type"
+        required
+      >
+        <mat-radio-button value="Mise en place du tableau des emplois">Mise en place du tableau des emplois</mat-radio-button>
+        <mat-radio-button value="Mise à jour du tableau des emplois">Mise à jour du tableau des emplois</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <mat-form-field class="field" fxFlex="40" fxFlex.lt-md="100">
+      <input matInput
+        formControlName="application"
+        [matDatepicker]="applicationDatePicker"
+        name="application"
+        placeholder="Date d'entrée en vigueur"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="applicationDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #applicationDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <p class="section">Emplois</p>
+
+  <button mat-raised-button class="add-job" color="accent" (click)="addJob()">
+    <mat-icon>add</mat-icon>Ajouter un emploi
+  </button>
+
+  <mat-divider></mat-divider>
+
+  <ng-container *ngFor="let jobFormGroup of form.controls.jobs.controls; let i = index">
+    <p class="section">Emploi {{ i + 1 }}</p>
+    <div [formGroup]="jobFormGroup">
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        fxFlexFill
+      >
+        <mat-form-field class="field" fxFlex="60" fxFlex.lt-md="80">
+          <textarea
+            fxFlexFill
+            formControlName="description"
+            matInput
+            cdkTextareaAutosize
+            name="description"
+            id="description{{ i }}"
+            placeholder="Description de l'emploi à supprimer"
+            required
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        fxFlexFill
+      >
+        <mat-form-field class="field grade" fxFlex="30" fxFlex.lt-md="100">
+          <input matInput
+            formControlName="grade"
+            name="grade"
+            placeholder="Grade"
+            required
+          >
+        </mat-form-field>
+
+        <mat-form-field class="field hours" fxFlex.lt-md="100" fxFlex="30">
+          <input matInput type="number" min="1" max="99"
+            formControlName="hours"
+            name="hours"
+            placeholder="Durée hebdomadaire de travail"
+            required
+          >
+          <span matSuffix>heures</span>
+        </mat-form-field>
+
+        <mat-form-field class="field" fxFlex="30" fxFlex.lt-md="100">
+          <input matInput
+            formControlName="suppression"
+            [matDatepicker]="suppressionDatePicker"
+            name="suppression"
+            placeholder="Date de la suppression"
+            required
+          >
+          <mat-datepicker-toggle matSuffix [for]="suppressionDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #suppressionDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+          <textarea
+            fxFlexFill
+            formControlName="motive"
+            matInput
+            cdkTextareaAutosize
+            name="motive"
+            id="motive{{ i }}"
+            placeholder="Motif de la suppression"
+            required
+          ></textarea>
+        </mat-form-field>
+
+        <div class="field new" fxFlex="70" fxLayoutAlign="center center">
+          <mat-checkbox formControlName="new" name="new">Suppression d'emploi suivie d'une création</mat-checkbox>
+        </div>
+      </div>
+
+      <div *ngIf="jobFormGroup.value.new">
+        <div
+          fxLayout="row wrap"
+          fxLayout.lt-md="column"
+          fxLayoutGap="30px"
+          fxLayoutAlign="center"
+          fxFlexFill
+        >
+          <mat-form-field class="field" fxFlex="60" fxFlex.lt-md="80">
+            <textarea
+              fxFlexFill
+              formControlName="newDescription"
+              matInput
+              cdkTextareaAutosize
+              name="new-description"
+              id="new-description"
+              placeholder="Description de l'emploi à créer"
+              required
+            ></textarea>
+          </mat-form-field>
+        </div>
+
+        <div
+          fxLayout="row wrap"
+          fxLayout.lt-md="column"
+          fxLayoutGap="30px"
+          fxLayoutAlign="center"
+          fxFlexFill
+        >
+          <mat-form-field class="field grade" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="newGrade"
+              name="new-grade"
+              placeholder="Grade"
+              required
+            >
+          </mat-form-field>
+
+          <mat-form-field class="field new-hours" fxFlex.lt-md="100" fxFlex="30">
+            <input matInput type="number" min="1" max="99"
+              formControlName="newHours"
+              name="new-hours"
+              placeholder="Durée hebdomadaire de travail"
+              required
+            >
+            <span matSuffix>heures</span>
+          </mat-form-field>
+
+          <mat-form-field class="field" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="creation"
+              [matDatepicker]="creationDatePicker"
+              name="creation"
+              placeholder="Date de la création"
+              required
+            >
+            <mat-datepicker-toggle matSuffix [for]="creationDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #creationDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <button mat-button class="remove-job" color="accent" fxFlexAlign="center" (click)="removeJob(i)">
+      <mat-icon>delete</mat-icon>
+      Supprimer
+    </button>
+
+    <mat-divider></mat-divider>
+  </ng-container>
+
+  <div class="button">
+    <button (click)="submit()" [disabled]="form.invalid" mat-raised-button color="accent">Suivant</button>
+  </div>
+</form>
+

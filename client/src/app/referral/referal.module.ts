@@ -37,6 +37,15 @@ import { Ct02Component } from './form-types/ct02/ct02.component';
 import { Ct03Component } from './form-types/ct03/ct03.component';
 import { Ct04Component } from './form-types/ct04/ct04.component';
 import { Ct05Component } from './form-types/ct05/ct05.component';
+import { Ct06Component } from './form-types/ct06/ct06.component';
+import { Ct07Component } from './form-types/ct07/ct07.component';
+import { Ct08Component } from './form-types/ct08/ct08.component';
+import { Ct09Component } from './form-types/ct09/ct09.component';
+import { Ct10Component } from './form-types/ct10/ct10.component';
+import { Ct11Component } from './form-types/ct11/ct11.component';
+import { Ct12Component } from './form-types/ct12/ct12.component';
+import { Ct13Component } from './form-types/ct13/ct13.component';
+import { Ct14Component } from './form-types/ct14/ct14.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -72,6 +81,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     Ct03Component,
     Ct04Component,
     Ct05Component,
+    Ct06Component,
+    Ct07Component,
+    Ct08Component,
+    Ct09Component,
+    Ct10Component,
+    Ct11Component,
+    Ct12Component,
+    Ct13Component,
+    Ct14Component
   ],
   imports: [
     FlexLayoutModule,

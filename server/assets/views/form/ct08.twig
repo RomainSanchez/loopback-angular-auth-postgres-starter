@@ -1,0 +1,95 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <p class="title">Rappel du protocole actuel</p>
+
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date de l'avis du CT :</p>
+    <p id="ct" class="value">{{ data.ct|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Durée moyenne hebdomadaire de travail :</p>
+    <p id="hours" class="value">{{ data.hours }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Nombre de jours RTT :</p>
+    <p id="days" class="value">{{ data.days }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Période de liquidation des RTT :</p>
+    <p id="period" class="value">{{ data.period }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">modalités de liquidation des RTT :</p>
+    <p id="terms" class="value">{{ data.terms }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Travail en cycle :</p>
+    <p id="cycle" class="value">{{ data.cycle ? 'Oui': 'Non' }}</p>
+  </div>
+
+
+
+  <p class="title">Nouveau protocole</p>
+
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="new-application" class="value">{{ data.newApplication|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date de l'avis du CT :</p>
+    <p id="new-ct" class="value">{{ data.newCt|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Durée moyenne hebdomadaire de travail :</p>
+    <p id="new-hours" class="value">{{ data.newHours }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Nombre de jours RTT :</p>
+    <p id="new-days" class="value">{{ data.newDays }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Période de liquidation des RTT :</p>
+    <p id="new-period" class="value">{{ data.newPeriod }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">modalités de liquidation des RTT :</p>
+    <p id="new-terms" class="value">{{ data.newTerms }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Travail en cycle :</p>
+    <p id="new-cycle" class="value">{{ data.newCycle ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Consultation du personnel :</p>
+    <p id="staff-consulted" class="value">{{ data.staffConsulted ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <style>
+    #staff-consulted {
+      margin-top: 50px;
+    }
+  </style>
+{% endblock %}

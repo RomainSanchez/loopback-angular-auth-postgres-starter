@@ -33,6 +33,25 @@ div.content
     color: #fff
     width: 20%
 
-::ng-deep .mat-horizontal-stepper-header, ::ng-deep .mat-vertical-stepper-header
-  pointer-events: none !important
+// ::ng-deep .mat-horizontal-stepper-header, ::ng-deep .mat-vertical-stepper-header
+    pointer-events: none !important
+
+// Subforms
+::ng-deep form
+  div.button
+    button.mat-raised-button
+      display: block
+      width: 150px
+      color: #fff
+
+  .field
+    margin-bottom: 30px
+
+  mat-divider.mat-divider.mat-divider-horizontal
+    position: relative
+    margin-bottom: 30px
+
+  //  adds breaks to the mat-checkboxes with long labels
+  .mat-checkbox-layout, .mat-radio-label
+    white-space: normal !important
 

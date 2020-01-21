@@ -71,6 +71,7 @@ export class FormComponent implements OnInit {
     this.referral.status = 'form';
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral: Referral) => {
+      localStorage.removeItem('referralData');
       this.referral.attachments = attachments;
       this.appUserApi.notify(this.referral.id).subscribe();
 

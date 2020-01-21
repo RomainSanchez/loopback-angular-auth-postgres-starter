@@ -1,0 +1,44 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="label">Modalités d'alimentation du CET :</p>
+    <p id="terms" class="value">{{ data.terms|join(', ')  }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date limite d'alimentation du CET :</p>
+    <p id="limit" class="value">{{ data.limit|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date d'information des agents sur la situation de leur CET :</p>
+    <p id="information" class="value">{{ data.information|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Instauration des nouvelles modalités d'utilisation des jours épargnés :</p>
+    <p id="establishing" class="value">{{ data.establishing ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Instauration des nouvelles modalités d'utilisation des jours épargnés :</p>
+    <p id="convention" class="value">{{ data.convention ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date de mise en place du CET :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Consultation du personnel :</p>
+    <p id="staff-consulted" class="value">{{ data.staffConsulted ? 'Oui': 'Non' }}</p>
+  </div>
+
+{% endblock %}

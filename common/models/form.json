@@ -21,6 +21,10 @@
     "requiredAttachments": {
       "type": "object",
       "required": false
+    },
+    "optionalAttachments": {
+      "type": "object",
+      "required": false
     }
   },
   "validations": [],

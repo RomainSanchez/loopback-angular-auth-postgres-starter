@@ -1,0 +1,72 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <p class="title">{{ data.type }}</p>
+
+  <div class="row">
+    <p class="label">Date d'entrée en vigueur :</p>
+    <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">La mise en place modifie le protocole service :</p>
+    <p id="artt" class="value">{{ data.artt ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">La mise en place modifie le règlement intérieur :</p>
+    <p id="rules" class="value">{{ data.rules ? 'Oui': 'Non' }}</p>
+  </div>
+
+  {% if data.type == 'Astreintes' %}
+
+  <p class="technical subtitle">{{ data.technical }}</p>
+
+  {% if data.technical == 'Astreintes filières techniques' %}
+  <p class="watch subtitle">{{ data.watch }}</p>
+  {% endif %}
+
+  <p class="watch subtitle">{{ data.safety }}</p>
+
+  {% endif %}
+
+  <div class="row">
+    <p class="label">Liste des missions :</p>
+    <p id="missions" class="value">{{ data.missions }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Services concernés :</p>
+    <p id="service" class="value">{{ data.service }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Emplois et grades concernés :</p>
+    <p id="jobs" class="value">{{ data.jobs }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Roulements et horaires :</p>
+    <p id="hours" class="value">{{ data.hours }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Délai de prévenance en cas de modification du planning :</p>
+    <p id="delay" class="value">{{ data.delay }} jours</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Moyens mis à disposition (ex: téléphone, voiture, ...) :</p>
+    <p id="means" class="value">{{ data.means }}</p>
+  </div>
+
+  <div class="row">
+    <p class="subtitle">{{ data.payment }}</p>
+  </div>
+
+{% endblock %}

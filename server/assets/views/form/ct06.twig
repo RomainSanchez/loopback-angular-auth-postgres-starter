@@ -1,0 +1,126 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="label">Service :</p>
+    <p id="service" class="value">{{ data.service }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Diplôme à préparer :</p>
+    <p id="diploma" class="value">{{ data.diploma }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Contenu de la formation :</p>
+    <p id="content" class="value">{{ data.content }} €</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Age de l'apprenti :</p>
+    <p id="age" class="value">{{ data.age }} ans</p>
+  </div>
+
+  {% if data.age < 18 %}
+  <div class="row">
+    <p class="label">Date de délibération ou dérogation :</p>
+    <p id="deliberation" class="value">{{ data.deliberation }}</p>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <p class="label">Date du contrat d'apprentissage :</p>
+    <p id="contract" class="value">{{ data.contract|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Durée de l'apprentissage :</p>
+    <p id="duration" class="value">{{ data.duration }} mois</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Périodes de formation en école :</p>
+    <p id="periods" class="value">{{ data.periods }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Formation et diplôme du maître d'apprentissage :</p>
+    <p id="qualification" class="value">{{ data.qualification }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Fonction du maître d'apprentissage :</p>
+    <p id="fonction" class="value">{{ data.fonction }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Date d'entrée dans cette fonction :</p>
+    <p id="since" class="value">{{ data.since|date('d/m/Y') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Moyens mis à disposition pour le maître d'apprentissage :</p>
+    <p id="means" class="value">{{ data.means }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Le maître d'apprentissage perçoit la NBI de 20 points :</p>
+    <p id="nbi" class="value">{{ data.nbi ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Installations sanitaires à disposition de l'apprenti :</p>
+    <p id="sanitation" class="value">{{ data.sanitation ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Trousse de premiers secours :</p>
+    <p id="medkit" class="value">{{ data.medkit ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Persone formée aux premiers secours :</p>
+    <p id="medic" class="value">{{ data.medic ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Liste des matériels, engins et produits utilisés :</p>
+    <p id="tools" class="value">{{ data.tools }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Matériel et engins entretenus conformément à la notice de sécurité :</p>
+    <p id="maintained" class="value">{{ data.maintained ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">L'agent bénéficie d'une RQTH :</p>
+    <p id="maintained" class="value">{{ data.maintained ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Liste des EPIs :</p>
+    <p id="epis" class="value">{{ data.epis|join(', ') }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Accueil sécurité au poste de travail :</p>
+    <p id="safety" class="value">{{ data.safety ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">La collectivité a un DU :</p>
+    <p id="du" class="value">{{ data.du ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Horaires de travail :</p>
+    <p id="hours" class="value">{{ data.hours }}</p>
+  </div>
+
+{% endblock %}
