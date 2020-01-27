@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Form } from 'src/app/shared/sdk';
 
 @Component({
   selector: 'app-base-form'
@@ -7,26 +8,27 @@ import { NgForm } from '@angular/forms';
 
 export class BaseFormComponent implements OnInit {
   @Input() data: any = {};
+  @Input() formType: Form;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('referralDataForm', { static: true }) form: NgForm;
 
   constructor() {}
 
   ngOnInit() {
-    const savedData = JSON.parse(localStorage.getItem('referralData'));
+    const savedData = JSON.parse(localStorage.getItem(this.formType.code));
 
     if (savedData && Object.keys(this.data).length < 2) {
       this.data = savedData;
     }
 
     this.form.statusChanges.subscribe(() => {
-      localStorage.setItem('referralData', JSON.stringify(this.data));
+      localStorage.setItem(this.formType.code, JSON.stringify(this.data));
     });
   }
 
   onSubmit() {
     this.formSubmit.emit(this.data);
-    localStorage.removeItem('referralData');
+    localStorage.removeItem(this.formType.code);
   }
 
 }
