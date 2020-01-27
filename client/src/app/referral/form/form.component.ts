@@ -20,6 +20,8 @@ export class FormComponent implements OnInit {
   referral: Referral;
   summaryDownloadUrl = '';
   smallScreen: boolean;
+  comments: string;
+  done = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,6 +114,7 @@ export class FormComponent implements OnInit {
 
     this.referral.status = 'signed';
     delete this.referral.attachments;
+    delete this.referral.signedSummary;
 
     this.referralApi.replaceOrCreate(this.referral).subscribe((referral) => {
       this.referral.attachments = attachments;
@@ -119,6 +122,8 @@ export class FormComponent implements OnInit {
       this.appUserApi.notify(this.referral.id).subscribe();
 
       this.snackbar.open('Saisine validée', null, {duration: 2000});
+
+      this.done = true;
     });
   }
 

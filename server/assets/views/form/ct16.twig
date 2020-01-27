@@ -1,0 +1,59 @@
+{% extends 'base.twig' %}
+
+{% block instructions %}
+  <p>
+  </p>
+{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <p class="label">Description de la collectivité :</p>
+    <p id="description" class="value">{{ data.description }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Nombre et nature des bâtiments :</p>
+    <p id="buildings" class="value">{{ data.buildings }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Nombre et nature des véhicules et engins :</p>
+    <p id="machines" class="value">{{ data.machines }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Nature des travaux réalisés en régie :</p>
+    <p id="construction" class="value">{{ data.construction }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Nombre d'heures allouées à l'assistant de prévention pour exercer sa fonction :</p>
+    <p id="hours" class="value">{{ data.hours }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Description du poste occupé par l'assistant de prévention :</p>
+    <p id="job" class="value">{{ data.job }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Mise en place de réunions pour définir le programme de travail de l'assistant de prévention:</p>
+    <p id="meetings" class="value">{{ data.meetings ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Moyens matériels dont dispose l'assistant de prévention :</p>
+    <p id="means" class="value">{{ data.means }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">L'assistant de prévention dispose d'un droit d'accès à tous les locaux de la collectivité :</p>
+    <p id="access" class="value">{{ data.access ? 'Oui': 'Non' }}</p>
+  </div>
+
+  <div class="row">
+    <p class="label">L'assistant de prévention participera aux formations du CDG :</p>
+    <p id="training" class="value">{{ data.training ? 'Oui': 'Non' }}</p>
+  </div>
+
+{% endblock %}

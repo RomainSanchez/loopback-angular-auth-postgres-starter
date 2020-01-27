@@ -1,0 +1,141 @@
+<form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct15-form"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <p class="mat-title">Nomination d'un assistant de prévention</p>
+  <mat-divider></mat-divider>
+
+  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.description"
+      matInput
+      cdkTextareaAutosize
+      name="description"
+      id="description"
+      placeholder="Description de la collectivité"
+      required
+    ></textarea>
+  </mat-form-field>
+  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.buildings"
+      matInput
+      cdkTextareaAutosize
+      name="buildings"
+      id="buildings"
+      placeholder="Nombre et nature des bâtiments"
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.machines"
+      matInput
+      cdkTextareaAutosize
+      name="machines"
+      id="machines"
+      placeholder="Nombre et nature des véhicules et engins"
+      required
+    ></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.construction"
+      matInput
+      cdkTextareaAutosize
+      name="construction"
+      id="construction"
+      placeholder="Nature des travaux réalisés en régie"
+      required
+    ></textarea>
+  </mat-form-field>
+  <div class="fields"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center center"
+    fxFlexFill
+  >
+    <mat-form-field class="field hours" fxFlex.lt-md="100" fxFlexFill>
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.hours"
+        name="hours"
+        placeholder="Nombre d'heures allouées à l'assistant de prévention pour exercer sa fonction"
+        required
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="fields"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center center"
+    fxFlexFill
+  >
+    <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.job"
+        matInput
+        cdkTextareaAutosize
+        name="job"
+        id="job"
+        placeholder="Description du poste occupé par l'assistant de prévention"
+        required
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="fields"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center center"
+    fxFlexFill
+  >
+    <div class="field meetings">
+      <mat-checkbox [(ngModel)]="data.meetings" name="meetings">Mise en place de réunions pour définir le programme de travail de l'assistant de prévention</mat-checkbox>
+    </div>
+
+    <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.means"
+        matInput
+        cdkTextareaAutosize
+        name="means"
+        id="means"
+        placeholder="Moyens matériels dont dispose l'assistant de prévention"
+        required
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="fields"
+    fxLayout="row wrap"
+    fxLayout.lt-md="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center center"
+    fxFlexFill
+  >
+    <div class="field access">
+      <mat-checkbox [(ngModel)]="data.access" name="access">L'assistant de prévention dispose d'un droit d'accès à tous les locaux de la collectivité</mat-checkbox>
+    </div>
+
+    <div class="field training">
+      <mat-checkbox [(ngModel)]="data.training" name="training">L'assistant de prévention participera aux formations du CDG</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="button">
+    <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>
+  </div>
+</form>
+

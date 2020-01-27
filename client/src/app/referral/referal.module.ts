@@ -46,6 +46,8 @@ import { Ct11Component } from './form-types/ct11/ct11.component';
 import { Ct12Component } from './form-types/ct12/ct12.component';
 import { Ct13Component } from './form-types/ct13/ct13.component';
 import { Ct14Component } from './form-types/ct14/ct14.component';
+import { Ct15Component } from './form-types/ct15/ct15.component';
+import { Ct16Component } from './form-types/ct16/ct16.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -89,7 +91,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     Ct11Component,
     Ct12Component,
     Ct13Component,
-    Ct14Component
+    Ct14Component,
+    Ct15Component,
+    Ct16Component
   ],
   imports: [
     FlexLayoutModule,
