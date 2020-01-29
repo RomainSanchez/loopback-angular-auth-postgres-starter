@@ -7,28 +7,28 @@
 
 {% block content %}
   <div class="row">
-    <p class="label">Quotités de temps partiel: </p>
+    <p class="label">Quotités de temps partiel : </p>
     <p id="proportions" class="value">{{ data.proportions|join(', ') }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Modifications apportées:</p>
-    <p id="modifications" class="value">{{ data.modifications }}</p>
+    <p class="label">Durée des autorisations :</p>
+    <p id="duration" class="value">{{ data.duration }} mois</p>
   </div>
 
   <div class="row">
-    <p class="label">Durée des autorisations:</p>
-    <p id="modifications" class="value">{{ data.duration }} mois</p>
+    <p class="label">Délai de réponse de l'employeur :</p>
+    <p id="delay" class="value">{{ data.delay }} mois</p>
   </div>
 
   <div class="row">
-    <p class="label">Délai de réponse de l'employeur:</p>
-    <p id="modifications" class="value">{{ data.delay }} mois</p>
+    <p class="label">Date limite de dépôt des demandes :</p>
+    <p id="limit" class="value">{{ data.limit|date('d/m/Y') }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Date limite de dépôt des demandes:</p>
-    <p id="modifications" class="value">{{ data.limit|date('d/m/Y') }}</p>
+    <p class="label">Motif de refus de l'employeur :</p>
+    <p id="motive" class="value">{{ data.motive }}</p>
   </div>
 
 {% endblock %}

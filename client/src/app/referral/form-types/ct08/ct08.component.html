@@ -36,15 +36,7 @@
       <mat-datepicker-toggle matSuffix [for]="ctDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #ctDatePicker></mat-datepicker>
     </mat-form-field>
-  </div>
 
-  <div
-    fxLayout="row wrap"
-    fxLayout.lt-md="column"
-    fxLayoutGap="30px"
-    fxLayoutAlign="center"
-    fxFlexFill
-  >
     <mat-form-field class="field hours" fxFlex.lt-md="100" fxFlex="45">
       <input matInput type="number" min="1" max="99"
         [(ngModel)]="data.hours"
@@ -54,24 +46,6 @@
       >
       <span matSuffix>heures</span>
     </mat-form-field>
-
-    <mat-form-field class="field days" fxFlex.lt-md="100" fxFlex="30">
-      <input matInput type="number" min="1" max="99"
-        [(ngModel)]="data.days"
-        name="days"
-        placeholder="Nombre de jours RTT"
-        required
-      >
-    </mat-form-field>
-
-    <mat-form-field class="field period" fxFlex="50" fxFlex.lt-md="100">
-      <input matInput
-        [(ngModel)]="data.period"
-        name="period"
-        placeholder="Période de liquidation des RTT"
-        required
-      >
-    </mat-form-field>
   </div>
 
   <div
@@ -81,23 +55,94 @@
     fxLayoutAlign="center"
     fxFlexFill
   >
-    <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
-      <textarea
-        fxFlexFill
-        [(ngModel)]="data.terms"
-        matInput
-        cdkTextareaAutosize
-        name="terms"
-        id="terms"
-        placeholder="Modalités de liquidation des RTT"
-        required
-      ></textarea>
-    </mat-form-field>
-
-    <div class="field cycle" fxFlex="70" fxLayoutAlign="center center">
-      <mat-checkbox [(ngModel)]="data.cycle" name="cycle">Travail en cycle</mat-checkbox>
+    <div class="field rtt" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.rtt" name="rtt">RTT</mat-checkbox>
     </div>
   </div>
+  <ng-container *ngIf="data.rtt">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+      fxFlexFill
+    >
+      <mat-form-field class="field days" fxFlex.lt-md="100" fxFlex="30">
+        <input matInput type="number" min="1" max="99"
+          [(ngModel)]="data.days"
+          name="days"
+          placeholder="Nombre de jours RTT"
+          required
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field period" fxFlex="50" fxFlex.lt-md="100">
+        <input matInput
+          [(ngModel)]="data.period"
+          name="period"
+          placeholder="Période de liquidation des RTT"
+          required
+        >
+      </mat-form-field>
+      <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+        <textarea
+          fxFlexFill
+          [(ngModel)]="data.terms"
+          matInput
+          cdkTextareaAutosize
+          name="terms"
+          id="terms"
+          placeholder="Modalités de liquidation des RTT"
+          required
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </ng-container>
+
+  <div class="field cycle" fxFlex="70" fxLayoutAlign="center center">
+    <mat-checkbox [(ngModel)]="data.cycle" name="cycle">Travail en cycle</mat-checkbox>
+  </div>
+
+  <ng-container *ngIf="data.cycle">
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+      fxFlexFill
+    >
+      <mat-form-field class="field days" fxFlex.lt-md="100" fxFlex="30">
+        <input matInput type="number" min="1" max="99"
+          [(ngModel)]="data.cycleDays"
+          name="cycleDays"
+          placeholder="Nombre de jours RTT"
+          required
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field period" fxFlex="50" fxFlex.lt-md="100">
+        <input matInput
+          [(ngModel)]="data.cyclePeriod"
+          name="cyclePeriod"
+          placeholder="Période de liquidation des RTT"
+          required
+        >
+      </mat-form-field>
+
+      <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+        <textarea
+          fxFlexFill
+          [(ngModel)]="data.cycleTerms"
+          matInput
+          cdkTextareaAutosize
+          name="cycleTerms"
+          id="cycle-terms"
+          placeholder="Modalités de liquidation des RTT"
+          required
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </ng-container>
 
   <p class="section">Nouveau protocole</p>
   <div
@@ -118,19 +163,6 @@
       <mat-datepicker-toggle matSuffix [for]="newApplicationDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #newApplicationDatePicker></mat-datepicker>
     </mat-form-field>
-
-    <mat-form-field class="field" fxFlex="40" fxFlex.lt-md="100">
-      <input matInput
-        [(ngModel)]="data.newCt"
-        [matDatepicker]="newCtDatepicker"
-        name="new-ct"
-        placeholder="Date de l'avis du CT"
-        required
-      >
-      <mat-datepicker-toggle matSuffix [for]="newCtDatepicker"></mat-datepicker-toggle>
-      <mat-datepicker #newCtDatepicker></mat-datepicker>
-    </mat-form-field>
-
   </div>
 
   <div
@@ -149,54 +181,100 @@
       >
       <span matSuffix>heures</span>
     </mat-form-field>
-
-    <mat-form-field class="field new-days" fxFlex.lt-md="100" fxFlex="30">
-      <input matInput type="number" min="1" max="99"
-        [(ngModel)]="data.newDays"
-        name="new-days"
-        placeholder="Nombre de jours RTT"
-        required
-      >
-    </mat-form-field>
-
-    <mat-form-field class="field new-period" fxFlex="50" fxFlex.lt-md="100">
-      <input matInput
-        [(ngModel)]="data.newPeriod"
-        name="new-period"
-        placeholder="Période de liquidation des RTT"
-        required
-      >
-    </mat-form-field>
   </div>
-
-  <div
-    fxLayout="row wrap"
-    fxLayout.lt-md="column"
-    fxLayoutGap="30px"
-    fxLayoutAlign="center"
-    fxFlexFill
-  >
-    <mat-form-field class="field new-terms" fxFlex="70" fxFlex.lt-md="80">
-      <textarea
-        fxFlexFill
-        [(ngModel)]="data.newTerms"
-        matInput
-        cdkTextareaAutosize
-        name="new-terms"
-        id="new-terms"
-        placeholder="Modalités de liquidation des RTT"
-        required
-      ></textarea>
-    </mat-form-field>
-
-    <div class="field new-cycle" fxFlex="70" fxLayoutAlign="center center">
-      <mat-checkbox [(ngModel)]="data.newCycle" name="new-cycle">Travail en cycle</mat-checkbox>
+    <div class="field new-rtt" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.newRtt" name="newRtt">RTT</mat-checkbox>
     </div>
+
+    <ng-container *ngIf="data.newRtt">
+      <div
+      fxLayout="row wrap"
+      fxLayout.lt-md="column"
+      fxLayoutGap="30px"
+      fxLayoutAlign="center"
+      fxFlexFill
+    >
+        <mat-form-field class="field newDays" fxFlex.lt-md="100" fxFlex="30">
+          <input matInput type="number" min="1" max="99"
+            [(ngModel)]="data.newDays"
+            name="newDays"
+            placeholder="Nombre de jours RTT"
+            required
+          >
+        </mat-form-field>
+
+        <mat-form-field class="field newPeriod" fxFlex="50" fxFlex.lt-md="100">
+          <input matInput
+            [(ngModel)]="data.newPeriod"
+            name="newPeriod"
+            placeholder="Période de liquidation des RTT"
+            required
+          >
+        </mat-form-field>
+
+        <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+          <textarea
+            fxFlexFill
+            [(ngModel)]="data.newTerms"
+            matInput
+            cdkTextareaAutosize
+            name="newTerms"
+            id="new-terms"
+            placeholder="Modalités de liquidation des RTT"
+            required
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </ng-container>
+
+    <div class="field newCycle" fxFlex="70" fxLayoutAlign="center center">
+      <mat-checkbox [(ngModel)]="data.newCycle" name="newCycle">Travail en cycle</mat-checkbox>
+    </div>
+
+    <ng-container *ngIf="data.newCycle">
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        fxFlexFill
+      >
+        <mat-form-field class="field days" fxFlex.lt-md="100" fxFlex="30">
+          <input matInput type="number" min="1" max="99"
+            [(ngModel)]="data.newCycleDays"
+            name="newCycleDays"
+            placeholder="Nombre de jours RTT"
+            required
+          >
+        </mat-form-field>
+
+        <mat-form-field class="field period" fxFlex="50" fxFlex.lt-md="100">
+          <input matInput
+            [(ngModel)]="data.newCyclePeriod"
+            name="newCyclePeriod"
+            placeholder="Période de liquidation des RTT"
+            required
+          >
+        </mat-form-field>
+        <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+          <textarea
+            fxFlexFill
+            [(ngModel)]="data.newCycleTerms"
+            matInput
+            cdkTextareaAutosize
+            name="newCycleTerms"
+            id="cycle-terms"
+            placeholder="Modalités de liquidation des RTT"
+            required
+
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </ng-container>
 
     <div class="field staff-consulted" fxFlex="70" fxLayoutAlign="center center">
       <mat-checkbox [(ngModel)]="data.staffConsulted" name="staff-consulted">Consultation du personnel</mat-checkbox>
     </div>
-  </div>
 
   <div class="button">
     <button type="submit" mat-raised-button color="accent" [disabled]="referralDataForm.invalid">Suivant</button>

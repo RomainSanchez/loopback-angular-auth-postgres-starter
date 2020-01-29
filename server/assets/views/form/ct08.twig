@@ -23,6 +23,9 @@
     <p id="hours" class="value">{{ data.hours }}</p>
   </div>
 
+  {% if data.rtt %}
+  <p class="subtitle">RTT</p>
+
   <div class="row">
     <p class="label">Nombre de jours RTT :</p>
     <p id="days" class="value">{{ data.days }}</p>
@@ -37,13 +40,26 @@
     <p class="label">modalités de liquidation des RTT :</p>
     <p id="terms" class="value">{{ data.terms }}</p>
   </div>
+  {% endif %}
+
+  {% if data.cycle %}
+  <p class="subtitle">Travail en cycle :</p>
 
   <div class="row">
-    <p class="label">Travail en cycle :</p>
-    <p id="cycle" class="value">{{ data.cycle ? 'Oui': 'Non' }}</p>
+    <p class="label">Nombre de jours RTT :</p>
+    <p id="cycleDays" class="value">{{ data.cycleDays }}</p>
   </div>
 
+  <div class="row">
+    <p class="label">Période de liquidation des RTT :</p>
+    <p id="cyclePeriod" class="value">{{ data.cyclePeriod }}</p>
+  </div>
 
+  <div class="row">
+    <p class="label">modalités de liquidation des RTT :</p>
+    <p id="cycleTerms" class="value">{{ data.cycleTerms }}</p>
+  </div>
+  {% endif %}
 
   <p class="title">Nouveau protocole</p>
 
@@ -53,15 +69,12 @@
   </div>
 
   <div class="row">
-    <p class="label">Date de l'avis du CT :</p>
-    <p id="new-ct" class="value">{{ data.newCt|date('d/m/Y') }}</p>
-  </div>
-
-  <div class="row">
     <p class="label">Durée moyenne hebdomadaire de travail :</p>
     <p id="new-hours" class="value">{{ data.newHours }}</p>
   </div>
 
+  {% if data.newRtt %}
+  <p class="subtitle">RTT</p>
   <div class="row">
     <p class="label">Nombre de jours RTT :</p>
     <p id="new-days" class="value">{{ data.newDays }}</p>
@@ -76,16 +89,25 @@
     <p class="label">modalités de liquidation des RTT :</p>
     <p id="new-terms" class="value">{{ data.newTerms }}</p>
   </div>
+  {% endif %}
 
+  {% if data.newCycle %}
+  <p class="subtitle">Travail en cycle</p>
   <div class="row">
-    <p class="label">Travail en cycle :</p>
-    <p id="new-cycle" class="value">{{ data.newCycle ? 'Oui': 'Non' }}</p>
+    <p class="label">Nombre de jours RTT :</p>
+    <p id="new-cycle-days" class="value">{{ data.newCycleDays }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Consultation du personnel :</p>
-    <p id="staff-consulted" class="value">{{ data.staffConsulted ? 'Oui': 'Non' }}</p>
+    <p class="label">Période de liquidation des RTT :</p>
+    <p id="new-cycle-period" class="value">{{ data.newCyclePeriod }}</p>
   </div>
+
+  <div class="row">
+    <p class="label">modalités de liquidation des RTT :</p>
+    <p id="new-cycle-terms" class="value">{{ data.newCycleTerms }}</p>
+  </div>
+  {% endif %}
 
   <style>
     #staff-consulted {

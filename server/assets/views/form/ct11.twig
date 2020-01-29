@@ -18,9 +18,11 @@
     <p id="application" class="value">{{ data.application|date('d/m/Y') }}</p>
   </div>
 
+  {% if data.jobs|length > 0 %}
   <div class="row">
     <p class="title">Emplois</p>
   </div>
+  {% endif %}
 
   {% for job in data.jobs %}
     <p class="title">Emploi {{ loop.index }}</p>

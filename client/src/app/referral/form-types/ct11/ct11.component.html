@@ -2,7 +2,7 @@
   fxLayout="column"
   fxLayoutAlign="center center"
 >
-  <p class="mat-title">Tableau des emplois</p>
+  <p class="mat-title">Organisation des services</p>
   <mat-divider></mat-divider>
 
   <div
@@ -99,6 +99,15 @@
             >
             <mat-datepicker-toggle matSuffix [for]="suppressionDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #suppressionDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="field grade" fxFlex="30" fxFlex.lt-md="100">
+            <input matInput
+              formControlName="motive"
+              name="motive"
+              placeholder="Motif de la suppression"
+              required
+            >
           </mat-form-field>
         </div>
 

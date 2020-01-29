@@ -42,11 +42,11 @@
     </mat-form-field>
 
     <div class="field artt" fxFlex="70" fxLayoutAlign="center center">
-      <mat-checkbox [(ngModel)]="data.artt" name="artt">La mise en place modifie le protocole ARTT</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.artt" name="artt">La mise en place des astreintes ou permanences modifie le protocole ARTT</mat-checkbox>
     </div>
 
     <div class="field rules" fxFlex="70" fxLayoutAlign="center center">
-      <mat-checkbox [(ngModel)]="data.rules" name="rules">La mise en place modifie le règlement intérieur</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.rules" name="rules">La mise en place des astreintes ou permanences modifie le règlement intérieur</mat-checkbox>
     </div>
   </div>
 
@@ -57,55 +57,18 @@
     fxLayoutAlign="center"
     fxFlexFill
   >
-    <div class="field technical" fxFlex="100">
-      <mat-radio-group
-        fxLayout="row wrap"
-        fxLayout.lt-md="column"
-        fxLayoutGap="30px"
-        fxLayoutAlign="center"
-        [(ngModel)]="data.technical"
-        name="technical"
+    <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
+      <textarea
+        fxFlexFill
+        [(ngModel)]="data.watchType"
+        matInput
+        cdkTextareaAutosize
+        name="watchType"
+        id="watch-type"
+        placeholder="Types d'astreintes (décision, exploitation ou sécurité)"
         required
-      >
-        <mat-radio-button value="Astreintes filières techniques">Astreintes filières techniques</mat-radio-button>
-        <mat-radio-button value="Astreintes autres filières">Astreintes autres filières</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div *ngIf="data.technical === 'Astreintes filières techniques'" class="field watch" fxFlex="100">
-      <mat-divider></mat-divider>
-      <mat-radio-group
-        fxLayout="row wrap"
-        fxLayout.lt-md="column"
-        fxLayoutGap="30px"
-        fxLayoutAlign="center"
-        [(ngModel)]="data.watch"
-        name="watch"
-        required
-      >
-        <mat-radio-button value="Prévention des accidents imminents ou réparation d'accidents survenus sur des infrastructures et leurs équipements">Prévention des accidents imminents ou réparation d'accidents survenus sur des infrastructures et leurs équipements</mat-radio-button>
-        <mat-radio-button value="Surveillance des infrastructures">Surveillance des infrastructures</mat-radio-button>
-        <mat-radio-button value="Gardiennage des locaux et installations">Gardiennage des locaux et installations</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <mat-divider></mat-divider>
-
-    <div class="field safety" fxFlex="100">
-      <mat-radio-group
-        fxLayout="row wrap"
-        fxLayout.lt-md="column"
-        fxLayoutGap="30px"
-        fxLayoutAlign="center"
-        [(ngModel)]="data.safety"
-        name="safety"
-        required
-      >
-        <mat-radio-button value="Astreintes de décision">Astreintes de décision</mat-radio-button>
-        <mat-radio-button value="Astreintes d'exploitation">Astreintes d'exploitation</mat-radio-button>
-        <mat-radio-button value="Astreintes de sécurité">Astreintes de sécurité</mat-radio-button>
-      </mat-radio-group>
-    </div>
+      ></textarea>
+    </mat-form-field>
   </div>
 
   <div
@@ -155,7 +118,7 @@
     </mat-form-field>
 
     <div class="field temporaries" fxFlex="70" fxLayoutAlign="center center">
-      <mat-checkbox [(ngModel)]="data.temporaries" name="temporaries">Agents non titulaires concernés</mat-checkbox>
+      <mat-checkbox [(ngModel)]="data.temporaries" name="temporaries">Agents contractuels concernés</mat-checkbox>
     </div>
 
     <mat-form-field class="field" fxFlex="70" fxFlex.lt-md="80">
@@ -204,8 +167,23 @@
         name="payment"
         required
       >
-        <mat-radio-button value="Paiement des permanences">Paiement des permanences</mat-radio-button>
-        <mat-radio-button value="Compensation des permanences">Compensation des permanences</mat-radio-button>
+        <mat-radio-button value="Paiement des {{ data.type|lowercase }}">Paiement des {{ data.type|lowercase }}</mat-radio-button>
+        <mat-radio-button value="Compensation des {{ data.type|lowercase }}">Compensation des {{ data.type|lowercase }}</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div *ngIf="data.type === 'Astreintes'" class="field interventions" fxFlex="100">
+      <mat-radio-group
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center"
+        [(ngModel)]="data.interventions"
+        name="interventions"
+        required
+      >
+        <mat-radio-button value="Paiement des interventions">Paiement des interventions</mat-radio-button>
+        <mat-radio-button value="Compensation des interventions">Compensation des interventions</mat-radio-button>
       </mat-radio-group>
     </div>
   </div>

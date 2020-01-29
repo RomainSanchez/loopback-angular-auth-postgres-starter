@@ -119,7 +119,16 @@
   </mat-form-field>
 
   <mat-form-field class="field" fxFlexFill fxFlex.lt-md="70">
-    <textarea fxFlexFill [(ngModel)]="data.motivation" matInput cdkTextareaAutosize name="motivation" id="motivation" placeholder="Rapport motivé"></textarea>
+    <textarea
+      fxFlexFill
+      [(ngModel)]="data.motivation"
+      matInput
+      cdkTextareaAutosize
+      name="motivation"
+      id="motivation"
+      placeholder="Rapport motivé"
+      required
+    ></textarea>
   </mat-form-field>
 
   <div class="button">

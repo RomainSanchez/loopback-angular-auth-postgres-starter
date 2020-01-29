@@ -19,7 +19,7 @@ export class Ct10Component implements OnInit, AfterViewChecked {
   ) {}
 
   ngOnInit() {
-    const savedData = JSON.parse(localStorage.getItem('referralData'));
+    const savedData = JSON.parse(localStorage.getItem('referralData')).data;
 
     this.data = JSON.parse(JSON.stringify(this.data));
     delete this.data.information;

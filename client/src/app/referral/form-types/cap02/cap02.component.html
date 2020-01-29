@@ -100,7 +100,7 @@
       <span matSuffix>h/semaine</span>
     </mat-form-field>
 
-    <mat-form-field class="field new-community" fxFlex.gt-md="50">
+    <mat-form-field class="field new-community" fxFlex="100" fxFlex.lt-md="100">
       <input matInput
         [(ngModel)]="data.newCommunity"
         name="new-community"
@@ -117,12 +117,13 @@
     fxLayoutAlign="center"
   >
     <mat-form-field class="field proportion" fxFlex.gt-md="40">
-      <input matInput
+      <input matInput type="number"  min="1" max="99"
         [(ngModel)]="data.proportion"
         name="proportion"
         placeholder="Quotité de la mise à disposition"
         required
       >
+      <span matSuffix>heures</span>
     </mat-form-field>
 
     <mat-form-field class="field effective" fxFlex.gt-md="40">
@@ -137,7 +138,7 @@
       <mat-datepicker #effectiveDatePicker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field class="field duration" fxFlex.lt-md="100">
+    <mat-form-field class="field duration" fxFlex="50" fxFlex.lt-md="100">
       <input matInput type="number" min="1" max="99"
         [(ngModel)]="data.duration"
         name="duration"
@@ -145,6 +146,18 @@
         required
       >
       <span matSuffix>mois</span>
+    </mat-form-field>
+
+    <mat-form-field class="field reason" fxFlex="60" fxFlex.lt-md="100">
+      <textarea fxFlexFill
+        [(ngModel)]="data.missions"
+        matInput
+        cdkTextareaAutosize
+        name="missions"
+        id="missions"
+        placeholder="Missions réalisées"
+        required
+      ></textarea>
     </mat-form-field>
   </div>
 

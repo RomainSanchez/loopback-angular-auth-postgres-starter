@@ -55,6 +55,7 @@ export class Ct11Component implements OnInit, AfterViewChecked {
       grade: ['', Validators.required],
       hours: ['', Validators.required],
       suppression: ['', Validators.required],
+      motive: ['', Validators.required],
       newDescription: [''],
       newGrade: [''],
       newHours: [''],

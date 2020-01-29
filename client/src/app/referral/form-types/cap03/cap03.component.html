@@ -85,13 +85,16 @@
       <span matSuffix>h/semaine</span>
     </mat-form-field>
 
-    <mat-form-field class="field position" fxFlex.lt-md="100">
+    <mat-form-field class="field position" fxFlex="60" fxFlex.lt-md="100">
       <input matInput
         [(ngModel)]="data.position"
+        [matDatepicker]="positionDatePicker"
         name="position"
-        placeholder="Position statutaire actuelle"
+        placeholder="Position statutaire actuelle depuis le"
         required
       >
+      <mat-datepicker-toggle matSuffix [for]="positionDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #positionDatePicker></mat-datepicker>
     </mat-form-field>
   </div>
 

@@ -2,6 +2,8 @@
 
 {% block instructions %}
   <p>
+    Le compte épargne-temps permet, à la demande des agents titulaires et non titulaires, à temps complet ou non complet, employés de manière continue depuis au moins une année, d’accumuler des droits à congés rémunérés (congés annuels, R.T.T., repos compensateurs).
+    Le nombre total de jours inscrits sur le C.E.T. ne peut excéder 60 jours.
   </p>
 {% endblock %}
 
@@ -23,11 +25,11 @@
 
   <div class="row">
     <p class="label">Instauration des nouvelles modalités d'utilisation des jours épargnés :</p>
-    <p id="establishing" class="value">{{ data.establishing ? 'Oui': 'Non' }}</p>
+    <p id="establishing" class="value">{{ data.establishing }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Instauration des nouvelles modalités d'utilisation des jours épargnés :</p>
+    <p class="label">Convention financière en cas de mutation :</p>
     <p id="convention" class="value">{{ data.convention ? 'Oui': 'Non' }}</p>
   </div>
 

@@ -38,8 +38,8 @@
   </div>
 
   <div class="row">
-    <p class="label">Position statutaire actuelle de l'agent:</p>
-    <p id="position" class="value">{{ data.position }}</p>
+    <p class="label">Position statutaire actuelle de l'agent depuis le:</p>
+    <p id="position" class="value">{{ data.position|date('d/m/Y') }}</p>
   </div>
 
   <div class="row">

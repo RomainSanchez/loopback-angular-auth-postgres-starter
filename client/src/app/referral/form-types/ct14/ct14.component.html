@@ -44,10 +44,18 @@
       <mat-datepicker #informationDatePicker></mat-datepicker>
     </mat-form-field>
 
-    <div class="field establishing" fxFlex="70" fxLayoutAlign="center center">
-      <mat-checkbox [(ngModel)]="data.establishing" name="establishing">
-        Instauration des nouvelles modalités d'utilisation des jours épargnés (transformation en épargne RAFP et indemnisation forfaitaire)
-      </mat-checkbox>
+    <p class="section" fxFlexFill>Instauration des nouvelles modalités d'utilisation des jours épargnés</p>
+    <div class="field establishing" fxFlexFill>
+      <mat-radio-group name="establishing"
+        [(ngModel)]="data.establishing"
+        fxLayout="row wrap"
+        fxLayout.lt-md="column"
+        fxLayoutGap="30px"
+        fxLayoutAlign="center center"
+      >
+        <mat-radio-button value="Transformation en épargne RAFP">Transformation en épargne RAFP</mat-radio-button>
+        <mat-radio-button value="Indemnisation forfaitaire">Indemnisation forfaitaire</mat-radio-button>
+      </mat-radio-group>
     </div>
 
     <div class="field convention" fxFlex="70" fxLayoutAlign="center center">

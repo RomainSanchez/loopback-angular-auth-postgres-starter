@@ -7,55 +7,60 @@
 
 {% block content %}
 <div class="row">
-  <p class="label">Nom et prénom de l'agent:</p>
+  <p class="label">Nom et prénom de l'agent :</p>
   <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Date de naissance:</p>
+  <p class="label">Date de naissance :</p>
   <p id="birthdate" class="value">{{ data.birthdate|date('d/m/Y') }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Collectivité ou établissement:</p>
+  <p class="label">Collectivité ou établissement :</p>
   <p id="community" class="value">{{ data.information.community }}</p>
 </div>
 
 <div class="row">
-<p class="label">Grade actuel:</p>
+  <p class="label">Grade actuel :</p>
   <p id="grade" class="value">{{ data.grade }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Echelon actuel:</p>
+  <p class="label">Echelon actuel :</p>
   <p id="echelon" class="value">{{ data.echelon }} heures/semaine</p>
 </div>
 
 <div class="row">
-  <p class="label">Date de délibération des ratios promus promouvables:</p>
+  <p class="label">Grade d'avancement :</p>
+  <p id="grade" class="value">{{ data.newGrade }}</p>
+</div>
+
+<div class="row">
+  <p class="label">Date de délibération des ratios promus promouvables :</p>
   <p id="deliberation" class="value">{{ data.deliberation }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Avancement à compter du:</p>
+  <p class="label">Avancement à compter du :</p>
   <p id="advance-from" class="value">{{ data.advanceFrom|date('d/m/Y') }}</p>
 </div>
 
 <div class="row">
-  <p class="label">Pourcentage appliqué pour le grade concerné:</p>
+  <p class="label">Pourcentage appliqué pour le grade concerné :</p>
   <p id="percentage" class="value">{{ data.percentage }} %</p>
 </div>
 
 {% if data.several %}
 <div class="row">
-  <p class="label">Ordre de priorité:</p>
+  <p class="label">Ordre de priorité :</p>
   <p id="priority" class="value">{{ data.priority }}</p>
 </div>
 {% endif %}
 
 {% if data.exam %}
 <div class="row">
-  <p class="label">Date d'obtention de l'examen professionnel:</p>
+  <p class="label">Date d'obtention de l'examen professionnel :</p>
   <p id="exam-date" class="value">{{ data.examDate|date('d/m/Y') }}</p>
 </div>
 {% endif %}

@@ -24,15 +24,10 @@
   </div>
 
   {% if data.type == 'Astreintes' %}
-
-  <p class="technical subtitle">{{ data.technical }}</p>
-
-  {% if data.technical == 'Astreintes filières techniques' %}
-  <p class="watch subtitle">{{ data.watch }}</p>
-  {% endif %}
-
-  <p class="watch subtitle">{{ data.safety }}</p>
-
+    <div class="row">
+      <p class="label">Types d'astreintes :</p>
+      <p id="watch-type" class="value">{{ data.watchType }}</p>
+    </div>
   {% endif %}
 
   <div class="row">
@@ -67,6 +62,10 @@
 
   <div class="row">
     <p class="subtitle">{{ data.payment }}</p>
+  </div>
+
+  <div class="row">
+    <p class="subtitle">{{ data.interventions }}</p>
   </div>
 
 {% endblock %}

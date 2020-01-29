@@ -45,15 +45,18 @@ module.exports = function(app) {
       'Compte rendu d\'entretien',
       'Curriculum vitae'
     ], optionalAttachments: []},
-    { name: 'Mise à disposition', committee: 'cap', code: 'cap02' , requiredAttachments: ['Convention de mise à disposition'], optionalAttachments: []},
-    { name: 'Demande de licenciement pour inaptitude physique d\'un agent CNRACL', committee: 'cap', code: 'cap03' , requiredAttachments: [
+    { name: 'Mise à disposition', committee: 'cap', code: 'cap02' , requiredAttachments: [
+      'Convention de mise à disposition',
+      'Courrier d\'acceptation de l\'agent'
+    ], optionalAttachments: []},
+    { name: 'Demande de licenciement pour inaptitude physique d\'un agent CNRACL (28h et plus)', committee: 'cap', code: 'cap03' , requiredAttachments: [
       'PV du comité médical',
       'Etat récapitulatif des arrêts',
       'Refus CNRACL',
       'Fiche d\'aptitude du médecin de prévention',
       'Impossibilité de reclassement'
     ], optionalAttachments: []},
-    { name: 'Demande de licenciement pour inaptitude physique d\'un agent IRCANTEC', committee: 'cap', code: 'cap04' , requiredAttachments: [
+    { name: 'Demande de licenciement pour inaptitude physique d\'un agent IRCANTEC (moins de 28h)', committee: 'cap', code: 'cap04' , requiredAttachments: [
       'PV du comité médical',
       'Etat récapitulatif des arrêts',
       'Fiche d\'aptitude du médecin de prévention',
@@ -73,9 +76,13 @@ module.exports = function(app) {
       'Curriculum vitae'
     ], optionalAttachments: []},
     { name: 'Proposition d\'avancement à l\'échelon spécial', committee: 'cap', code: 'cap08' , requiredAttachments: [], optionalAttachments: []},
-    { name: 'Proposition d\'avancement de grade', committee: 'cap', code: 'cap09' , requiredAttachments: [], optionalAttachments: []},
-    { name: 'Demande de révision de l\'entretien professionnel', committee: 'cap', code: 'cap10' , requiredAttachments: ['Compte rendu d\'entretien'], optionalAttachments: []},
-    { name: 'Promotion interne', committee: 'cap', code: 'cap11' , requiredAttachments: [], optionalAttachments: []},
+    { name: 'Proposition d\'avancement de grade', committee: 'cap', code: 'cap09' , requiredAttachments: ['Demande de l\'agent'], optionalAttachments: ['Tableau d\'avancement']},
+    { name: 'Demande de révision de l\'entretien professionnel', committee: 'cap', code: 'cap10' , requiredAttachments: [
+      'Compte rendu d\'entretien professionnel de l\'agent',
+      'Demande de l\'agent',
+      'Rapport/réponse de la collectivité'
+    ], optionalAttachments: []},
+    //a remettre en 2021 { name: 'Promotion interne', committee: 'cap', code: 'cap11' , requiredAttachments: [], optionalAttachments: []},
     { name: 'Refus de congé de formation syndicale ou professionnelle', committee: 'cap', code: 'cap12' , requiredAttachments: [], optionalAttachments: []},
     { name: 'Refus de télétravail ou de CET ou de temps partiel', committee: 'cap', code: 'cap13' , requiredAttachments: [], optionalAttachments: []},
     { name: 'Contrat article 38: non renouvellement du contrat', committee: 'cap', code: 'cap14' , requiredAttachments: [
@@ -106,7 +113,17 @@ module.exports = function(app) {
       'Plans'
     ], optionalAttachments: []},
     { name: 'Régime indemnitaire', committee: 'ct', code: 'ct13', requiredAttachments: [], optionalAttachments: ['Tableau des groupes de fonctions'] },
-    { name: 'Compte épargne temps', committee: 'ct', code: 'ct14', requiredAttachments: [], optionalAttachments: [] }
+    { name: 'Compte épargne temps', committee: 'ct', code: 'ct14', requiredAttachments: [], optionalAttachments: [] },
+    { name: 'Document unique', committee: 'ct', code: 'ct15', requiredAttachments: [
+      'Document unique',
+      'Organigramme de la collectivité'
+    ], optionalAttachments: [] },
+    { name: 'Nomination d\'un assistant de prévention', committee: 'ct', code: 'ct16', requiredAttachments: [
+      'Organigramme de la collectivité',
+      'Délibération',
+      'Lettre de cadrage',
+      'Accord écrit de l\'agent'
+    ], optionalAttachments: [] }
   ];
 
   // app.models.AppUser.create(admin);

@@ -17,52 +17,57 @@
     <p id="initial" class="value">{{ data.initial ? 'Première demande': 'Renouvellement' }}</p>
   </div>
   <div class="row">
-    <p class="label">Nom et prénom de l'agent:</p>
+    <p class="label">Nom et prénom de l'agent :</p>
     <p id="name" class="value">{{ data.firstname }} {{ data.lastname }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Date de naissance:</p>
+    <p class="label">Date de naissance :</p>
     <p id="birthdate" class="value">{{ data.birthdate|date('d/m/Y') }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Date de nomination dans la fonction publique:</p>
+    <p class="label">Date de nomination dans la fonction publique :</p>
     <p id="nomination" class="value">{{ data.nomination|date('d/m/Y') }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Collectivité ou établissement d'origine:</p>
+    <p class="label">Collectivité ou établissement d'origine :</p>
     <p id="community" class="value">{{ data.information.community }}</p>
   </div>
 
   <div class="row">
-  <p class="label">Grade:</p>
+  <p class="label">Grade :</p>
     <p id="grade" class="value">{{ data.grade }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Temps de travail:</p>
+    <p class="label">Temps de travail :</p>
     <p id="hours" class="value">{{ data.hours }} heures/semaine</p>
   </div>
 
   <div class="row">
-    <p class="label">Collectivité ou établissement d'accueil:</p>
+    <p class="label">Collectivité ou établissement d'accueil :</p>
     <p id="new-community" class="value">{{ data.newCommunity }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Quotité de la mise à disposition:</p>
-    <p id="proportion" class="value">{{ data.proportion }}</p>
+    <p class="label">Quotité de la mise à disposition :</p>
+    <p id="proportion" class="value">{{ data.proportion }} heures</p>
   </div>
 
   <div class="row">
-    <p class="label">Date d'effet de la mise à disposition:</p>
+    <p class="label">Date d'effet de la mise à disposition :</p>
     <p id="effective" class="value">{{ data.effective|date('d/m/Y') }}</p>
   </div>
 
   <div class="row">
-    <p class="label">Durée de la mise à disposition:</p>
+    <p class="label">Durée de la mise à disposition :</p>
     <p id="duration" class="value">{{ data.duration }} mois</p>
+  </div>
+
+  <div class="row">
+    <p class="label">Missions réalisées :</p>
+    <p id="missions" class="value">{{ data.missions }} mois</p>
   </div>
 {% endblock %}

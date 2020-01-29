@@ -1,10 +1,11 @@
 <form #referralDataForm="ngForm" (ngSubmit)="onSubmit()" class="ct01-form"
   fxLayout="column"
   fxLayoutAlign="center center"
+  fxFlexFill
 >
   <p class="mat-title">Règlement Intérieur</p>
   <mat-divider></mat-divider>
-  <div class="field radio">
+  <div class="field radio" fxFlexFill>
     <mat-radio-group name="creation"
       [(ngModel)]="data.creation"
       fxLayout="row wrap"
@@ -26,6 +27,7 @@
     fxLayout.lt-md="column"
     fxLayoutGap="30px"
     fxLayoutAlign="center center"
+    fxFlexFill
   >
     <mat-form-field class="field" *ngIf="data.creation === 'false'" fxFlexFill fxFlex.lt-md="70">
       <textarea

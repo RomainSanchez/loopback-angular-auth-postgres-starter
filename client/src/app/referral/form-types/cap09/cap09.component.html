@@ -9,6 +9,7 @@
     fxLayout.lt-md="column"
     fxLayoutGap="30px"
     fxLayoutAlign="center center"
+    fxFlexFill
   >
     <mat-form-field class="field">
       <input matInput
@@ -46,6 +47,7 @@
     fxLayout.lt-md="column"
     fxLayoutGap="30px"
     fxLayoutAlign="center center"
+    fxFlexFill
   >
     <mat-form-field class="field">
       <input matInput
@@ -64,14 +66,25 @@
       >
     </mat-form-field>
 
-    <mat-form-field class="field percentage" fxFlex.gt-md="40">
-      <input matInput type="number" min="1" max="99"
-        [(ngModel)]="data.percentage"
-        name="percentage"
-        placeholder="Pourcentage appliqué pour le grade concerné"
+    <mat-form-field class="field">
+      <input matInput
+        [(ngModel)]="data.newGrade"
+        name="new-grade"
+        placeholder="Grade d'avancement"
         required
       >
-      <span matSuffix>%</span>
+    </mat-form-field>
+
+    <mat-form-field class="field advance-from">
+      <input matInput
+        [(ngModel)]="data.advanceFrom"
+        [matDatepicker]="advanceFromDatePicker"
+        name="advanceFrom"
+        placeholder="Avancement à compter du"
+        required
+      >
+      <mat-datepicker-toggle matSuffix [for]="advanceFromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #advanceFromDatePicker></mat-datepicker>
     </mat-form-field>
   </div>
 
@@ -79,6 +92,7 @@
     fxLayout="row wrap"
     fxLayoutGap="30px"
     fxLayoutAlign="center center"
+    fxFlexFill
   >
     <div class="field" fxFlex="60">
       <mat-checkbox [(ngModel)]="data.several" name="several">Plusieurs agents proposés sur le même grade</mat-checkbox>
@@ -115,8 +129,19 @@
     fxLayout="row wrap"
     fxLayoutGap="30px"
     fxLayoutAlign="center center"
+    fxFlexFill
   >
-    <mat-form-field class="field deliberation" fxFlex.gt-md="40">
+    <mat-form-field class="field percentage" fxFlex="40" fxFlex.lt-md="100">
+      <input matInput type="number" min="1" max="99"
+        [(ngModel)]="data.percentage"
+        name="percentage"
+        placeholder="Pourcentage appliqué pour le grade concerné"
+        required
+      >
+      <span matSuffix>%</span>
+    </mat-form-field>
+
+    <mat-form-field class="field deliberation" fxFlex="50" fxFlex.lt-md="100">
       <input matInput
         [(ngModel)]="data.deliberation"
         [matDatepicker]="deliberationDatePicker"
@@ -126,18 +151,6 @@
       >
       <mat-datepicker-toggle matSuffix [for]="deliberationDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #deliberationDatePicker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="field advance-from">
-      <input matInput
-        [(ngModel)]="data.advanceFrom"
-        [matDatepicker]="advanceFromDatePicker"
-        name="advanceFrom"
-        placeholder="Avancement à compter du"
-        required
-      >
-      <mat-datepicker-toggle matSuffix [for]="advanceFromDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #advanceFromDatePicker></mat-datepicker>
     </mat-form-field>
   </div>
 
