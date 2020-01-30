@@ -10,7 +10,7 @@
       </span>
       <ng-container *ngFor="let link of adminLinks">
         <span
-          *ngxPermissionsOnly="['admin', 'secretary']"
+          *ngxPermissionsOnly="['admin', 'validator', 'instructor']"
           (click)="sidenav.close()"
         >
           <a [routerLink]="link.url">{{ link.name }}</a>
@@ -42,7 +42,7 @@
         </div>
         <div fxShow="true" fxHide.lt-md="true" fxFlexFill class="toolbar-links">
           <ng-container *ngFor="let link of adminLinks">
-            <span *ngxPermissionsOnly="['admin', 'secretary']">
+            <span *ngxPermissionsOnly="['admin', 'validator']">
               <a [routerLink]="link.url">{{ link.name }}</a>
             </span>
           </ng-container>

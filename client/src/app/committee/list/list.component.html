@@ -8,11 +8,11 @@
   ></mat-progress-spinner>
 </div>
 
-<mat-form-field *ngxPermissionsOnly="['admin', 'secretary']">
+<mat-form-field *ngxPermissionsOnly="['admin', 'validator']">
   <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtrer">
 </mat-form-field>
 
-<a *ngxPermissionsOnly="['admin', 'secretary']" routerLink="/committee/new">
+<a *ngxPermissionsOnly="['admin', 'validator']" routerLink="/committee/new">
   <button mat-fab>
     <mat-icon>add</mat-icon>
   </button>

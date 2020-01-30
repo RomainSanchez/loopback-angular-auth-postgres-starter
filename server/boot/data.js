@@ -16,7 +16,7 @@ module.exports = function(app) {
 
   const roles = [
     { name: 'admin', description: 'Administrateur' },
-    { name: 'secretary', description: 'Secrétaire' },
+    { name: 'instructor', description: 'Instructeur (territoires)' },
     { name: 'community', description: 'Collectivité' },
     { name: 'validator', description: 'Valideur' },
     { name: 'cap', description: 'Authorisé à saisir la CAP' },

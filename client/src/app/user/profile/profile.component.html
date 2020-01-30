@@ -25,7 +25,7 @@
         <input matInput [(ngModel)]="appUser.territory"  name="territory" placeholder="Territoire">
       </mat-form-field>
 
-      <div class="roles" *ngxPermissionsOnly="['admin', 'secretary']">
+      <div class="roles" *ngxPermissionsOnly="['admin', 'validator']">
         <p><label>Roles</label></p>
 
         <p *ngFor="let role of roles" class="role">
