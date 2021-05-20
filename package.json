@@ -16,7 +16,7 @@
     "cors": "^2.5.2",
     "docx": "^5.0.0",
     "helmet": "^3.10.0",
-    "html-pdf": "^2.2.0",
+    "html-pdf": "^3.0.1",
     "loopback": "^3.22.0",
     "loopback-boot": "^2.6.5",
     "loopback-component-explorer": "^6.2.0",
